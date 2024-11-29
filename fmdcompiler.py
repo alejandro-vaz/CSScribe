@@ -8,7 +8,7 @@ def fmdtomd(filename):
         return data 
     def format_list(data):
         data = data.replace("    o ", "1. ") # Ordered list
-        data = data.replace("    * ", "   - ") # Unordered list
+        data = data.replace("    u ", "   - ") # Unordered list
         return data
     def replace_definition(data):
         data = data.replace("/>", ">") # Side comment
@@ -39,7 +39,7 @@ def fmdtomd(filename):
         data = data.replace("\'", "**") # Bold
         return data
     def replace_ctags(data):
-        data = data.replace("/pbba", "<pbba>") # page-break-before: avoid
+        data = data.replace("/pbba", "<pbba></pbba>") # page-break-before: avoid
         data = data.replace("/In", "<index>") # Index page number start
         data = data.replace("/in", "</index>") # Index page number end
         data = data.replace("/br", "<br>") # Line break

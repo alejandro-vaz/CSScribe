@@ -1,6 +1,6 @@
 Este lenguaje de programación está diseñado para estandarizar el uso de MarkDown y hacer más fácil la redacción de contenido.
 
-Para instalar la extensión en VSC, abre la paleta de comandos con Ctrl+Shift+P y escribe "Developer: Install Extension from Location", selecciona la carpeta "./fastmarkdown-2.4.0" y dale a continuar.
+Para instalar la extensión en VSC, abre la paleta de comandos con Ctrl+Shift+P y escribe "Developer: Install Extension from Location", selecciona la carpeta "./fastmarkdown-2.4.1" y dale a continuar.
 
 Ya tienes instalada la extensión. Para poder usarla, necesitarás copiar este argumento en tu archivo settings.json:
 

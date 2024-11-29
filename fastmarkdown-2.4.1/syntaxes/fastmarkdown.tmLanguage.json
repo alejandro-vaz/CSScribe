@@ -125,7 +125,7 @@
         },
         {
             "name": "fmd.ul.fmd",
-            "match": "    * "
+            "match": "    u "
         },
         {
             "name": "fmd.brochet.fmd",

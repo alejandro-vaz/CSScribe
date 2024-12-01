@@ -40,12 +40,16 @@ with open(f"{dir_path}/.structure", "w", encoding="utf-8") as file:
             ├── índice.fmd
             ├── introducción.fmd
             └── conclusión.fmd
+
+
 project.pdf
 ├── Índice (#índice)
 ├── Introducción (#introducción)
 │   ├── Análisis (#análisis)
 │   └── Resumen (#resumen)
 └── Conclusión (#conclusión)
+
+
 ./project/
 ├── .git
 ├── .structure

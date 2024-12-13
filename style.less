@@ -1,0 +1,309 @@
+/* Puedes usar las etiquetas extra: pbba, index */
+/* pbba: evita que haya un salto de página antes de un h2 */
+/* index: añade el número de página dentro de un li para hacer índices */
+
+/* LETRA */
+@fuente: Arial; /* BASE: Aptos / CSSMS */
+@interlineado: 1; /* BASE: 1.5 */
+@alineacion: justify; /* BASE: justify */
+@tamano-letra: 12pt; /* BASE: 12pt */
+@parr-sep: 3pt; /* BASE: 3pt */
+
+/* MÁRGENES */
+@pagmarg-top: 2.5cm; /* BASE: 2.5cm */
+@pagmarg-bot: 2.5cm; /* BASE: 2.5cm */
+@pagmarg-izq: 1cm; /* BASE: 1cm; NOTA: +2cm Prince conversion */
+@pagmarg-der: 1cm; /* BASE: 1cm; NOTA: +2cm Prince conversion */
+@katex-marg: 12pt; /* BASE: 12pt */
+
+/* COLORES */
+@hcolor: #2f5496; /* BASE: #2f5496 */
+@dcolor: #272822; /* BASE: #272822 */
+@lcolor: #f0f0f0; /* BASE: #f0f0f0 / #f8f8f2 */
+@bcolor: #ffffff; /* BASE: #ffffff */
+
+/* ESCALA */
+@border-unit: 5px; /* BASE: 5px */
+
+/* IMÁGENES */
+@imgsize: 200px; /* BASE: 200px */
+
+/* PATH */
+@watermark-path: url("J:\\VSC\\CP-principal\\documents\\small.png"); /* BASE: url("") */
+
+/* NO TOCAR */
+.markdown-preview.markdown-preview {
+  @font-face {
+    font-family: 'Aptos';
+    src: url('C:/Users/aleja/.crossnote/Aptos.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'CSSMS';
+    src: url('C:/Users/aleja/.crossnote/ComicSansMS.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  * {
+    font-family: @fuente;
+    line-height: @interlineado;
+    margin: 0;
+    text-align: @alineacion;
+  }
+  
+  p, ul {
+    margin: 0;
+  }
+
+  p, .katex:not(.katex-display .katex) {
+    font-size: @tamano-letra;
+  }
+  
+  p + p {
+    margin-top: @parr-sep;
+  }
+  
+  body {
+    @media print {
+      margin-top: @pagmarg-top;
+      margin-bottom: @pagmarg-bot;
+      margin-left: @pagmarg-izq;
+      margin-right: @pagmarg-der;
+    }
+  }
+  
+  @media print {
+    @page {
+      @bottom-right {
+        content: counter(page);
+      };
+      @bottom-left {
+        content: @watermark-path;
+        margin-bottom: 50px;
+        margin-left: -25px;
+      }
+    }
+  }
+  
+  /* Tipografías de encabezados */
+  h1, h2, h3 {
+    color: @hcolor;
+    font-weight: bold;
+    margin-bottom: 0;
+  }
+  
+  h1 {
+    font-size: calc(@tamano-letra * 3);
+  }
+  
+  h2 {
+    font-size: calc(@tamano-letra * 7 / 3);
+    padding: 0;
+    margin-top: 0;
+    @media print {
+      page-break-before: always;
+    }
+  }
+  
+  h3 {
+    font-size: calc(@tamano-letra * 3 / 2);
+    margin-top: calc(2*@border-unit);
+  }
+  
+  /* Salto entre encabezados */
+  h1 + h2 {
+    @media print {
+      page-break-before: avoid;
+    }
+  }
+
+  pbba {
+    display: none
+  }
+
+  pbba + h2 {
+    page-break-before: avoid;
+  }
+  
+  /* Elementos decorativos */
+  hr {
+    margin: 0;
+    border: none;
+    background: linear-gradient(to right, @dcolor, transparent);
+    height: @border-unit;
+    margin-bottom: calc(2*@border-unit);
+    border-radius: @border-unit;
+  }
+  
+  /* Código y preformato */
+  pre, code {
+    background-color: #272822;
+    color: #D4D4D4;
+    overflow: auto;
+    page-break-before: avoid;
+    page-break-inside: auto;
+    page-break-after: avoid;
+  }
+  
+  pre {
+    padding: calc(4*@border-unit);
+    border-radius: calc(2*@border-unit);
+  }
+  
+  code {
+    padding: calc(@border-unit / 2) @border-unit;
+    border-radius: @border-unit;
+  }
+  
+  /* Sintaxis de resaltado */
+  .string {
+    color: #CEE397;
+  }
+  
+  .comment {
+    color: #729098;
+  }
+  
+  .number {
+    color: #B5CEA8;
+  }
+  
+  .keyword, .boolean {
+    color: #E9CA5C;
+  }
+  
+  .function {
+    color: #E9AEBA;
+  }
+  
+  .class-name {
+    color: #B5B5AD;
+  }
+  
+  .operator {
+    color: #D4D4D4;
+  }
+  
+  .punctuation {
+    color: #FFD700;
+  }
+  
+  .builtin {
+    color: #B5B5AD;
+  }
+  
+  .interpolation .punctuation {
+    color: #DA70D6;
+  }
+  
+  /* Citas */
+  blockquote {
+    border: none;
+    border-left: calc(@border-unit * 3 / 2) solid @dcolor;
+    border-radius: @border-unit;
+    padding: calc(2 * @border-unit);
+    background-color: @lcolor;
+    color: @dcolor;
+    width: fit-content;
+    height: fit-content;
+    margin: @border-unit 0;
+  }
+  
+  /* Enlaces */
+  a:link, a:visited {
+    color: @dcolor;
+  }
+  
+  /* Tablas */
+  table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    margin: calc(4 * @border-unit) 0;
+    border-top: calc(@border-unit * 3 / 2) solid @dcolor;
+    page-break-before: avoid;
+    page-break-inside: auto;
+    page-break-after: avoid;
+  }
+  
+  th, td {
+    padding: @border-unit calc(@border-unit * 5) 0 calc(@border-unit * 5);
+    text-align: left;
+    min-width: fit-content;
+    border: none;
+    width: max-content;
+    white-space: nowrap;
+    word-wrap: nowrap;
+    word-break: keep-all;
+    border-bottom: calc(@border-unit / 2) solid @lcolor;
+  }
+  
+  th {
+    background-color: @lcolor;
+    font-weight: bold;
+    border-radius: @border-unit;
+  }
+  
+  tbody {
+    background-color: @bcolor;
+  }
+
+  /* Imágenes */
+
+  p img {
+    height: @imgsize;
+    width: auto;
+    display: inline-block;
+    page-break-before: avoid;
+    page-break-inside: auto;
+    page-break-after: avoid;
+    border-radius: @border-unit;
+    margin-bottom: calc(@border-unit/2);
+  }
+
+  p:has(img) {
+    float: right;
+    padding: calc(2*@border-unit);
+    margin-left: calc(2*@border-unit);
+    background-color: @lcolor;
+    border-radius: @border-unit;
+    font-size: calc(@tamano-letra / 2);
+    text-align: center;
+  }
+  
+  /* KaTeX */
+
+  .katex-display .katex, .katex-display .katex * {
+    text-align: center;
+  }
+
+  p .katex-display {
+    margin-top: calc(@katex-marg / 2);
+    margin-bottom: calc(@katex-marg / 2)
+  }
+
+  /* Índices */
+
+  li:has(index) {
+    display: block;
+    width: 100%;
+  }
+
+  ol li:has(index) ol {
+    break-before: always;
+    list-style-type: none;
+  }
+
+  index {
+    float: right;
+  }
+
+  ol:has(li:has(index)) {
+    list-style-type: none;
+  }
+}
+
+/* AJUSTES CON ETIQUETAS */

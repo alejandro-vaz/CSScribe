@@ -83,4 +83,4 @@ os.makedirs(os.path.join(dir_path, 'step-4'), exist_ok=True)  # Create a new dir
 
 os.remove(file_path)
 
-os.system(f"code {dir_path}")
+os.system(f'code "{dir_path}"')

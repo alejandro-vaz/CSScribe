@@ -62,11 +62,14 @@ https://github.com/user/project/tree/main/
 ├── .git
 ├── .structure
 ├── step-0/
+│   ├── .todo
 │   └── project.pdf
 ├── step-1/
+│   ├── .todo
 │   ├── front_page.pdf
 │   └── main.pdf
 ├── step-2/
+│   ├── .todo
 │   ├── main.md
 │   └── images/
 │       ├── 1.png
@@ -74,9 +77,11 @@ https://github.com/user/project/tree/main/
 │       ├── 3.png
 │       └── jpegtopng.py
 ├── step-3/
+│   ├── .todo
 │   ├── main.fmd
 │   └── fmdcompiler.py
 └── step-4/
+    ├── .todo
     ├── index.fmd
     ├── introduction.fmd
     └── conclusion.fmd
@@ -91,6 +96,30 @@ os.makedirs(os.path.join(dir_path, 'step-2/images'), exist_ok=True)  # Create a 
 os.makedirs(os.path.join(dir_path, 'step-3'), exist_ok=True)  # Create a new directory
 os.makedirs(os.path.join(dir_path, 'step-4'), exist_ok=True)  # Create a new directory
 
-os.remove(file_path)
+open(os.path.join(dir_path, 'step-0/.gitignore'), 'w', encoding='utf-8')  # Create a new file
+open(os.path.join(dir_path, 'step-1/.gitignore'), 'w', encoding='utf-8')  # Create a new file
+open(os.path.join(dir_path, 'step-2/.gitignore'), 'w', encoding='utf-8')  # Create a new file
+open(os.path.join(dir_path, 'step-2/images/.gitignore'), 'w', encoding='utf-8')  # Create a new file
+open(os.path.join(dir_path, 'step-3/.gitignore'), 'w', encoding='utf-8')  # Create a new file
+open(os.path.join(dir_path, 'step-4/.gitignore'), 'w', encoding='utf-8')  # Create a new file
+
+with open(os.path.join(dir_path, 'step-0/.todo'), 'w', encoding='utf-8') as step: # Create a new file
+    content = """Take /step-1 pdfs and join them via ILovePDF joiner. This one is the only one valid because it maintains links functionality.
+Rename the resulting pdf and place it in step-0. Additional material may be included here."""
+    step.write(content)
+with open(os.path.join(dir_path, 'step-1/.todo'), 'w', encoding='utf-8') as step: # Create a new file
+    content = """Take step-2 document and convert it to a standalone PDF via princexml with the .less file.
+You should correct all document mistakes, errors or adjustments now.
+You should also create the front page."""
+    step.write(content)
+with open(os.path.join(dir_path, 'step-2/.todo'), 'w', encoding='utf-8') as step: # Create a new file
+    content = """Add the images in the images folder. Convert then the step-3 FastMarkDown file to MarkDown format via the compiler and place it."""
+    step.write(content)
+with open(os.path.join(dir_path, 'step-3/.todo'), 'w', encoding='utf-8') as step: # Create a new file
+    content = """Take the step-4 FastMarkDown files and join them all in a single FastMarkDown file."""
+    step.write(content)
+with open(os.path.join(dir_path, 'step-4/.todo'), 'w', encoding='utf-8') as step: # Create a new file
+    content = """Write all the document parts first."""
+    step.write(content)
 
 os.system(f'code "{dir_path}"')

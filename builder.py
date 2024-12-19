@@ -32,31 +32,39 @@ if input("Is this correct? (y/n): ").lower() != "y":
 delete_directory_contents(dir_path)
 
 with open(f"{dir_path}/.structure", "w", encoding="utf-8") as file:
-    file.write("""project.pdf
-├── portada.pdf
-└── main.pdf
-    └── main.md
-        └── main.fmd
-            ├── índice.fmd
-            ├── introducción.fmd
-            └── conclusión.fmd
+    file.write("""Project
+├── step-0 = 14/01/2025
+├── step-1 = 14/01/2025
+├── step-2 = 13/01/2025
+├── step-3 = 12/01/2025
+└── step-4 = 11/01/2025
 
 
 project.pdf
-├── Índice (#índice)
-├── Introducción (#introducción)
-│   ├── Análisis (#análisis)
-│   └── Resumen (#resumen)
-└── Conclusión (#conclusión)
+├── front_page.pdf
+└── main.pdf
+    └── main.md
+        └── main.fmd
+            ├── index.fmd (#index)
+            ├── introduction.fmd (#introduction)
+            └── conclusion.fmd (#conclusion)
 
 
-./project/
+project.pdf
+├── Index (#index)
+├── Introduction (#introduction)
+│   ├── Development (#development)
+│   └── Summary (#summary)
+└── Conclusion (#conclusion)
+
+
+https://github.com/user/project/tree/main/
 ├── .git
 ├── .structure
 ├── step-0/
 │   └── project.pdf
 ├── step-1/
-│   ├── portada.pdf
+│   ├── front_page.pdf
 │   └── main.pdf
 ├── step-2/
 │   ├── main.md
@@ -69,15 +77,17 @@ project.pdf
 │   ├── main.fmd
 │   └── fmdcompiler.py
 └── step-4/
-    ├── índice.fmd
-    ├── introducción.fmd
-    └── conclusión.fmd
+    ├── index.fmd
+    ├── introduction.fmd
+    └── conclusion.fmd
+
 """
     )
 
 os.makedirs(os.path.join(dir_path, 'step-0'), exist_ok=True)  # Create a new directory
 os.makedirs(os.path.join(dir_path, 'step-1'), exist_ok=True)  # Create a new directory
 os.makedirs(os.path.join(dir_path, 'step-2'), exist_ok=True)  # Create a new directory
+os.makedirs(os.path.join(dir_path, 'step-2/images'), exist_ok=True)  # Create a new directory
 os.makedirs(os.path.join(dir_path, 'step-3'), exist_ok=True)  # Create a new directory
 os.makedirs(os.path.join(dir_path, 'step-4'), exist_ok=True)  # Create a new directory
 

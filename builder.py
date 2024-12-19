@@ -195,5 +195,5 @@ if __name__ == "__main__":
         print(F"Error during conversion: \\n{e}")
     input("")
 """
-
+    comp.write(content)
 os.system(f'code "{dir_path}"')

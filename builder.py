@@ -162,6 +162,7 @@ with open(os.path.join(dir_path, 'step-3/fmdcompiler.py'), "w", encoding="utf-8"
         data = data.replace("/s", "~") # Subscript
         data = data.replace("/S", "^") # Superscript
         data = data.replace("\\'", "**") # Bold
+        data = data.replace("****", "\\'") # Double single-quote scape
         return data
     def replace_ctags(data):
         data = data.replace("/pbba", "<pbba></pbba>") # page-break-before: avoid

@@ -1,3 +1,6 @@
+import time
+from si_prefix import si_format
+
 def fmdtomd(filename):
     def format_power(data):
         data = data.replace("#>", "<!--") # Comment start
@@ -63,10 +66,12 @@ if __name__ == "__main__":
     filename = input("Name of file without extension: ")
     fmd_file = f"{filename}.fmd"
     md_file = f"{filename}.md"
+    start_time = time.time()
     try:
         with open(md_file, 'w', encoding="utf-8") as file:
             file.write(fmdtomd(fmd_file))
-        print("Conversion done!")
+        end_time = time.time()
+        print(f"Conversion done in {si_format(end_time - start_time, precision=2)}s")
     except Exception as e:
         print(F"Error during conversion: \n{e}")
     input("")

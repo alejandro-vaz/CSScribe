@@ -4,126 +4,55 @@ import shutil
 import time
 
 file_path = sys.argv[0]
-
-def delete_directory_contents(directory):
-    # Iterate over everything in the directory
-    for filename in os.listdir(directory):
-        paths = os.path.join(directory, filename)
-        try:
-            # If it's a directory, recursively delete its contents
-            if os.path.isdir(paths):
-                shutil.rmtree(paths)  # Deletes a directory and all its contents
-            else:
-                if paths != file_path:
-                    os.remove(paths)  # Deletes a file
-        except Exception as e:
-            print(f"Error deleting {paths}: {e}")
-
-
 dir_path = os.path.dirname(os.path.abspath(sys.argv[0]))
-print("FastMarkDown environment builder tool. Confirm the following data:")
-time.sleep(1)
-print(f"This file path is {file_path}.")
-time.sleep(0.25)
-print(f"This directory path is {dir_path}.")
-if input("Is this correct? (y/n): ").lower() != "y":
-    exit()
 
-delete_directory_contents(dir_path)
-
-with open(f"{dir_path}/.structure", "w", encoding="utf-8") as file:
-    file.write("""Project
-├── step-0 = 14/01/2025
-├── step-1 = 14/01/2025
-├── step-2 = 13/01/2025
-├── step-3 = 12/01/2025
-└── step-4 = 11/01/2025
+structure_content = """FastMarkDown 2.5.0
 
 
-project.pdf
-├── front_page.pdf
+# Factual completion dates
+{project}
+├── step-0 = --/--/----
+├── step-1 = --/--/----
+├── step-2 = --/--/----
+├── step-3 = --/--/----
+└── step-4 = --/--/----
+
+
+# Compiling hierarchy
+{project:raw}.pdf
 └── main.pdf
     └── main.md
         └── main.fmd
-            ├── index.fmd (#index)
-            ├── introduction.fmd (#introduction)
-            └── conclusion.fmd (#conclusion)
 
 
-project.pdf
-├── Index (#index)
-├── Introduction (#introduction)
-│   ├── Development (#development)
-│   └── Summary (#summary)
-└── Conclusion (#conclusion)
+# Headers hierarchy
 
 
-https://github.com/user/project/tree/main/
-├── .git
-├── .structure
+# Tree diagram
+https://{platform}/{username}/{project:raw}/tree/main/
 ├── step-0/
-│   ├── .todo
-│   └── project.pdf
 ├── step-1/
-│   ├── .todo
-│   ├── front_page.pdf
-│   └── main.pdf
 ├── step-2/
-│   ├── .todo
-│   ├── main.md
-│   └── images/
-│       ├── 1.png
-│       ├── 2.png
-│       ├── 3.png
-│       └── jpegtopng.py
 ├── step-3/
-│   ├── .todo
-│   ├── main.fmd
-│   └── fmdcompiler.py
-└── step-4/
-    ├── .todo
-    ├── index.fmd
-    ├── introduction.fmd
-    └── conclusion.fmd
+├── step-4/
+└── .structure
 
 """
-    )
 
-os.makedirs(os.path.join(dir_path, 'step-0'), exist_ok=True)  # Create a new directory
-os.makedirs(os.path.join(dir_path, 'step-1'), exist_ok=True)  # Create a new directory
-os.makedirs(os.path.join(dir_path, 'step-2'), exist_ok=True)  # Create a new directory
-os.makedirs(os.path.join(dir_path, 'step-2/images'), exist_ok=True)  # Create a new directory
-os.makedirs(os.path.join(dir_path, 'step-3'), exist_ok=True)  # Create a new directory
-os.makedirs(os.path.join(dir_path, 'step-4'), exist_ok=True)  # Create a new directory
-
-open(os.path.join(dir_path, 'step-0/.gitignore'), 'w', encoding='utf-8')  # Create a new file
-open(os.path.join(dir_path, 'step-1/.gitignore'), 'w', encoding='utf-8')  # Create a new file
-open(os.path.join(dir_path, 'step-2/.gitignore'), 'w', encoding='utf-8')  # Create a new file
-open(os.path.join(dir_path, 'step-2/images/.gitignore'), 'w', encoding='utf-8')  # Create a new file
-open(os.path.join(dir_path, 'step-3/.gitignore'), 'w', encoding='utf-8')  # Create a new file
-open(os.path.join(dir_path, 'step-4/.gitignore'), 'w', encoding='utf-8')  # Create a new file
-
-with open(os.path.join(dir_path, 'step-0/.todo'), 'w', encoding='utf-8') as step: # Create a new file
-    content = """Take /step-1 pdfs and join them via ILovePDF joiner. This one is the only one valid because it maintains links functionality.
+step_0_todo = """Take /step-1 pdfs and join them via ILovePDF joiner. This one is the only one valid because it maintains links functionality. https://www.ilovepdf.com/es/unir_pdf
 Rename the resulting pdf and place it in step-0. Additional material may be included here."""
-    step.write(content)
-with open(os.path.join(dir_path, 'step-1/.todo'), 'w', encoding='utf-8') as step: # Create a new file
-    content = """Take step-2 document and convert it to a standalone PDF via princexml with the .less file.
-You should correct all document mistakes, errors or adjustments now.
-You should also create the front page."""
-    step.write(content)
-with open(os.path.join(dir_path, 'step-2/.todo'), 'w', encoding='utf-8') as step: # Create a new file
-    content = """Add the images in the images folder. Convert then the step-3 FastMarkDown file to MarkDown format via the compiler and place it."""
-    step.write(content)
-with open(os.path.join(dir_path, 'step-3/.todo'), 'w', encoding='utf-8') as step: # Create a new file
-    content = """Take the step-4 FastMarkDown files and join them all in a single FastMarkDown file."""
-    step.write(content)
-with open(os.path.join(dir_path, 'step-4/.todo'), 'w', encoding='utf-8') as step: # Create a new file
-    content = """Write all the document parts first."""
-    step.write(content)
 
-with open(os.path.join(dir_path, 'step-3/fmdcompiler.py'), "w", encoding="utf-8") as comp:
-    content = """def fmdtomd(filename):
+step_1_todo = """Take step-2 document and convert it to a standalone PDF via princexml with the .less file (MarkDown Preview Enhanced extension helps)."""
+
+step_2_todo = """Add the images in the images folder. Convert then the step-3 FastMarkDown file to MarkDown format via the compiler and place it."""
+
+step_3_todo = """Take the step-4 FastMarkDown files and join them all in a single FastMarkDown file."""
+
+step_4_todo = """Write all the document parts. You can use the environment to check and fix."""
+
+compiler = """import time
+from si_prefix import si_format
+def fmdtomd(filename):
     def format_power(data):
         data = data.replace("#>", "<!--") # Comment start
         data = data.replace("<#", "-->") # Comment end
@@ -188,13 +117,132 @@ if __name__ == "__main__":
     filename = input("Name of file without extension: ")
     fmd_file = f"{filename}.fmd"
     md_file = f"{filename}.md"
+    start_time = time.time()
     try:
         with open(md_file, 'w', encoding="utf-8") as file:
             file.write(fmdtomd(fmd_file))
-        print("Conversion done!")
+        end_time = time.time()
+        print(f"Conversion done in {si_format(end_time - start_time, precision=2)}s")
     except Exception as e:
         print(F"Error during conversion: \\n{e}")
     input("")
 """
-    comp.write(content)
-os.system(f'code "{dir_path}"')
+
+jpegtopng = """import os
+from PIL import Image
+
+# Change the working directory to the directory where the script is located
+script_directory = os.path.dirname(os.path.abspath(__file__))
+os.chdir(script_directory)
+
+# Get the list of all files in the current directory
+files = os.listdir()
+
+# Loop through each file in the directory
+for file_name in files:
+    # Check if the file is a JPEG file
+    if file_name.lower().endswith('.jpg') or file_name.lower().endswith('.jpeg'):
+        try:
+            # Open the image using PIL
+            img = Image.open(file_name)
+            
+            # Convert the file name to PNG format
+            png_file_name = file_name.rsplit('.', 1)[0] + '.png'
+            
+            # Save the image in PNG format
+            img.save(png_file_name, 'PNG')
+            
+            # Close the image file
+            img.close()
+            
+            # Delete the original JPEG file
+            os.remove(file_name)
+            
+            print(f"Converted and deleted: {file_name}")
+        except Exception as e:
+            print(f"Failed to convert {file_name}: {e}")
+
+print("Process complete.")
+input()"""
+
+def delete_directory_contents(directory):
+    # Iterate over everything in the directory
+    for filename in os.listdir(directory):
+        paths = os.path.join(directory, filename)
+        try:
+            # If it's a directory, recursively delete its contents
+            if os.path.isdir(paths):
+                shutil.rmtree(paths)  # Deletes a directory and all its contents
+            else:
+                if paths != file_path:
+                    os.remove(paths)  # Deletes a file
+        except Exception as e:
+            print(f"Error deleting {paths}: {e}")
+
+def init():
+    print("FastMarkDown environment builder tool. Confirm the following data:")
+    time.sleep(1)
+    print(f"This file path is {file_path}")
+    time.sleep(0.25)
+    print(f"This directory path is {dir_path}")
+    if input("Is this correct? (y/n): ").lower() != "y":
+        exit()
+
+def restructure(i_environment, i_images):
+    delete_directory_contents(dir_path)
+    if i_environment:
+        os.makedirs(os.path.join(dir_path, 'env'), exist_ok=True)  # Create a new directory
+        if i_images:
+            os.makedirs(os.path.join(dir_path, 'env/images'), exist_ok=True)  # Create a new directory
+    os.makedirs(os.path.join(dir_path, 'step-0'), exist_ok=True)  # Create a new directory
+    os.makedirs(os.path.join(dir_path, 'step-1'), exist_ok=True)  # Create a new directory
+    os.makedirs(os.path.join(dir_path, 'step-2'), exist_ok=True)  # Create a new directory
+    if i_images:
+        os.makedirs(os.path.join(dir_path, 'step-2/images'), exist_ok=True)  # Create a new directory
+    os.makedirs(os.path.join(dir_path, 'step-3'), exist_ok=True)  # Create a new directory
+    os.makedirs(os.path.join(dir_path, 'step-4'), exist_ok=True)  # Create a new directory
+
+def structure(i_estpname, i_estplatform, i_estusername):
+    content = structure_content
+    i_estpnameraw = (i_estpname.lower()).replace(" ", "-")
+    content  = content.replace("{project}", i_estpname)
+    content = content.replace("{project:raw}", i_estpnameraw)
+    content = content.replace("{platform}", i_estplatform)
+    content = content.replace("{username}", i_estusername)
+    with open(f"{dir_path}/.structure", "w", encoding="utf-8") as file: file.write(content)
+
+def todos(i_todos):
+    if i_todos:
+        with open(os.path.join(dir_path, 'step-0/.todo'), 'w', encoding='utf-8') as step: step.write(step_0_todo)
+        with open(os.path.join(dir_path, 'step-1/.todo'), 'w', encoding='utf-8') as step: step.write(step_1_todo)
+        with open(os.path.join(dir_path, 'step-2/.todo'), 'w', encoding='utf-8') as step: step.write(step_2_todo)
+        with open(os.path.join(dir_path, 'step-3/.todo'), 'w', encoding='utf-8') as step: step.write(step_3_todo)
+        with open(os.path.join(dir_path, 'step-4/.todo'), 'w', encoding='utf-8') as step: step.write(step_4_todo)
+
+def compilers(i_environment):
+    with open(os.path.join(dir_path, 'step-3/fmdcompiler.py'), "w", encoding="utf-8") as step: step.write(compiler)
+    if i_environment:
+        with open(os.path.join(dir_path, 'env/fmdcompiler.py'), "w", encoding="utf-8") as step: step.write(compiler)
+
+def converters(i_environment):
+    with open(os.path.join(dir_path, 'step-2/images/jpegtopng.py'), "w", encoding='utf-8') as step: step.write(jpegtopng)
+    if i_environment:
+        with open(os.path.join(dir_path, 'env/images/jpegtopng.py'), "w", encoding='utf-8') as step: step.write(jpegtopng)
+
+def end():
+    os.system(f'code "{dir_path}"')
+
+if __name__ == "__main__":
+    init()
+    f_environment = input("Do you want to include a testing environment? (y/n): ").lower() == "y"
+    f_images = input("Do you want image support? (y/n): ").lower() == "y"
+    f_todos = input("Do you want to add .todo guide files? (y/n): ").lower() == "y"
+    f_estpname = input("Enter the project name: ")
+    f_estplatform = input("Enter the file-sharing platform link: ")
+    f_estusername = input("Enter the creator's file-sharing username: ")
+    restructure(f_environment, f_images)
+    structure(f_estpname, f_estplatform, f_estusername)
+    todos(f_todos)
+    compilers(f_environment)
+    converters(f_environment)
+    end()

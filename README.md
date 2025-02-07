@@ -1,11 +1,42 @@
-Este lenguaje de programación está diseñado para estandarizar el uso de MarkDown y hacer más fácil la redacción de contenido.
+### FastMarkDown
 
-El builder te ajustará el entorno en una carpeta automáticamente.
+Este lenguaje de programación está diseñado para estandarizar el uso de MarkDown y hacer más fácil la redacción de contenido. El lenguaje de programación es capaz de crear documentos PDF a partir de código sin intervención del usuario.
 
-Para instalar la extensión en VSC, abre la paleta de comandos con Ctrl+Shift+P y escribe "Developer: Install Extension from Location", selecciona la carpeta "./fastmarkdown-2.4.1" y dale a continuar.
+Es capaz de insertar bloques de código, bloques aparte, fórmulas matemáticas, imágenes y muchos otros recursos de forma automática y estilizada por defecto.
 
-Ya tienes instalada la extensión. Para poder usarla, necesitarás copiar este argumento en tu archivo settings.json:
 
+### Dependencias
+
+   - VSCode
+   - FastMarkDown
+   - Markdown Preview Enhanced
+
+   - PrinceXML
+   - `settings.json`
+
+### Compatibilidad
+
+- [X] Windows 10 (todas las versiones)
+- [X] Windows 11 (todas las versiones)
+- [ ] Linux (no comprobado)
+
+
+### Guía de instalación
+
+Primero necesitarás instalar [Visual Studio Code,](https:/```.visualstudio.com/) requisito imprescindible.
+
+Necesitarás después instalar la extensión de FastMarkDown. Para ello, presiona Ctrl + Shift + P dentro de VSCode y busca `Developer: Install Extension from Location...`. Luego, selecciona la carpeta de la extensión FastMarkDown (`fastmarkdown-V.E.R`).
+
+Después, acude al Marketplace de extensiones y busca `Markdown Preview Enhanced`, de Yiyi Wang. Instala la extensión.
+
+Finalmente, necesitarás instalar [PrinceXML](https://www.princexml.com/) y hacer unos cambios. Una vez hayas instalado Prince, añade a PATH (en variables de entorno de Windows) la ruta de la siguiente carpeta:
+
+```
+C:\Program Files (x86)\Prince\engine\bin
+```
+Además, duplica el archivo `prince.exe` en esa carpeta y renómbralo a `princexml.exe`.
+
+Otra vez de vuelta en VSCode, copia este argumento en `settings.json`, puedes acceder a este documento presionando Ctrl + Shift + P y buscando Preferences: Open User Settings (JSON):
 ```json
     "editor.tokenColorCustomizations": {
         "textMateRules": [
@@ -169,3 +200,9 @@ Ya tienes instalada la extensión. Para poder usarla, necesitarás copiar este a
         ]
     },
 ```
+
+### Guía de usuario
+
+Los archivos FastMarkDown tienen la extensión `.fmd`. Es recomendable crear un directorio con un entorno de FastMarkDown para trabajar de forma más cómoda. Para ello, ejecuta el archivo `builder.py` en la carpeta que deseas convertir en entorno (borrará todo lo que haya ahí).
+
+Puedes abrir `fmdcompiler.py` para ver la nomenclatura específica y cosas que puedes hacer con FastMarkDown.

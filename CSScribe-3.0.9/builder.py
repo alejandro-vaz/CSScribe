@@ -6,7 +6,7 @@ import time
 file_path = sys.argv[0]
 dir_path = os.path.dirname(os.path.abspath(sys.argv[0]))
 
-structure_content = """CSScribe 3.0.2
+structure_content = """CSScribe 3.0.9
 
 
 # Factual completion dates

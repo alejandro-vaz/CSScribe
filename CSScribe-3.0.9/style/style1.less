@@ -1,3 +1,7 @@
+/* Puedes usar las etiquetas extra: pbba, index */
+/* pbba: evita que haya un salto de página antes de un h2 */
+/* index: añade el número de página dentro de un li para hacer índices */
+
 /* LETRA */
 @fuente: Aptos; /* BASE: Aptos / CSSMS */
 @interlineado: 1.5; /* BASE: 1.5 */
@@ -83,6 +87,7 @@
   
   h1 {
     font-size: calc(@tamano-letra * 3);
+    padding: 0;
   }
   
   h2 {
@@ -133,20 +138,28 @@
   pre, code {
     background-color: #272822;
     color: #D4D4D4;
-    overflow: auto;
-    page-break-before: avoid;
-    page-break-inside: auto;
-    page-break-after: avoid;
+    page-break-before: avoid !important;
+    page-break-inside: auto !important;
+    page-break-after: avoid !important;
+    line-height: 1 !important;
+    font-family: monospace !important;
   }
-  
+
   pre {
-    padding: calc(4*@border-unit);
-    border-radius: calc(2*@border-unit);
+    border-radius: @border-unit;
+    white-space: pre-wrap !important;
+    word-wrap: break-word !important;
+    overflow: hidden !important;
+    overflow-wrap: break-word !important;
+    margin: 5px 0 !important;
   }
   
   code {
-    padding: calc(@border-unit / 2) @border-unit;
-    border-radius: @border-unit;
+    padding: 0 !important;
+  }
+
+  :not(pre) > code {
+    padding: calc(@border-unit*0.5) calc(@border-unit / 2) !important;
   }
   
   /* Sintaxis de resaltado */
@@ -313,6 +326,42 @@
   ol:has(li:has(index)) {
     list-style-type: none;
   }
+
+  /* Checkboxes */
+
+  input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: @tamano-letra;
+    height: @tamano-letra;
+    border: 2px solid #555;
+    border-radius: 2px;
+    background-color: #fff;
+    cursor: pointer;
+    position: relative !important;
+    bottom: 2.5px !important;
+    right: 0 !important;
+  }
+
+  input[type="checkbox"]:checked {
+    background-color: #007BFF;
+    border-color: #007BFF;
+  }
+
+  input[type="checkbox"]:checked::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 6px;
+    width: 4px;
+    height: 8px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+
+  /* AJUSTES CON ETIQUETAS */
+
 }
 
-/* AJUSTES CON ETIQUETAS */

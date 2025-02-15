@@ -1,0 +1,214 @@
+{
+    "scopeName": "source.cssc",
+    "patterns": [
+        {
+            "name": "class-code.cssc",
+            "begin": "/code-",
+            "patterns": [
+                { "include": "#editor-scape"}
+            ],
+            "end": "/code"
+        },
+        {
+            "name": "class-comment.cssc",
+            "begin": "/>",
+            "patterns": [
+                { "include": "#editor-newline" },
+                { "include": "#modifier-subscript" },
+                { "include": "#modifier-superscript" },
+                { "include": "#modifier-math" },
+                { "include": "#modifier-bold" },
+                { "include": "#modifier-italic" },
+                { "include": "#modifier-strikethrough" },
+                { "include": "#modifier-code" },
+                { "include": "#editor-scape"}
+            ],
+            "end": "$"
+        },
+        {
+            "name": "class-image.cssc",
+            "match": "/img"
+        },
+        {
+            "name": "class-math.cssc",
+            "begin": "/math",
+            "patterns": [
+                { "include": "#editor-scape"}
+            ],
+            "end": "/math"
+        },
+        {
+            "name": "editor-comment.cssc",
+            "begin": "#>",
+            "end": "<#"
+        },
+        {
+            "name": "editor-newline.cssc",
+            "match": "/n"
+        },
+        {
+            "name": "editor-scape.cssc",
+            "match": "¬"
+        },
+        {
+            "name": "modifier-bold.cssc",
+            "begin": "'",
+            "patterns": [
+                { "include": "#modifier-italic" },
+                { "include": "#modifier-strikethrough" },
+                { "include": "#editor-scape"}
+            ],
+            "end": "'"
+        },
+        {
+            "name": "modifier-brochet.cssc",
+            "match": "[\\(\\)\\[\\]\\{\\}]"
+        },
+        {
+            "name": "modifier-checkbox.cssc",
+            "match": "/X"
+        },
+        {
+            "name": "modifier-code.cssc",
+            "begin": "/cd",
+            "patterns": [
+                { "include": "#editor-scape"}
+            ],
+            "end": "/cd"
+        },
+        {
+            "name": "modifier-h1.cssc",
+            "begin": "/h1",
+            "patterns": [
+                { "include": "#editor-newline" },
+                { "include": "#editor-scape"},
+                { "include": "#modifier-italic"},
+                { "include": "#modifier-strikethrough"}
+            ],
+            "end": "$"
+        },
+        {
+            "name": "modifier-h2.cssc",
+            "begin": "/h2",
+            "patterns": [
+                { "include": "#editor-newline" },
+                { "include": "#editor-scape"},
+                { "include": "#modifier-italic"},
+                { "include": "#modifier-strikethrough"}
+            ],
+            "end": "$"
+        },
+        {
+            "name": "modifier-h3.cssc",
+            "begin": "/h3",
+            "patterns": [
+                { "include": "#editor-newline" },
+                { "include": "#editor-scape"},
+                { "include": "#modifier-italic"},
+                { "include": "#modifier-strikethrough"}
+            ],
+            "end": "$"
+        },
+        {
+            "name": "modifier-italic.cssc",
+            "begin": "·",
+            "patterns": [
+                { "include": "#modifier-strikethrough" },
+                { "include": "#editor-scape"}
+            ],
+            "end": "·"
+        },
+        {
+            "name": "modifier-math.cssc",
+            "begin": "/_",
+            "patterns": [
+                { "include": "#editor-scape"}
+            ],
+            "end": "/_"
+        },
+        {
+            "name": "modifier-ordered.cssc",
+            "match": "    o "
+        },
+        {
+            "name": "modifier-strikethrough.cssc",
+            "begin": "/-",
+            "patterns": [
+                { "include": "#editor-scape"}
+            ],
+            "end": "/-"
+        },
+        {
+            "name": "modifier-subscript.cssc",
+            "match": "/s"
+        },
+        {
+            "name": "modifier-superscript.cssc",
+            "match": "/S"
+        },
+        {
+            "name": "modifier-unordered.cssc",
+            "match": "    u "
+        },
+        {
+            "name": "modifier-voidbox.cssc",
+            "match": "/O"
+        },
+        {
+            "name": "tag-break.cssc",
+            "match": "/br"
+        },
+        {
+            "name": "tag-index.cssc",
+            "begin": "/In",
+            "end": "/in"
+        },
+        {
+            "name": "tag-pbba.cssc",
+            "match": "/pbba"
+        }
+    ],
+    "repository": {
+        "editor-newline": {
+            "name": "editor-newline.cssc",
+            "match": "/n"
+        },
+        "editor-scape": {
+            "name": "editor-scape.cssc",
+            "match": "¬"
+        },
+        "modifier-bold": {
+            "name": "modifier-bold.cssc",
+            "begin": "'",
+            "end": "'"
+        },
+        "modifier-code": {
+            "name": "modifier-code.cssc",
+            "begin": "/cd",
+            "end": "/cd"
+        },
+        "modifier-italic": {
+            "name": "modifier-italic.cssc",
+            "begin": "·",
+            "end": "·"
+        },
+        "modifier-math": {
+            "name": "modifier-math.cssc",
+            "begin": "/_",
+            "end": "/_"
+        },
+        "modifier-strikethrough": {
+            "name": "modifier-strikethrough.cssc",
+            "begin": "/-",
+            "end": "/-"
+        },
+        "modifier-subscript": {
+            "name": "modifier-subscript.cssc",
+            "match": "/s"
+        },
+        "modifier-superscript": {
+            "name": "modifier-superscript.cssc",
+            "match": "/S"
+        }
+    }
+}

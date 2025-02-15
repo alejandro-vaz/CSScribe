@@ -1,0 +1,38 @@
+{
+    "engines": {
+        "vscode": "^1.94.0"
+    },
+    "name": "csscribe",
+    "displayName": "CSScribe",
+    "description": "CSScribe is a custom language designed to enhance your coding experience in Markdown, enabling faster and more efficient writing with syntax highlighting and standardized formatting.",
+    "version": "3.0.0",
+    "publisher": "alejandro-vaz",
+    "contributes": {
+        "languages": [
+            {
+                "id": "cssc",
+                "extensions": [
+                    ".cssc"
+                ],
+                "aliases": [
+                    "CSScribe"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "cssc",
+                "scopeName": "source.cssc",
+                "path": "./syntaxes/csscribe.tmLanguage.json"
+            }
+        ],
+        "keywords": [
+            "markdown",
+            "csscribe",
+            "programming",
+            "editor"
+        ]
+    },
+    "license": "MIT"
+}

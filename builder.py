@@ -6,7 +6,7 @@ import time
 file_path = sys.argv[0]
 dir_path = os.path.dirname(os.path.abspath(sys.argv[0]))
 
-structure_content = """FastMarkDown 2.5.1
+structure_content = """CSScribe 3.0.0
 
 
 # Factual completion dates
@@ -22,7 +22,7 @@ structure_content = """FastMarkDown 2.5.1
 {project:raw}.pdf
 └── main.pdf
     └── main.md
-        └── main.fmd
+        └── main.cssc
 
 
 # Headers hierarchy
@@ -44,15 +44,15 @@ Rename the resulting pdf and place it in step-0. Additional material may be incl
 
 step_1_todo = """Take step-2 document and convert it to a standalone PDF via princexml with the .less file (MarkDown Preview Enhanced extension helps)."""
 
-step_2_todo = """Add the images in the images folder. Convert then the step-3 FastMarkDown file to MarkDown format via the compiler and place it."""
+step_2_todo = """Add the images in the images folder. Convert then the step-3 .cssc file to MarkDown format via the CSSCcompiler and place it."""
 
-step_3_todo = """Take the step-4 FastMarkDown files and join them all in a single FastMarkDown file."""
+step_3_todo = """Take the step-4 CSScribe files and join them all in a single .cssc file."""
 
 step_4_todo = """Write all the document parts. You can use the environment to check and fix."""
 
 compiler = """import time
 from si_prefix import si_format
-def fmdtomd(filename):
+def cssctomd(filename):
     def format_power(data):
         data = data.replace("#>", "<!--") # Comment start
         data = data.replace("<#", "-->") # Comment end
@@ -115,12 +115,12 @@ def fmdtomd(filename):
 
 if __name__ == "__main__":
     filename = input("Name of file without extension: ")
-    fmd_file = f"{filename}.fmd"
+    cssc_file = f"{filename}.cssc"
     md_file = f"{filename}.md"
     start_time = time.time()
     try:
         with open(md_file, 'w', encoding="utf-8") as file:
-            file.write(fmdtomd(fmd_file))
+            file.write(cssctomd(cssc_file))
         end_time = time.time()
         print(f"Conversion done in {si_format(end_time - start_time, precision=2)}s")
     except Exception as e:
@@ -180,7 +180,7 @@ def delete_directory_contents(directory):
             print(f"Error deleting {paths}: {e}")
 
 def init():
-    print("FastMarkDown environment builder tool. Confirm the following data:")
+    print("CSScribe environment builder tool. Confirm the following data:")
     time.sleep(1)
     print(f"This file path is {file_path}")
     time.sleep(0.25)
@@ -220,9 +220,9 @@ def todos(i_todos):
         with open(os.path.join(dir_path, 'step-4/.todo'), 'w', encoding='utf-8') as step: step.write(step_4_todo)
 
 def compilers(i_environment):
-    with open(os.path.join(dir_path, 'step-3/fmdcompiler.py'), "w", encoding="utf-8") as step: step.write(compiler)
+    with open(os.path.join(dir_path, 'step-3/CSSCcompiler.py'), "w", encoding="utf-8") as step: step.write(compiler)
     if i_environment:
-        with open(os.path.join(dir_path, 'env/fmdcompiler.py'), "w", encoding="utf-8") as step: step.write(compiler)
+        with open(os.path.join(dir_path, 'env/CSSCcompiler.py'), "w", encoding="utf-8") as step: step.write(compiler)
 
 def converters(i_environment):
     with open(os.path.join(dir_path, 'step-2/images/jpegtopng.py'), "w", encoding='utf-8') as step: step.write(jpegtopng)

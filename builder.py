@@ -6,7 +6,7 @@ import time
 file_path = sys.argv[0]
 dir_path = os.path.dirname(os.path.abspath(sys.argv[0]))
 
-structure_content = """FastMarkDown 2.5.0
+structure_content = """FastMarkDown 2.5.1
 
 
 # Factual completion dates

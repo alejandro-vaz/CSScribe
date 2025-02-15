@@ -194,7 +194,8 @@ To transform that file to a pretty, print-friendly file, you will have to open t
 The formatted ·PDF· file will be created shortly after. However, it will undoubtedly be very ugly. That''s because you haven''t customized the ·CSS.·/n
 Don''t worry, I have already done so for you. Inside the extension folder you''ll find another folder named /cdstyle//cd. Copy the code inside one of the many /cdstyle.less/cd files and paste it into /cdMarkdown Preview Enhanced: Customize CSS (Global)/cd (you might be prompted to create the file)./n
 Inside the /cd.less/cd file you''ll also see at the top variables you can modify, feel free to modify them but you might not want to dive deep into the /_300/_ lines of code I barely understand (with a lot of /cd!important/cd lines because ·PrinceXML· doesn''t always like margins)./n
-Compile it again and you''ll have a beautifully looking document.
+Compile it again and you''ll have a beautifully looking document./n
+/> You can access different fonts by replacing the variable value in the /cd.less/cd file. There are some font files already in the /cdfonts//cd folder./n
 /h3 Custom environments/n
 For larger projects, you might want to use a custom environment which includes scripts and stuff which will help you organize your project. The /cdbuilder.py/cd utility will do so automatically. This feature is under development but it is working really well./n
 /> Be careful when you execute /cdbuilder.py/cd, it will delete all files in the current folder, make sure to select a folder exclusively for the environment./n

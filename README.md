@@ -216,6 +216,9 @@ Don't worry, I have already done so for you. Inside the extension folder you'll 
 Inside the `.less` file you'll also see at the top variables you can modify, feel free to modify them but you might not want to dive deep into the $300$ lines of code I barely understand (with a lot of `!important` lines because *PrinceXML* doesn't always like margins).
 
 Compile it again and you'll have a beautifully looking document.
+
+> You can access different fonts by replacing the variable value in the `.less` file. There are some font files already in the `fonts/` folder.
+
 ### Custom environments
 
 For larger projects, you might want to use a custom environment which includes scripts and stuff which will help you organize your project. The `builder.py` utility will do so automatically. This feature is under development but it is working really well.

@@ -70,12 +70,6 @@ This ·markup language· is designed to be simple, yet powerful. It allows you t
                 }
             },
             {
-                "scope": "modifier-brochet.cssc", // Color para brochet
-                "settings": {
-                    "foreground": "#ffff00",
-                }
-            },
-            {
                 "scope": "modifier-checkbox.cssc",
                 "settings": {
                     "foreground": "#02e9f5" // Color para done
@@ -189,7 +183,7 @@ Now you can start writing something. Try writing something like:/n
 /code/n
 You''ll see that the whole line is colored blue (by the way, you can change all colors in the argument you copied to /cdsettings.json/cd). The /cd/h¬2/cd modifier is transformed into a medium header once the code is compiled./n
 Since this is a markup language, everything you write is converted into text, unless so-called commands. You''ll find a cheatsheet (/cdcheatsheet.pdf/cd) which includes all possible commands, learn them to exploit all the features of ·CSScribe.·/n
-Once you have the file ready, the first thing you have to do is to compile the /cd.cssc/cd. Compiling is really easy: run /cdCSSCcompiler.py/cd in the same folder you''re in and input the file name. Shortly after (quite literally, milliseconds), a /cd.md/cd file with the same name as the original file will appear./n
+Once you have the file ready, the first thing you have to do is to compile the /cd.cssc/cd. Compiling is really easy: run /cdcompiler.py/cd in the same folder you''re in and input the file name. Shortly after (quite literally, milliseconds), a /cd.md/cd file with the same name as the original file will appear./n
 To transform that file to a pretty, print-friendly file, you will have to open the /cd.md/cd file inside ·VSC.· Then press /cdCtrl + Shift + V/cd simultaneously to open the file in the ·Markdown Preview Enhanced· extension. Don''t worry about what you see inside there, just right-click, click on /cdExport/cd and then select /cdPDF (Prince)/cd./n
 The formatted ·PDF· file will be created shortly after. However, it will undoubtedly be very ugly. That''s because you haven''t customized the ·CSS.·/n
 Don''t worry, I have already done so for you. Inside the extension folder you''ll find another folder named /cdstyle//cd. Copy the code inside one of the many /cdstyle.less/cd files and paste it into /cdMarkdown Preview Enhanced: Customize CSS (Global)/cd (you might be prompted to create the file)./n
@@ -201,5 +195,6 @@ For larger projects, you might want to use a custom environment which includes s
 /> Be careful when you execute /cdbuilder.py/cd, it will delete all files in the current folder, make sure to select a folder exclusively for the environment./n
 /h3 License/n
 This project is licensed under the MIT License - see the /cdLICENSE/cd file for details./n
+You''re allowed to use the source code to write anything, without the need to mention me or ·CSScribe· (but I''ll appreciate it a lot)./n
 /h3 Credits/n
 Thanks to the ·PrinceXML· team and ·Yiyi Wang· for the amazing software.

@@ -78,12 +78,6 @@ This *markup language* is designed to be simple, yet powerful. It allows you to 
                 }
             },
             {
-                "scope": "modifier-brochet.cssc", // Color para brochet
-                "settings": {
-                    "foreground": "#ffff00",
-                }
-            },
-            {
                 "scope": "modifier-checkbox.cssc",
                 "settings": {
                     "foreground": "#02e9f5" // Color para done
@@ -205,7 +199,7 @@ You'll see that the whole line is colored blue (by the way, you can change all c
 
 Since this is a markup language, everything you write is converted into text, unless so-called commands. You'll find a cheatsheet (`cheatsheet.pdf`) which includes all possible commands, learn them to exploit all the features of *CSScribe.*
 
-Once you have the file ready, the first thing you have to do is to compile the `.cssc`. Compiling is really easy: run `CSSCcompiler.py` in the same folder you're in and input the file name. Shortly after (quite literally, milliseconds), a `.md` file with the same name as the original file will appear.
+Once you have the file ready, the first thing you have to do is to compile the `.cssc`. Compiling is really easy: run `compiler.py` in the same folder you're in and input the file name. Shortly after (quite literally, milliseconds), a `.md` file with the same name as the original file will appear.
 
 To transform that file to a pretty, print-friendly file, you will have to open the `.md` file inside *VSC.* Then press `Ctrl + Shift + V` simultaneously to open the file in the *Markdown Preview Enhanced* extension. Don't worry about what you see inside there, just right-click, click on `Export` and then select `PDF (Prince)`.
 
@@ -228,6 +222,8 @@ For larger projects, you might want to use a custom environment which includes s
 ### License
 
 This project is licensed under the MIT License - see the `LICENSE` file for details.
+
+You're allowed to use the source code to write anything, without the need to mention me or *CSScribe* (but I'll appreciate it a lot).
 
 ### Credits
 

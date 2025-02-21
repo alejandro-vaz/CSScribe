@@ -4,8 +4,8 @@
     },
     "name": "csscribe",
     "displayName": "CSScribe",
-    "description": "CSScribe is a custom language designed to enhance your coding experience in Markdown, enabling faster and more efficient writing with syntax highlighting and standardized formatting.",
-    "version": "3.0.12",
+    "description": "CSScribe is a markup language designed to enhance your writing experience, enabling faster and more efficient writing with syntax highlighting and standardized formatting.",
+    "version": "3.1.3",
     "publisher": "alejandro-vaz",
     "contributes": {
         "languages": [

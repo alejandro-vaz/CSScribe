@@ -1,4 +1,4 @@
-/h1 ·CSScribe· 3.0.12 cheatsheet
+/h1 ·CSScribe· 3.1.3 cheatsheet
 /h2 Command types/n
 ---/n
 ·CSScribe· is a ·markup language.· Most of what you''ll write is actual text that will be shown in the final document, but there are also commands which let you decide how to format the final file./n
@@ -85,7 +85,7 @@ Imagine we wanted to write /cd/¬n/cd in the final document without it being tra
 Actually, you can type it via math modifier (/_\neg/_).
 /h2 Modifiers
 ---/n
-There are 15 types of modifiers./n
+There are 14 types of modifiers./n
 /h3 Bold/n
 It''s quite self-explanatory, it just makes some text be 'bold.'/n
 To do so, input the following code:/n
@@ -93,10 +93,6 @@ To do so, input the following code:/n
 I want the following sentence to be bold: ''this is bold.''
 /code/n
 The scape character to input just one single quote is writing two single quotes (as if you wanted to input something bold) together without anything in between.
-/h3 Brochet/n
-This is kinda not a modifier, but it is colored anyway, I might remove this soon because it offers no functionality. Just literally input ( ) or [ ] or { } and that''s it./n
-When I started coding this markup language, a modifier was anything that was colored and that''s why it''s still in this list./n
-And there''s no support for scape character because why would you want to add the brochet then?
 /h3 Checkbox/n
 Adds a small checked checkbox:/n
 /X Done!/n

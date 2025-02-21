@@ -1,12 +1,22 @@
 /h3 CSScribe 3.0.9/n
-/X Improved /cdREADME.md/cd.
-/X Improved code block ·CSS.·
-/X Added /cddev//cd folder.
-/X Added /cdstyle//cd folder.
-/X Improved checkbox ·CSS.·
-/X Added /cdcheatsheet.pdf/cd.
-/X Added /cdchangelog.md/cd./n
+/X (Minor) Improved /cdREADME.md/cd.
+/X (Minor) Improved code block ·CSS.·
+/X (Minor) Added /cddev//cd folder.
+/X (Minor) Added /cdstyle//cd folder.
+/X (Minor) Improved checkbox ·CSS.·
+/X (Minor) Added /cdcheatsheet.pdf/cd.
+/X (Minor) Added /cdchangelog.md/cd./n
 /h3 CSScribe 3.0.12/n
-/X Main folder removed.
-/X Two fonts included in repository.
-/X Cleaned /cdlanguage-configuration.json/cd./n
+/X (Minor) Main folder removed.
+/X (Minor) Two fonts included in repository.
+/X (Minor) Cleaned /cdlanguage-configuration.json/cd./n
+/h2 CSScribe 3.1.3
+---/n
+/X (Minor) Added /cd«/cd and /cd»/cd autocompletion.
+/X (Minor) Deleted /cdmodifier-brochet.cssc/cd.
+/X (Minor) Cleaned and commented /cdlanguage-configuration.json/cd further.
+/X (Minor) Added ·lorem ipsum· autocompletion.
+/X (Major) Changed /cdstep$//cd logical order.
+/X (Minor) Renamed /cdCSSCcompiler.py/cd to /cdcompiler.py/cd.
+/X (Minor) Rewritten all /cd.todo/cd files with better explanations./n
+/X (Minor) Removed explanation from /cdstyle-1.less/cd (renamed from /cdstyle1.less/cd) but added description./n

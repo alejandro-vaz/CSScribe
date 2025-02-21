@@ -1,6 +1,6 @@
 {
     "comments": {
-        "blockComment": ["#>", "<#"]
+        "blockComment": ["#>", "<#"] // editor-comment.cssc
     },
     "brackets": [
         ["{", "}"],
@@ -8,42 +8,61 @@
         ["(", ")"]
     ],
     "autoClosingPairs": [
-        ["{", "}"],
-        ["[", "]"],
-        ["(", ")"],
-        ["'", "'"],
+        /* CLASSES */
+        ["/code", "-\n\n/code"], // class-code.cssc
+        ["/math", "\n\n/math"], // class-math.cssc
+
+        /* EDITORS */
+        ["#>", "<#"], // editor-comment.cssc
+        
+        /* MODIFIERS */
+        ["'", "'"], // modifier-bold.cssc
+        ["/cd", "/cd"], // modifier-code.cssc
+        ["·", "·"], // modifier-italic.cssc
+        ["/_", "/_"], // modifier-math.cssc
+        ["/-", "/-"], // modifier-strikethrough.cssc
+        ["/s", "/s"], // modifier-subscript.cssc
+        ["/S", "/S"], // modifier-superscript.cssc
+
+        /* TAGS */
+        ["/In", "/in"], // tag-index.cssc
+
+        /* EXTRA */
         ["\"", "\""],
         ["¿", "?"],
         ["¡", "!"],
-        ["#>", "<#"],
-        ["/code", "-\n\n/code"],
-        ["/cd", "/cd"],
-        ["/math", "\n\n/math"],
-        ["/_", "/_"],
-        ["/-", "/-"],
-        ["/s", "/s"],
-        ["/S", "/S"],
-        ["·", "·"],
-        ["/In", "/in"]
+        ["{", "}"],
+        ["[", "]"],
+        ["(", ")"],
+        ["«", "»"],
+        ["Lorem ipsum", " dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n"]
     ],
     "surroundingPairs": [
+        /* CLASSES */
+        ["/code", "-\n\n/code"], // class-code.cssc
+        ["/math", "\n\n/math"], // class-math.cssc
+
+        /* EDITORS */
+        ["#>", "<#"], // editor-comment.cssc
+        
+        /* MODIFIERS */
+        ["'", "'"], // modifier-bold.cssc
+        ["/cd", "/cd"], // modifier-code.cssc
+        ["·", "·"], // modifier-italic.cssc
+        ["/_", "/_"], // modifier-math.cssc
+        ["/-", "/-"], // modifier-strikethrough.cssc
+        ["/s", "/s"], // modifier-subscript.cssc
+        ["/S", "/S"], // modifier-superscript.cssc
+
+        /* TAGS */
+        ["/In", "/in"], // tag-index.cssc
+
+        /* EXTRA */
+        ["\"", "\""],
         ["{", "}"],
         ["[", "]"],
         ["(", ")"],
-        ["'", "'"],
-        ["\"", "\""],
-        ["¿", "?"],
-        ["¡", "!"],
-        ["#>", "<#"],
-        ["/code", "-\n\n/code"],
-        ["/cd", "/cd"],
-        ["/math", "\n\n/math"],
-        ["/_", "/_"],
-        ["/-", "/-"],
-        ["/s", "/s"],
-        ["/S", "/S"],
-        ["·", "·"],
-        ["/In", "/in"]
+        ["«", "»"]
     ],
     "colorizedBracketPairs": [
         [

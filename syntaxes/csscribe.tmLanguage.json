@@ -61,10 +61,6 @@
             "end": "'"
         },
         {
-            "name": "modifier-brochet.cssc",
-            "match": "[\\(\\)\\[\\]\\{\\}]"
-        },
-        {
             "name": "modifier-checkbox.cssc",
             "match": "/X"
         },

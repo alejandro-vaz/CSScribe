@@ -5,7 +5,7 @@
     "name": "csscribe",
     "displayName": "CSScribe",
     "description": "CSScribe is a markup language designed to enhance your writing experience, enabling faster and more efficient writing with syntax highlighting and standardized formatting.",
-    "version": "3.1.3",
+    "version": "3.2.0",
     "publisher": "alejandro-vaz",
     "contributes": {
         "languages": [
@@ -27,12 +27,163 @@
                 "path": "./syntaxes/csscribe.tmLanguage.json"
             }
         ],
-        "keywords": [
-            "markdown",
-            "csscribe",
-            "programming",
-            "editor"
-        ]
+        "configurationDefaults": {
+            "editor.tokenColorCustomizations": {
+                "textMateRules": [
+                    {
+                        "scope": "class-code.cssc",
+                        "settings": {
+                            "foreground": "#9494ff"
+                        }
+                    },
+                    {
+                        "scope": "class-comment.cssc",
+                        "settings": {
+                            "foreground": "#aaa"
+                        }
+                    },
+                    {
+                        "scope": "class-image.cssc",
+                        "settings": {
+                            "foreground": "#ff00ff",
+                            "fontStyle": "underline"
+                        }
+                    },
+                    {
+                        "scope": "class-math.cssc",
+                        "settings": {
+                            "foreground": "#ffffaa"
+                        }
+                    },
+                    {
+                        "scope": "editor-comment.cssc",
+                        "settings": {
+                            "foreground": "#6b6b6b"
+                        }
+                    },
+                    {
+                        "scope": "editor-newline.cssc",
+                        "settings": {
+                            "foreground": "#6b6b6b"
+                        }
+                    },
+                    {
+                        "scope": "editor-scape.cssc",
+                        "settings": {
+                            "foreground": "#111111"
+                        }
+                    },
+                    {
+                        "scope": "modifier-bold.cssc",
+                        "settings": {
+                            "foreground": "#94eb52",
+                            "fontStyle": "bold"
+                        }
+                    },
+                    {
+                        "scope": "modifier-checkbox.cssc",
+                        "settings": {
+                            "foreground": "#02e9f5"
+                        }
+                    },
+                    {
+                        "scope": "modifier-code.cssc",
+                        "settings": {
+                            "foreground": "#9494ff"
+                        }
+                    },
+                    {
+                        "scope": "modifier-h1.cssc",
+                        "settings": {
+                            "foreground": "#00ff00",
+                            "fontStyle": "bold"
+                        }
+                    },
+                    {
+                        "scope": "modifier-h2.cssc",
+                        "settings": {
+                            "foreground": "#00ffff",
+                            "fontStyle": "bold"
+                        }
+                    },
+                                {
+                        "scope": "modifier-h3.cssc",
+                        "settings": {
+                            "foreground": "#ffff00",
+                            "fontStyle": "bold"
+                        }
+                    },
+                    {
+                        "scope": "modifier-italic.cssc",
+                        "settings": {
+                            "foreground": "#09acb5",
+                            "fontStyle": "italic"
+                        }
+                    },
+                    {
+                        "scope": "modifier-math.cssc",
+                        "settings": {
+                            "foreground": "#ffffaa"
+                        }
+                    },
+                    {
+                        "scope": "modifier-ordered.cssc",
+                        "settings": {
+                            "foreground": "#ffff00"
+                        }
+                    },
+                    {
+                        "scope": "modifier-strikethrough.cssc",
+                        "settings": {
+                            "foreground": "#ff3c00",
+                            "fontStyle": "strikethrough"
+                        }
+                    },
+                    {
+                        "scope": "modifier-subscript.cssc",
+                        "settings": {
+                            "foreground": "#ff0000"
+                        }
+                    },
+                    {
+                        "scope": "modifier-superscript.cssc",
+                        "settings": {
+                            "foreground": "#00ff00"
+                        }
+                    },
+                    {
+                        "scope": "modifier-unordered.cssc",
+                        "settings": {
+                            "foreground": "#ffff00"
+                        }
+                    },
+                    {
+                        "scope": "modifier-voidbox.cssc",
+                        "settings": {
+                            "foreground": "#05acb5"
+                        }
+                    },
+                    {
+                        "scope": "tag-break.cssc",
+                        "settings": {
+                            "foreground": "#999999"
+                        }
+                    },
+                    {
+                        "scope": "tag-index.cssc",
+                        "settings": {
+                            "foreground": "#ff0000"
+                        }
+                    },
+                    {
+                        "scope": "tag-pbba.cssc",
+                        "settings": {
+                            "foreground": "#0066aa"
+                        }
+                    }
+                ]
+            }
+        }
     },
     "license": "MIT"
 }

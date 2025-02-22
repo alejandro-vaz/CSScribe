@@ -1,0 +1,10 @@
+.vscode/
+fonts/
+style/
+syntaxes/
+builder.py
+cheatsheet.pdf
+compiler.py
+language-configuration.json
+package.json
+README.md

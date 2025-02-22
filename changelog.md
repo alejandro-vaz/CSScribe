@@ -26,3 +26,8 @@
 - [X] (Minor) Rewritten all `.todo` files with better explanations.
 
 - [X] (Minor) Removed explanation from `style-1.less` (renamed from `style1.less`) but added description.
+
+## CSScribe 3.2.0
+---
+
+- [X] (Major) Added automatic coloring and deleted it from user `settings.json`.

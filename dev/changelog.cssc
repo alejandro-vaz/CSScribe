@@ -1,3 +1,5 @@
+/h1 CSScribe 3.0.2/n
+/X Renamed from ·FastMarkDown· to ·CSScribe.·/n
 /h3 CSScribe 3.0.9/n
 /X (Minor) Improved /cdREADME.md/cd.
 /X (Minor) Improved code block ·CSS.·
@@ -18,8 +20,10 @@
 /X (Minor) Added ·lorem ipsum· autocompletion.
 /X (Major) Changed /cdstep$//cd logical order.
 /X (Minor) Renamed /cdCSSCcompiler.py/cd to /cdcompiler.py/cd.
-/X (Minor) Rewritten all /cd.todo/cd files with better explanations./n
+/X (Minor) Rewritten all /cd.todo/cd files with better explanations.
 /X (Minor) Removed explanation from /cdstyle-1.less/cd (renamed from /cdstyle1.less/cd) but added description./n
 /h2 CSScribe 3.2.0
 ---/n
 /X (Major) Added automatic coloring and deleted it from user /cdsettings.json/cd./n
+/h3 CSScribe 3.2.1/n
+/X (Minor) Changed /cddev/¬include/cd to /cddev/ignore/cd./n

@@ -1,4 +1,4 @@
-/h1 ·CSScribe· 3.2.0 cheatsheet
+/h1 ·CSScribe· 3.2.1 cheatsheet
 /h2 Command types/n
 ---/n
 ·CSScribe· is a ·markup language.· Most of what you''ll write is actual text that will be shown in the final document, but there are also commands which let you decide how to format the final file./n

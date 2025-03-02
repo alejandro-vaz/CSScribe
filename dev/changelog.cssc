@@ -27,3 +27,16 @@
 /X (Major) Added automatic coloring and deleted it from user /cdsettings.json/cd./n
 /h3 CSScribe 3.2.1/n
 /X (Minor) Changed /cddev/¬include/cd to /cddev/ignore/cd./n
+/h1 CSScribe 4.1.2/n
+/X (Minor) Added /cd.vscodeignore/cd file.
+/X (Minor) Remade /cd.ignore/cd contents.
+/X (Major) /cd/pbba/cd tag deleted.
+/X (Minor) Hosted /cdcheatsheet.pdf/cd in [website.](https://csscribe.ct.ws)
+/X (Major) Added support for ·HTML· tags.
+/X (Minor) Fixed errors in /cdwebsite/cheatsheet.pdf/cd
+/X (Update) Compiler /_2.0/_, with hierarchy.
+/X (Minor) Remade bracket behaviour.
+/X (Minor) Translated every file to ·English.·
+/X (Major) Compiler now checks errors.
+/X (Minor) Added ·italic· scape.
+/X (Minor) Added mandatory space after checkbox and voidbox./n

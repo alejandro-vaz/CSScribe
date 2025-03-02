@@ -21,7 +21,8 @@
                 { "include": "#modifier-italic" },
                 { "include": "#modifier-strikethrough" },
                 { "include": "#modifier-code" },
-                { "include": "#editor-scape"}
+                { "include": "#editor-scape"},
+                { "include": "#tag-html"}
             ],
             "end": "$"
         },
@@ -62,7 +63,7 @@
         },
         {
             "name": "modifier-checkbox.cssc",
-            "match": "/X"
+            "match": "/X "
         },
         {
             "name": "modifier-code.cssc",
@@ -148,20 +149,21 @@
         },
         {
             "name": "modifier-voidbox.cssc",
-            "match": "/O"
+            "match": "/O "
         },
         {
             "name": "tag-break.cssc",
             "match": "/br"
         },
         {
+            "name": "tag-html.cssc",
+            "begin": "<",
+            "end": ">"
+        },
+        {
             "name": "tag-index.cssc",
             "begin": "/In",
             "end": "/in"
-        },
-        {
-            "name": "tag-pbba.cssc",
-            "match": "/pbba"
         }
     ],
     "repository": {
@@ -205,6 +207,11 @@
         "modifier-superscript": {
             "name": "modifier-superscript.cssc",
             "match": "/S"
+        },
+        "tag-html": {
+            "name": "tag-html.cssc",
+            "begin": "<",
+            "end": ">"
         }
     }
 }

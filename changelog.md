@@ -38,3 +38,18 @@
 ### CSScribe 3.2.1
 
 - [X] (Minor) Changed `dev/include` to `dev/ignore`.
+
+# CSScribe 4.1.2
+
+- [X] (Minor) Added `.vscodeignore` file.
+- [X] (Minor) Remade `.ignore` contents.
+- [X] (Major) `/pbba` tag deleted.
+- [X] (Minor) Hosted `cheatsheet.pdf` in [website.](https://csscribe.ct.ws)
+- [X] (Major) Added support for *HTML* tags.
+- [X] (Minor) Fixed errors in `website/cheatsheet.pdf`
+- [X] (Update) Compiler $2.0$, with hierarchy.
+- [X] (Minor) Remade bracket behaviour.
+- [X] (Minor) Translated every file to *English.*
+- [X] (Major) Compiler now checks errors.
+- [X] (Minor) Added *italic* scape.
+- [X] (Minor) Added mandatory space after checkbox and voidbox.

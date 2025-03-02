@@ -4,37 +4,38 @@ The design of this style file is oriented towards research projects which requir
 */
 
 /* FONT */
-@fuente: Aptos; /* BASE: Aptos / CSSMS */
-@interlineado: 1.5; /* BASE: 1.5 */
-@alineacion: justify; /* BASE: justify */
-@tamano-letra: 12pt; /* BASE: 12pt */
-@parr-sep: 8px; /* BASE: 8px */
+@font: Aptos; /* BASE: Aptos / CSSMS */
+@line-spacing: 1.5; /* BASE: 1.5 */
+@text-alignment: justify; /* BASE: justify */
+@font-size: 12pt; /* BASE: 12pt */
+@paragraph-distance: 8px; /* BASE: 8px */
 
 /* MARGINS */
-@pagmarg-top: 2.5cm; /* BASE: 2.5cm */
-@pagmarg-bot: 2.5cm; /* BASE: 2.5cm */
-@pagmarg-izq: 2.5cm; /* BASE: 2.5cm */
-@pagmarg-der: 2.5cm; /* BASE: 2.5cm */
-@katex-marg: 16px; /* BASE: 16px */
+@page-margin-top: 2.5cm; /* BASE: 2.5cm */
+@page-margin-bottom: 2.5cm; /* BASE: 2.5cm */
+@page-margin-left: 2.5cm; /* BASE: 2.5cm */
+@page-margin-right: 2.5cm; /* BASE: 2.5cm */
+@katex-margin: 16px; /* BASE: 16px */
 
 /* COLORS */
-@hcolor: #2f5496; /* BASE: #2f5496 */
-@dcolor: #272822; /* BASE: #272822 */
-@lcolor: #f8f8f2; /* BASE: #f8f8f2 */
-@bcolor: #ffffff; /* BASE: #ffffff */
+@header-color: #2f5496; /* BASE: #2f5496 */
+@secondary-color: #272822; /* BASE: #272822 */
+@accent-color: #f8f8f2; /* BASE: #f8f8f2 */
+@background-color: #ffffff; /* BASE: #ffffff */
 
 /* SCALE */
-@border-unit: 5px; /* BASE: 5px */
+@size-unit: 5px; /* BASE: 5px */
 
 /* IMAGES */
-@imgsize: 200px; /* BASE: 200px */
+@image-height: 200px; /* BASE: 200px */
 
 /* SEPARATORS */
-@hrtop: -1.5; /* BASE: -1.5 */
-@hrbot: 2; /* BASE: 2 */
+@separator-margin-top: -1.5; /* BASE: -1.5 */
+@separator-margin-bottom: 2; /* BASE: 2 */
 
-/* NO TOCAR */
+/* DO NOT MODIFY THIS WHOLE SECTION */
 .markdown-preview.markdown-preview {
+  /* Basic stuff */
   @font-face {
     font-family: 'Aptos';
     src: url('C:\\Fonts\\Aptos.ttf') format('truetype');
@@ -50,10 +51,10 @@ The design of this style file is oriented towards research projects which requir
   }
   
   *:not(span) {
-    font-family: @fuente;
-    line-height: @interlineado;
+    font-family: @font;
+    line-height: @line-spacing;
     margin: 0;
-    text-align: @alineacion;
+    text-align: @text-alignment;
   }
   
   p, ul {
@@ -61,11 +62,11 @@ The design of this style file is oriented towards research projects which requir
   }
 
   p, .katex:not(.katex-display .katex) {
-    font-size: @tamano-letra;
+    font-size: @font-size;
   }
   
   p + p {
-    margin-top: @parr-sep;
+    margin-top: @paragraph-distance;
   }
 
   @page {
@@ -73,26 +74,26 @@ The design of this style file is oriented towards research projects which requir
     @bottom-right {
       content: counter(page);
     };
-    margin-top: @pagmarg-top;
-    margin-bottom: @pagmarg-bot;
-    margin-left: @pagmarg-izq;
-    margin-right: @pagmarg-der;
+    margin-top: @page-margin-top;
+    margin-bottom: @page-margin-bottom;
+    margin-left: @page-margin-left;
+    margin-right: @page-margin-right;
   }
   
-  /* Tipografías de encabezados */
+  /* Headers */
   h1, h2, h3 {
-    color: @hcolor;
+    color: @header-color;
     font-weight: bold;
     margin-bottom: 0;
   }
   
   h1 {
-    font-size: calc(@tamano-letra * 3);
+    font-size: calc(@font-size * 3);
     padding: 0;
   }
   
   h2 {
-    font-size: calc(@tamano-letra * 7 / 3);
+    font-size: calc(@font-size * 7 / 3);
     padding: 0;
     margin-top: 0;
     @media print {
@@ -101,41 +102,33 @@ The design of this style file is oriented towards research projects which requir
   }
   
   h3 {
-    font-size: calc(@tamano-letra * 3 / 2);
-    margin-top: calc(2*@border-unit);
+    font-size: calc(@font-size * 3 / 2);
+    margin-top: calc(2*@size-unit);
   }
 
   h2 + h3 {
-    margin-top: calc(4*@border-unit);
+    margin-top: calc(4*@size-unit);
   }
   
-  /* Salto entre encabezados */
+  /* Don't break page between consecutive h1 and h2 */
   h1 + h2 {
     @media print {
       page-break-before: avoid;
     }
   }
-
-  pbba {
-    display: none
-  }
-
-  pbba + h2 {
-    page-break-before: avoid;
-  }
   
-  /* Elementos decorativos */
+  /* Separators */
   hr {
     margin: 0 !important;
     border: none;
-    background: linear-gradient(to right, @dcolor, transparent);
-    height: @border-unit;
-    margin-bottom: calc(@hrbot *@border-unit) !important;
-    border-radius: @border-unit;
-    margin-top: calc(@hrtop * @border-unit) !important;
+    background: linear-gradient(to right, @secondary-color, transparent);
+    height: @size-unit;
+    margin-bottom: calc(@separator-margin-bottom *@size-unit) !important;
+    border-radius: @size-unit;
+    margin-top: calc(@separator-margin-top * @size-unit) !important;
   }
   
-  /* Código y preformato */
+  /* Code */
   pre, code {
     background-color: #272822;
     color: #D4D4D4;
@@ -147,7 +140,7 @@ The design of this style file is oriented towards research projects which requir
   }
 
   pre {
-    border-radius: @border-unit;
+    border-radius: @size-unit;
     white-space: pre-wrap !important;
     word-wrap: break-word !important;
     overflow: hidden !important;
@@ -160,10 +153,10 @@ The design of this style file is oriented towards research projects which requir
   }
 
   :not(pre) > code {
-    padding: calc(@border-unit*0.5) calc(@border-unit / 2) !important;
+    padding: calc(@size-unit*0.5) calc(@size-unit / 2) !important;
   }
   
-  /* Sintaxis de resaltado */
+  /* Code coloring */
   .string {
     color: #CEE397;
   }
@@ -204,36 +197,36 @@ The design of this style file is oriented towards research projects which requir
     color: #DA70D6;
   }
   
-  /* Citas */
+  /* Comment block */
   blockquote {
     border: none !important;
-    border-left: calc(@border-unit * 3 / 2) solid @dcolor !important;
-    border-radius: @border-unit !important;
-    padding: calc(2 * @border-unit) !important;
-    background-color: @lcolor !important;
-    color: @dcolor !important;
-    margin: @border-unit 0 !important;
+    border-left: calc(@size-unit * 3 / 2) solid @secondary-color !important;
+    border-radius: @size-unit !important;
+    padding: calc(2 * @size-unit) !important;
+    background-color: @accent-color !important;
+    color: @secondary-color !important;
+    margin: @size-unit 0 !important;
   }
   
-  /* Enlaces */
+  /* Links */
   a:link, a:visited {
-    color: @dcolor;
+    color: @secondary-color;
   }
   
-  /* Tablas */
+  /* Tables */
   table {
     width: 100%;
     table-layout: fixed;
     border-collapse: collapse;
-    margin: calc(4 * @border-unit) 0;
-    border-top: calc(@border-unit * 3 / 2) solid @dcolor;
+    margin: calc(4 * @size-unit) 0;
+    border-top: calc(@size-unit * 3 / 2) solid @secondary-color;
     page-break-before: avoid;
     page-break-inside: auto;
     page-break-after: avoid;
   }
   
   th, td {
-    padding: @border-unit calc(@border-unit * 5) 0 calc(@border-unit * 5);
+    padding: @size-unit calc(@size-unit * 5) 0 calc(@size-unit * 5);
     text-align: left;
     min-width: fit-content;
     border: none;
@@ -241,41 +234,41 @@ The design of this style file is oriented towards research projects which requir
     white-space: nowrap;
     word-wrap: nowrap;
     word-break: keep-all;
-    border-bottom: calc(@border-unit / 2) solid @lcolor;
+    border-bottom: calc(@size-unit / 2) solid @accent-color;
   }
   
   th {
-    background-color: @lcolor;
+    background-color: @accent-color;
     font-weight: bold;
-    border-radius: @border-unit;
+    border-radius: @size-unit;
   }
   
   tbody {
-    background-color: @bcolor;
+    background-color: @background-color;
   }
 
-  /* Imágenes */
+  /* Images */
 
   p img {
-    height: @imgsize !important;
+    height: @image-height !important;
     width: auto !important;
     display: inline-block !important;
     page-break-before: avoid !important;
     page-break-inside: auto !important;
     page-break-after: avoid !important;
-    border-radius: @border-unit !important;
-    margin-bottom: calc(@border-unit/2) !important;
+    border-radius: @size-unit !important;
+    margin-bottom: calc(@size-unit/2) !important;
   }
 
   p:has(img) {
     float: right !important;
-    padding: calc(2*@border-unit) !important;
-    margin-top: calc(2*@border-unit) !important;
-    margin-left: calc(2*@border-unit) !important;
+    padding: calc(2*@size-unit) !important;
+    margin-top: calc(2*@size-unit) !important;
+    margin-left: calc(2*@size-unit) !important;
     margin-right: 0 !important;
-    background-color: @lcolor !important;
-    border-radius: @border-unit !important;
-    font-size: calc(@tamano-letra / 2) !important;
+    background-color: @accent-color !important;
+    border-radius: @size-unit !important;
+    font-size: calc(@font-size / 2) !important;
     text-align: center !important;
   }
   
@@ -284,16 +277,16 @@ The design of this style file is oriented towards research projects which requir
   .katex-display .katex {
     text-align: center;
     margin-top: 0;
-    margin-bottom: calc(@border-unit*3/2);
+    margin-bottom: calc(@size-unit*3/2);
   }
 
   .katex-display {
     margin-top: 0;
-    margin-bottom: calc(@border-unit*3/2);
+    margin-bottom: calc(@size-unit*3/2);
   }
 
   .katex-display .base {
-    margin-top: calc(@katex-marg*3/4);
+    margin-top: calc(@katex-margin*3/4);
   }
 
   .katex-mathml {
@@ -305,10 +298,10 @@ The design of this style file is oriented towards research projects which requir
   }
 
   p:has(img) .katex {
-    font-size: calc(@tamano-letra / 2) !important;
+    font-size: calc(@font-size / 2) !important;
   }
 
-  /* Índices */
+  /* Index */
 
   li:has(index) {
     display: block;
@@ -334,8 +327,8 @@ The design of this style file is oriented towards research projects which requir
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    width: @tamano-letra;
-    height: @tamano-letra;
+    width: @font-size;
+    height: @font-size;
     border: 2px solid #555;
     border-radius: 2px;
     background-color: #fff;
@@ -362,7 +355,7 @@ The design of this style file is oriented towards research projects which requir
     transform: rotate(45deg);
   }
 
-  /* AJUSTES CON ETIQUETAS */
+  /* CUSTOM ADJUSTMENTS HERE */
 
 }
 

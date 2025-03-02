@@ -1,0 +1,15 @@
+# Enable mod_rewrite
+RewriteEngine On
+
+# 1. Force HTTPS for every request
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# 2. Redirect from https://csscribe.ct.ws to /cheatsheet.pdf (temporary)
+RewriteCond %{HTTP_HOST} ^csscribe\.ct\.ws$ [NC]
+RewriteRule ^$ /cheatsheet.pdf [L,R=302]
+
+# 3. Open PDF file in the browser
+<Files "cheatsheet.pdf">
+    Header set Content-Disposition "inline"
+</Files>

@@ -5,7 +5,7 @@
     "name": "csscribe",
     "displayName": "CSScribe",
     "description": "CSScribe is a markup language designed to enhance your writing experience, enabling faster and more efficient writing with syntax highlighting and standardized formatting.",
-    "version": "3.2.1",
+    "version": "4.1.2",
     "publisher": "alejandro-vaz",
     "contributes": {
         "languages": [
@@ -170,15 +170,15 @@
                         }
                     },
                     {
-                        "scope": "tag-index.cssc",
+                        "scope": "tag-html.cssc",
                         "settings": {
-                            "foreground": "#ff0000"
+                            "foreground": "#FFA500"
                         }
                     },
                     {
-                        "scope": "tag-pbba.cssc",
+                        "scope": "tag-index.cssc",
                         "settings": {
-                            "foreground": "#0066aa"
+                            "foreground": "#ff0000"
                         }
                     }
                 ]

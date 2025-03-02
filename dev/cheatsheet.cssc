@@ -1,4 +1,4 @@
-/h1 ·CSScribe· 3.2.1 cheatsheet
+/h1 ·CSScribe· 4.1.2 cheatsheet
 /h2 Command types/n
 ---/n
 ·CSScribe· is a ·markup language.· Most of what you''ll write is actual text that will be shown in the final document, but there are also commands which let you decide how to format the final file./n
@@ -109,7 +109,7 @@ This is a normal sentence but the following /¬cdword/¬cd will be ...
 /h3 h1/n
 Adds a big title, like the one at the start of this article. The code behind it is:/n
 /code-csscribe
-/¬h1 ·CSScribe· 3.0.7 cheatsheet
+/¬h1 ·¬·CSScribe·¬· X.Y.Z cheatsheet
 /code/n
 You might also realize that there are some weird dots around ·CSScribe.· It''s italic./n
 /h3 h2/n
@@ -120,14 +120,14 @@ after the ·h2· with the following code:/n
 ---/¬n
 /code
 /h3 h3/n
-The same/n
+The same./n
 /h3 Italic/n
-The weird dots. There''s no scape character either because I haven''t seen anyone use those characters, I literally chose the least used character in the keyboard./n
+The weird dots. Scape with two dots and a scape character in between./n
 /h3 Math/n
 The math modifier is not the same as the math class because this one is inline. It''s the same but inline./n
 Code used /_4/_ example./n
 /code-csscribe
-Code user /¬_4/¬_ example./¬n
+Code used /¬_4/¬_ example./¬n
 /code
 /h3 Ordered/n
 Adds an ordered list. Like this:/n
@@ -179,6 +179,8 @@ Code:/n
 /code-csscribe
 /¬br
 /code/n
+/h3 HTML/n
+The ·HTML· tag allows you to pass some tag to the ·HTML· file. You can later customise it''s aspect freely. Write it the same as in an ·HTML· file./n
 /h3 Index/n
 It''s used in index sections:/n
     o Chapter 1 /In1/in
@@ -190,10 +192,3 @@ Code behind:/n
     o¬ Chapter 2 /¬In23/¬in
     o¬ Chapter 3 /¬In44/¬in/¬n
 /code
-/h3 pbba/n
-Obsolete tag, please do not use it unless you really want to./n
-When you write an ·h2· section, the default is to make a page break. ·pbba· was designed to prevent this by writing it before the ·h2.· I don''t think it works anymore but feel free to use it. Code:/n
-/code-csscribe
-/¬pbba
-/code/n
-That''s everything.

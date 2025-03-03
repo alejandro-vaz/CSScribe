@@ -1,0 +1,54 @@
+/h2 ·CSScribe· 4.2.5 cheatsheet
+---/n
+/h3 Classes/n
+| Class name | ID | Begin | End |
+|::----------|::--|::-----|::---|
+| Code | /=000/= | /_"/¬code-"/_ | /_"/¬code"/_ |
+| Comment | /=001/= | /_"/¬& "/_ | |/n
+| Class name | ID | Match |
+|::----------|::--|::-----|
+| Image | /=002/= | /_"/¬img"/_ |/n
+| Class name | ID | Between |
+|::----------|::--|::-------|
+| Math | /=003/= | /_"/¬math"/_ |/n
+/h3 Editors/n
+| Editor name | ID | Begin | End |
+|::----------|::--|::-----|::---|
+| Comment | /=100/= | /_"#¬ "/_ | /_" -¬#"/_ |/n
+| Editor name | ID | Match |
+|::----------|::--|::-----|
+| Newline | /=101/= | /_"/¬n"/_ |
+| Scape | /=102/= | /_"/=\neg/="/_ |/n
+| Editor name | ID | Between |
+|::----------|::--|::-------|/n
+/h3 Modifiers/n
+| Modifier name | ID | Begin | End |
+|::----------|::--|::-----|::---|
+| h1 | /=203/= | /_"/¬h1 "/_ | |
+| h2 | /=204/= | /_"/¬h2 "/_ | |
+| h3 | /=205/= | /_"/¬h3 "/_ | |/n
+| Modifier name | ID | Match |
+|::----------|::--|::-----|
+| Checkbox | /=201/= | /_"/¬X "/_ |
+| Ordered | /=208/= | /_"    o¬ "/_ |
+| Unordered | /=212/= | /_"    u¬ "/_ |
+| Voidbox | /=213/= | /_"/¬O "/_ |/n
+| Modifier name | ID | Between |
+|::----------|::--|::-------|
+| Bold | /=200/= | /_"::"/_ |
+| Code | /=202/= | /_"/¬_"/_ |
+| Italic | /=206/= | /_"·¬·"/_ |
+| Math | /=207/= | /_"/¬="/_ |
+| Strikethrough | /=209/= | /_"/¬-"/_ |
+| Subscript | /=210/= | /_"/¬s"/_ |
+| Superscript | /=211/= | /_"/¬S"/_ |/n
+/h3 Tags/n
+| Tag name | ID | Begin | End |
+|::----------|::--|::-----|::---|
+| HTML | /=301/= | /_"/=\lt/="/_ | /_"/=\gt/="/_ |
+| Index | /=302/= | /_"/¬In"/_ | /_"/¬in"/_ |/n
+| Tag name | ID | Match |
+|::----------|::--|::-----|
+| Break | /=300/= | /_"/¬br"/_ |/n
+| Tag name | ID | Between |
+|::----------|::--|::-------|

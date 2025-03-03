@@ -3,11 +3,45 @@
         "vscode": "^1.94.0"
     },
     "name": "csscribe",
+    "main": "./extension.js",
+    "activationEvents": [
+        "*"
+    ],
     "displayName": "CSScribe",
     "description": "CSScribe is a markup language designed to enhance your writing experience, enabling faster and more efficient writing with syntax highlighting and standardized formatting.",
-    "version": "4.2.2",
+    "version": "4.2.5",
     "publisher": "alejandro-vaz",
+    "categories": [
+        "Programming Languages",
+        "Education",
+        "Visualization",
+        "Language Packs"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/alejandro-vaz/csscribe"
+    },
+    "bugs": {
+        "url": "https://github.com/alejandro-vaz/CSScribe/issues"
+    },
+    "keywords": [
+        "CSScribe",
+        "markup",
+        "research",
+        "markdown",
+        "CSS",
+        "HTML",
+        "language"
+    ],
+    "homepage": "https://csscribe.ct.ws",
+    "icon": "public/logo.png",
     "contributes": {
+        "commands": [
+            {
+                "title": "CSScribe: Function",
+                "command": "csscribe.function"
+            }
+        ],
         "languages": [
             {
                 "id": "cssc",

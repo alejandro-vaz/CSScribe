@@ -1,0 +1,9 @@
+1. vsce to compile extension
+
+vsce package
+
+2. VSCode Marketplace to publish extension
+3. GitHub to publish extension
+4. to compile python files
+
+pyinstaller --onefile --icon=public/logo.png --distpath ./ source/compiler.py; pyinstaller --onefile --icon=public/logo.png --distpath ./ source/builder.py

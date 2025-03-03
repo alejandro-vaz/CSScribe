@@ -1,194 +1,54 @@
-/h1 ·CSScribe· 4.1.2 cheatsheet
-/h2 Command types/n
+/h2 ·CSScribe· 4.2.2 cheatsheet
 ---/n
-·CSScribe· is a ·markup language.· Most of what you''ll write is actual text that will be shown in the final document, but there are also commands which let you decide how to format the final file./n
-We will make a distinction between text (information you type) and commands (short statements you write to define how the text will be formatted)./n
-Text is text, there''s really nothing more to say about it. But we have four different types of commands:/n
-    u Classes: big sections that are independant of each other and of the rest of the document, like image sections.
-    u Editors: things that will only be seen inside the source code, like comments, but will not affect the final document.
-    u Modifiers: commands that define the aspect of words or add elements, like adding a 'bold' word.
-    u Tags: custom tags that are carried over to the ·HTML· temporal file and can define how other elements look or interact based on the /cdstyle.less/cd file./n
-The relationship between them is simple:/n
-    u Most classes have text that can include modifiers. 
-    u Some modifiers can also have other modifiers inside to add up the effect. Like combining 'bold' and ·italic· to get '·bold italic.·'
-    u Editors are completely independant from the document but can help format it. The newline character is compiled into a new line without the need to make a new line inside the editor (useful in large documents, like this one).
-    u Tags have special functions that can format further the document. An example is the index tag, will will align a number to the right and remove ordered list numeration inside an index./n
-Now we''ll dive deeper into specific commands./n
-
-/h2 Classes
----/n
-As of this version, there are four class types./n
-/h3 Code/n
-The first one is the code class. You can insert code into it and will be formatted this way:/n
-/code-json
-{
-    "variable1": 2,
-    "variable2": 3
-}
-/code/n
-To include some code like this one in your /cd.cssc/cd file, input/n
-/code-csscribe
-/¬code-json
-{
-    "variable1": 2,
-    "variable2": 3
-}
-/¬code
-/code/n
-You can replace ·json· with any programming language, and it''s usually written in lowercase. The code will automatically adquire color and syntax highlighting based on the language you choose (not yet for ·CSScribe·)./n
-/h3 Comment/n
-There''s also a side comment class. The side comment is used to specify some information in the document, but formatted in a different way to acknowledge that it''s not part of the main content. Here''s an example:/n
-/> This information is not as relevant, but I choose to include it here anyway and that''s why I formatted it differently./n
-To input something like this, use the following code:/n
-/code-csscribe
-/¬> This information is not ... and that''¬''s why I formatted it ...
-/code/n
-You might notice I added two single quotes at the same time. It''s not a mistake, as you''ll see later./n
-/h3 Image/n
-To add an image, first you have to download an image and create a folder named /cdimages//cd in the same directory the file is./n
-Then, rename the file to be /cd1.png/cd for the first, /cd2.png/cd for the second.../n
-Also make sure your working folder in ·Visual Studio Code· is the one that contains the /cdimages//cd folder directly./n
-To include an image, use the following code:/n
-/code-csscribe
-/¬img /¬br A picture of a cat. /¬br Image 4.
-/code/n
-I also included an ·HTML· break tag to make it appear in a new line so I could add a footer and image number./n
-/h3 Math/n
-The math class allows you to input any mathematical formula. It is based on ·LaTeX· and thus it''s really powerful. I recommend you to input mathematical formulas in [this website](https://latexeditor.lagrida.com/) first so you know how they''ll look on paper. Here''s an example:/n
-/math
-3x + 2 = -1
-/math/n
-To input the previous equation, you''d have to type:/n
-/code-csscribe
-/¬math
-3x + 2 = -1
-/¬math
-/code/n
-Inserting complex mathematical formulas requires extensive ·LaTeX· knowledge so I suggest playing with the website provided for a while./n
-/h2 Editors
----/n
-There are three types of editors./n
-/h3 Comment/n
-The comment editor is different from the class editor. Whilst the comment class outputs a message, the comment editor is like a traditional comment in a programming language, something that isn''t shown to the user and it''s meant to be in the code for other developers./n
-Here''s how to input a comment editor:/n
-/code-csscribe
-#¬> THIS IS A COMMENT <¬#
-/code/n
-It is also a multi-line comment./n
-/h3 Newline/n
-The newline allows you to input a new line in the ·Markdown· code without having to input it on yours by replacing it with /cd/¬n/cd. That allows you to write more compact text inside ·VSC.·
-/> Tip: if you''re not sure whether to use or not the newline, use it, you won''t lose anything./n
-/h3 Scape/n
-The scape character is a character which cancels any command if it''s on it''s way./n
-Imagine we wanted to write /cd/¬n/cd in the final document without it being transformed into a new line. We would input the not sign (/cdU+00AC/cd, /cd&not;/cd, I can''t input it since I''m writing the ·CSScribe· guide inside ·CSScribe·) between the /cd//cd and the /cdn/cd to avoid the conversion./n
-/> In case you are curious, I''m inputting CSScribe commands inside CSScribe source code to make the /cd.pdf/cd you''re reading using the scape character. That''s the reason why I can''t write it./n
-Actually, you can type it via math modifier (/_\neg/_).
-/h2 Modifiers
----/n
-There are 14 types of modifiers./n
-/h3 Bold/n
-It''s quite self-explanatory, it just makes some text be 'bold.'/n
-To do so, input the following code:/n
-/code-csscribe
-I want the following sentence to be bold: ''this is bold.''
-/code/n
-The scape character to input just one single quote is writing two single quotes (as if you wanted to input something bold) together without anything in between.
-/h3 Checkbox/n
-Adds a small checked checkbox:/n
-/X Done!/n
-The code is:/n
-/code-csscribe
-/¬X Done!
-/code/n
-/h3 Code/n
-The code modifier is not the same as the code class. The code class creates a separate big area whilst the code modifier adds /cdsmall inline code/cd./n
-Here''s how to use it:/n
-/code-csscribe
-This is a normal sentence but the following /¬cdword/¬cd will be ...
-/code/n
-/h3 h1/n
-Adds a big title, like the one at the start of this article. The code behind it is:/n
-/code-csscribe
-/¬h1 ·¬·CSScribe·¬· X.Y.Z cheatsheet
-/code/n
-You might also realize that there are some weird dots around ·CSScribe.· It''s italic./n
-/h3 h2/n
-Literally the same as ·h1· but replace the /_1/_ with a /_2/_. You should also include a separator like this/n
----/n
-after the ·h2· with the following code:/n
-/code-csscribe
----/¬n
-/code
-/h3 h3/n
-The same./n
-/h3 Italic/n
-The weird dots. Scape with two dots and a scape character in between./n
-/h3 Math/n
-The math modifier is not the same as the math class because this one is inline. It''s the same but inline./n
-Code used /_4/_ example./n
-/code-csscribe
-Code used /¬_4/¬_ example./¬n
-/code
-/h3 Ordered/n
-Adds an ordered list. Like this:/n
-    o Element 1
-    o Element 2/n
-Code behind:/n
-/code-csscribe
-    o¬ Element 1
-    o¬ Element 2
-/code/n
-/h3 Strikethrough/n
-Literally /-strikesthrough/- some text:/n
-/code-csscribe
-Literally /¬-strikethroughs/¬- some text:/¬n
-/code/n
-/h3 Subscript/n
-I don''t use it a lot, the ·LaTeX· subscript and superscript version is better./s1/s/n
-Code behind:/n
-/code-csscribe
-... version is better./¬s1/¬s/¬n
-/code
-/h3 Superscript/n
-Same /S2/S things. Code behind:/n
-/code-csscribe
-Same /¬S2/¬S things.
-/code/n
-/h3 Unordered/n
-Like the ordered but without the numbers:/n
-    u Element.
-    u Another element./n
-Code behind:/n
-/code-
-    u¬ Element.
-    u¬ Another element./¬n
-/code/n
-/h3 Voidbox/n
-Like the checkbox but unchecked:/n
-/O It is void./n
-Code behind:/n
-/code-csscribe
-/¬O It is void./¬n
-/code/n
-/h2 Tags
----/n
-There are three types of tags:/n
-/h3 Break/n
-It''s quite literally the ·br· tag in ·HTML.·/n
-Code:/n
-/code-csscribe
-/¬br
-/code/n
-/h3 HTML/n
-The ·HTML· tag allows you to pass some tag to the ·HTML· file. You can later customise it''s aspect freely. Write it the same as in an ·HTML· file./n
-/h3 Index/n
-It''s used in index sections:/n
-    o Chapter 1 /In1/in
-    o Chapter 2 /In23/in
-    o Chapter 3 /In44/in/n
-Code behind:/n
-/code-csscribe
-    o¬ Chapter 1 /¬In1/¬in
-    o¬ Chapter 2 /¬In23/¬in
-    o¬ Chapter 3 /¬In44/¬in/¬n
-/code
+/h3 Classes/n
+| Class name | ID | Begin | End |
+|::----------|::--|::-----|::---|
+| Code | /=000/= | /_"/¬code-"/_ | /_"/¬code"/_ |
+| Comment | /=001/= | /_"/¬& "/_ | |/n
+| Class name | ID | Match |
+|::----------|::--|::-----|
+| Image | /=002/= | /_"/¬img"/_ |/n
+| Class name | ID | Between |
+|::----------|::--|::-------|
+| Math | /=003/= | /_"/¬math"/_ |/n
+/h3 Editors/n
+| Editor name | ID | Begin | End |
+|::----------|::--|::-----|::---|
+| Comment | /=100/= | /_"#¬ "/_ | /_" -¬#"/_ |/n
+| Editor name | ID | Match |
+|::----------|::--|::-----|
+| Newline | /=101/= | /_"/¬n"/_ |
+| Scape | /=102/= | /_"/=\neg/="/_ |/n
+| Editor name | ID | Between |
+|::----------|::--|::-------|/n
+/h3 Modifiers/n
+| Modifier name | ID | Begin | End |
+|::----------|::--|::-----|::---|
+| h1 | /=203/= | /_"/¬h1 "/_ | |
+| h2 | /=204/= | /_"/¬h2 "/_ | |
+| h3 | /=205/= | /_"/¬h3 "/_ | |/n
+| Modifier name | ID | Match |
+|::----------|::--|::-----|
+| Checkbox | /=201/= | /_"/¬X "/_ |
+| Ordered | /=208/= | /_"    o¬ "/_ |
+| Unordered | /=212/= | /_"    u¬ "/_ |
+| Voidbox | /=213/= | /_"/¬O "/_ |/n
+| Modifier name | ID | Between |
+|::----------|::--|::-------|
+| Bold | /=200/= | /_"::"/_ |
+| Code | /=202/= | /_"/¬_"/_ |
+| Italic | /=206/= | /_"·¬·"/_ |
+| Math | /=207/= | /_"/¬="/_ |
+| Strikethrough | /=209/= | /_"/¬-"/_ |
+| Subscript | /=210/= | /_"/¬s"/_ |
+| Superscript | /=211/= | /_"/¬S"/_ |/n
+/h3 Tags/n
+| Tag name | ID | Begin | End |
+|::----------|::--|::-----|::---|
+| HTML | /=301/= | /_"/=\lt/="/_ | /_"/=\gt/="/_ |
+| Index | /=302/= | /_"/¬In"/_ | /_"/¬in"/_ |/n
+| Tag name | ID | Match |
+|::----------|::--|::-----|
+| Break | /=300/= | /_"/¬br"/_ |/n
+| Tag name | ID | Between |
+|::----------|::--|::-------|

@@ -1,6 +1,5 @@
 # IMPORT MODULES
 import time
-import re
 from si_prefix import si_format
 
 # DEFINE EXCEPTIONS
@@ -27,11 +26,17 @@ def correspondence(data, scope_begin, scope_end, source):
 def acorrespondence(data, general, restrictive, source):
     if data.count(restrictive) * 2 != data.count(general):
         raise CompilerError(f"{source} raised the exception in acorrespondence().")
+def skip(counter):
+    for i in counter:
+        if i != 0:
+            return False
+    return True
 
 # MAIN TRANSFORMER
 def cssctomd(filename):
     # TRANSFORMATIONS
-    # DEFINE -> COUNT / CSIMMETRY -> (AT START) -> (CORRESPONDENCE / ACORRESPONDENCE) -> REPLACE -> RETURN
+    # NON-STANDARD-X
+    # DEFINE-D -> COUNT-T / CSIMMETRY-Y -> (AT START-S) -> (CORRESPONDENCE-C / ACORRESPONDENCE-A) -> SKIP-K -> REPLACE-R -> (SCAPE-N) -> RETURN-F
     def class_code(data):
         # DEFINE
         source = "class_code()"
@@ -39,268 +44,334 @@ def cssctomd(filename):
         end = "/code"
         begin_replacement = "```"
         end_replacement = "```"
-        # ACOUNT
-        class_code_count = data.count(begin)
+        # COUNT
+        counter = [data.count(begin), data.count(end)]
         # ACORRESPONDENCE
         acorrespondence(data, end, begin, source)
+        # SKIP
+        if skip(counter):
+            return data, counter
         # REPLACE
         data = data.replace(begin, begin_replacement)
         data = data.replace(end, end_replacement)
         # RETURN
-        return data, class_code_count
+        return data, counter
     def class_comment(data):
         # DEFINE
         source = "class_comment()"
-        begin = "/>"
-        begin_replacement = ">"
+        begin = "/& "
+        begin_replacement = "> "
         # COUNT
-        class_comment_count = data.count(begin)
+        counter = [data.count(begin)]
+        # SKIP
+        if skip(counter):
+            return data, counter
         # REPLACE
         data = data.replace(begin, begin_replacement)
         # RETURN
-        return data, class_comment_count
+        return data, counter
     def class_image(data):
-        # NON-STANDARD CLASS
+        # NON-STANDARD
         # DEFINE
         source = "class_image()"
         match = "/img"
         # AT START
         at_start(data, match, source)
         # COUNT AND REPLACE
-        class_image_count = 0
+        counter = [0]
         while match in data:
-            data = data.replace(match, f"![Relative](/images/{class_image_count + 1}.png)", 1)
-            class_image_count += 1
+            data = data.replace(match, f"![Relative](/images/{counter[0] + 1}.png)", 1)
+            counter[0] += 1
         # RETURN
-        return data, class_image_count
+        return data, counter
     def class_math(data):
         # DEFINE
         source = "class_math()"
         between = "/math"
         replacement = "$$"
         # CSIMMETRY
-        class_math_count = csimmetry(data, between, source)
+        counter = [csimmetry(data, between, source)]
+        # SKIP
+        if skip(counter):
+            return data, counter
         # REPLACE
         data = data.replace(between, replacement)
         # RETURN
-        return data, class_math_count
+        return data, counter
     def editor_comment(data):
         # DEFINE
         source = "editor_comment()"
-        begin = "#>"
-        end = "<#"
-        begin_replacement = "<!--"
-        end_replacement = "-->"
+        begin = "# "
+        end = " -#"
+        begin_replacement = "<!-- "
+        end_replacement = " -->"
         # COUNT
-        editor_comment_count = data.count(begin)
+        counter = [data.count(begin), data.count(end)]
         # CORRESPONDENCE
         correspondence(data, begin, end, source)
+        # SKIP
+        if skip(counter):
+            return data, counter
         # REPLACE
         data = data.replace(begin, begin_replacement)
         data = data.replace(end, end_replacement)
         # RETURN
-        return data, editor_comment_count
+        return data, counter
     def editor_newline(data):
         # DEFINE
         source = "editor_newline()"
         match = "/n"
         replacement = "\n"
         # COUNT
-        editor_newline_count = data.count(match)
+        counter = [data.count(match)]
+        # SKIP
+        if skip(counter):
+            return data, counter
         # REPLACE
         data = data.replace(match, replacement)
         # RETURN
-        return data, editor_newline_count
+        return data, counter
     def editor_scape(data):
         # DEFINE
         source = "editor_scape(data)"
         match = "¬"
         replacement = ""
+        scape = "$\\neg$"
         # COUNT
-        editor_scape_count = data.count(match)
+        counter = [data.count(match), data.count(scape)]
+        # SKIP
+        if skip(counter):
+            return data, counter
         # REPLACE
         data = data.replace(match, replacement)
+        # SCAPE
+        data = data.replace(scape, match)
         # RETURN
-        return data, editor_scape_count
+        return data, counter
     def modifier_bold(data):
         # DEFINE
         source = "modifier_bold()"
-        between = "\'"
+        between = ":"
         replacement = "**"
         # CSIMMETRY
-        modifier_bold_count = csimmetry(data, between, source)
+        counter = [csimmetry(data, between, source)]
+        # SKIP
+        if skip(counter):
+            return data, counter
         # REPLACE
         data = data.replace(between, replacement)
+        # SCAPE
         data = data.replace(replacement * 2, between)
         # RETURN
-        return data, modifier_bold_count
+        return data, counter
     def modifier_checkbox(data):
         # DEFINE
         source = "modifier_checkbox()"
         match = "/X "
         replacement = "- [X] "
         # COUNT
-        modifier_checkbox_count = data.count(match)
+        counter = [data.count(match)]
         # AT START
         at_start(data, match, source)
+        # SKIP
+        if skip(counter):
+            return data, counter
         # REPLACE
         data = data.replace(match, replacement)
         # RETURN
-        return data, modifier_checkbox_count
+        return data, counter
     def modifier_code(data):
         # DEFINE
         source = "modifier_code()"
-        between = "/cd"
+        between = "/_"
         replacement = "`"
         # CSIMMETRY
-        modifier_code_count = csimmetry(data, between, source)
+        counter = [csimmetry(data, between, source)]
+        # SKIP
+        if skip(counter):
+            return data, counter
         # REPLACE
         data = data.replace(between, replacement)
         # RETURN
-        return data, modifier_code_count
+        return data, counter
     def modifier_h1(data):
         # DEFINE
         source = "modifier_h1()"
-        begin = "/h1"
-        begin_replacement = "#"
+        begin = "/h1 "
+        begin_replacement = "# "
         # COUNT
-        modifier_h1_count = data.count(begin)
+        counter = [data.count(begin)]
         # AT START
         at_start(data, begin, source)
+        # SKIP
+        if skip(counter):
+            return data, counter
         # REPLACE
         data = data.replace(begin, begin_replacement)
         # RETURN
-        return data, modifier_h1_count
+        return data, counter
     def modifier_h2(data):
         # DEFINE
         source = "modifier_h2()"
-        begin = "/h2"
-        begin_replacement = "##"
+        begin = "/h2 "
+        begin_replacement = "## "
         # COUNT
-        modifier_h2_count = data.count(begin)
+        counter = [data.count(begin)]
         # AT START
         at_start(data, begin, source)
+        # SKIP
+        if skip(counter):
+            return data, counter
         # REPLACE
         data = data.replace(begin, begin_replacement)
         # RETURN
-        return data, modifier_h2_count
+        return data, counter
     def modifier_h3(data):
         # DEFINE
         source = "modifier_h3()"
-        begin = "/h3"
-        begin_replacement = "###"
+        begin = "/h3 "
+        begin_replacement = "### "
         # COUNT
-        modifier_h3_count = data.count(begin)
+        counter = [data.count(begin)]
         # AT START
         at_start(data, begin, source)
+        # SKIP
+        if skip(counter):
+            return data, counter
         # REPLACE
         data = data.replace(begin, begin_replacement)
         # RETURN
-        return data, modifier_h3_count
+        return data, counter
     def modifier_italic(data):
         # DEFINE
         source = "modifier_italic()"
         between = "·"
         replacement = "*"
         # CSIMMETRY
-        modifier_italic_count = csimmetry(data, between, source)
+        counter = [csimmetry(data, between, source)]
+        # SKIP
+        if skip(counter):
+            return data, counter
         # REPLACE
         data = data.replace(between, replacement)
-        data = data.replace(between + "¬" + between, between)
+        # SCAPE
+        data = data.replace(replacement + "¬" + replacement, between)
         # RETURN
-        return data, modifier_italic_count
+        return data, counter
     def modifier_math(data):
         # DEFINE
         source = "modifier_math()"
-        between = "/_"
+        between = "/="
         replacement = "$"
         # CSIMMETRY
-        modifier_math_count = csimmetry(data, between, source)
+        counter = [csimmetry(data, between, source)]
+        # SKIP
+        if skip(counter):
+            return data, counter
         # REPLACE
-        data = data.replace(2 * between, "")
         data = data.replace(between, replacement)
         # RETURN
-        return data, modifier_math_count
+        return data, counter
     def modifier_ordered(data):
         # DEFINE
         source = "modifier_ordered()"
         match = "    o "
         replacement = "1. "
         # COUNT
-        modifier_ordered_count = data.count(match)
+        counter = [data.count(match)]
+        # SKIP
+        if skip(counter):
+            return data, counter
         # REPLACE
         data = data.replace(match, replacement)
         # RETURN
-        return data, modifier_ordered_count
+        return data, counter
     def modifier_strikethrough(data):
         # DEFINE
         source = "modifier_strikethrough()"
         between = "/-"
         replacement = "~~"
         # CSIMMETRY
-        modifier_strikethrough_count = csimmetry(data, between, source)
+        counter = [csimmetry(data, between, source)]
+        # REPLACE OR SKIP
+        if skip(counter):
+            return data, counter
         # REPLACE
         data = data.replace(between, replacement)
         # RETURN
-        return data, modifier_strikethrough_count
+        return data, counter
     def modifier_subscript(data):
         # DEFINE
         source = "modifier_subscript()"
         between = "/s"
         replacement =  "~"
         # CSIMMETRY
-        modifier_subscript_count = csimmetry(data, between, source)
+        counter = [csimmetry(data, between, source)]
+        # SKIP
+        if skip(counter):
+            return data, counter
         # REPLACE
-        data = data.replace(2 * between, "")
         data = data.replace(between, replacement)
         # RETURN
-        return data, modifier_subscript_count
+        return data, counter
     def modifier_superscript(data):
         # DEFINE
         source = "modifier_superscript()"
         between = "/S"
         replacement = "^"
         # CSIMMETRY
-        modifier_superscript_count = csimmetry(data, between, source)
+        counter = [csimmetry(data, between, source)]
+        # SKIP
+        if skip(counter):
+            return data, counter
         # REPLACE
         data = data.replace(between, replacement)
         # RETURN
-        return data, modifier_superscript_count
+        return data, counter
     def modifier_unordered(data):
         # DEFINE
         source = "modifier_unordered()"
         match = "    u "
         replacement = "   - "
         # COUNT
-        modifier_unordered_count = data.count(match)
+        counter = [data.count(match)]
+        # SKIP
+        if skip(counter):
+            return data, counter
         # REPLACE
         data = data.replace(match, replacement)
         # RETURN
-        return data, modifier_unordered_count
+        return data, counter
     def modifier_voidbox(data):
         # DEFINE
         source = "modifier_voidbox()"
         match = "/O "
         replacement = "- [ ] "
         # COUNT
-        modifier_voidbox_count = data.count(match)
+        counter = [data.count(match)]
         # AT START
         at_start(data, match, source)
+        # SKIP
+        if skip(counter):
+            return data, counter
         # REPLACE
         data = data.replace(match, replacement)
         # RETURN
-        return data, modifier_voidbox_count
+        return data, counter
     def tag_break(data):
         # DEFINE
         source = "tag_break()"
         match = "/br"
         replacement = "<br>"
         # COUNT
-        tag_break_count = data.count(match)
+        counter = [data.count(match)]
+        # SKIP
+        if skip(counter):
+            return data, counter
         # REPLACE
         data = data.replace(match, replacement)
         # RETURN
-        return data, tag_break_count
+        return data, counter
     def tag_html(data):
         # DEFINE
         source = "tag_html()"
@@ -308,15 +379,23 @@ def cssctomd(filename):
         end = ">"
         begin_replacement = "<"
         end_replacement = ">"
+        begin_scape = "/=\\lt/="
+        end_scape = "/=\\gt/="
         # COUNT
-        tag_html_count = data.count(begin)
+        counter = [data.count(begin), data.count(end), data.count(begin_scape), data.count(end_scape)]
         # CORRESPONDENCE
-        # correspondence(data, begin, end, source)
+        correspondence(data, begin, end, source)
+        # SKIP
+        if skip(counter):
+            return data, counter
         # REPLACE
         data = data.replace(begin, begin_replacement)
         data = data.replace(end, end_replacement)
+        # SCAPE
+        data = data.replace(begin_scape, begin)
+        data = data.replace(end_scape, end)
         # RETURN
-        return data, tag_html_count
+        return data, counter
     def tag_index(data):
         # DEFINE
         source = "tag_index()"
@@ -325,17 +404,22 @@ def cssctomd(filename):
         begin_replacement = "<index>"
         end_replacement = "</index>"
         # COUNT
-        tag_index_count = data.count(begin)
+        counter = [data.count(begin), data.count(end)]
         # CORRESPONDENCE
         correspondence(data, begin, end, source)
+        # SKIP
+        if skip(counter):
+            return data, counter
         # REPLACE
         data = data.replace(begin, begin_replacement)
         data = data.replace(end, end_replacement)
-        return data, tag_index_count
+        # RETURN
+        return data, counter
     
     # CONVERSION
     with open(filename, 'r', encoding="utf-8") as file:
         content = file.read()
+    content, tag_html_count = tag_html(content) # BEFORE CLASS_COMMENT, EDITOR_COMMENT, MODIFIER_MATH (1)
     content, class_code_count = class_code(content)
     content, class_comment_count = class_comment(content)
     content, class_image_count = class_image(content)
@@ -357,9 +441,8 @@ def cssctomd(filename):
     content, modifier_unordered_count = modifier_unordered(content)
     content, modifier_voidbox_count = modifier_voidbox(content)
     content, tag_break_count = tag_break(content)
-    content, tag_html_count = tag_html(content)
     content, tag_index_count = tag_index(content)
-    content, editor_scape_count = editor_scape(content)
+    content, editor_scape_count = editor_scape(content) # AFTER MODIFIER_MATH (24)
     return content
 
 # ENTRY POINT
@@ -369,7 +452,8 @@ if __name__ == "__main__":
     md_file = f"{filename}.md"
     start_time = time.time()
     with open(md_file, 'w', encoding="utf-8") as file:
-        file.write(cssctomd(cssc_file))
+        converted = cssctomd(cssc_file)
+        file.write(converted)
     end_time = time.time()
     print(f"Conversion done in {si_format(end_time - start_time, precision=2)}s")
     input("")

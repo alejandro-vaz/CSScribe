@@ -53,3 +53,12 @@
 - [X] (Major) Compiler now checks errors.
 - [X] (Minor) Added *italic* scape.
 - [X] (Minor) Added mandatory space after checkbox and voidbox.
+
+## CSScribe 4.2.2
+---
+
+- [X] (Minor) Added compiler skips for enhanced efficiency.
+- [X] (Minor) Removed `"` and `«` as brackets.
+- [X] (Major) Changed keybinds for compiler ease and error detection.
+- [X] (Minor) Replaced individual counters for `counter` in compiler transformations.
+- [X] (Minor) Every command now has a scape character or way.

@@ -1,13 +1,11 @@
 {
     "comments": {
-        "blockComment": ["#>", "<#"] // editor-comment.cssc
+        "blockComment": ["# ", " -#"] // editor-comment.cssc
     },
     "brackets": [
         ["{", "}"],
         ["[", "]"],
-        ["(", ")"],
-        ["\"", "\""],
-        ["«", "»"]
+        ["(", ")"]
     ],
     "autoClosingPairs": [
         /* CLASSES */
@@ -15,13 +13,13 @@
         ["/math", "\n\n/math"], // class-math.cssc
 
         /* EDITORS */
-        ["#>", "<#"], // editor-comment.cssc
+        ["# ", " -#"], // editor-comment.cssc
         
         /* MODIFIERS */
-        ["'", "'"], // modifier-bold.cssc
-        ["/cd", "/cd"], // modifier-code.cssc
+        [":", ":"], // modifier-bold.cssc
+        ["/_", "/_"], // modifier-code.cssc
         ["·", "·"], // modifier-italic.cssc
-        ["/_", "/_"], // modifier-math.cssc
+        ["/=", "/="], // modifier-math.cssc
         ["/-", "/-"], // modifier-strikethrough.cssc
         ["/s", "/s"], // modifier-subscript.cssc
         ["/S", "/S"], // modifier-superscript.cssc
@@ -34,10 +32,10 @@
         ["{", "}"],
         ["[", "]"],
         ["(", ")"],
+        
+        /* EXTRA */
         ["«", "»"],
         ["\"", "\""],
-
-        /* EXTRA */
         ["¿", "?"],
         ["¡", "!"],
         ["Lorem ipsum", " dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n"]
@@ -48,13 +46,13 @@
         ["/math", "\n\n/math"], // class-math.cssc
 
         /* EDITORS */
-        ["#>", "<#"], // editor-comment.cssc
+        ["# ", " -#"], // editor-comment.cssc
         
         /* MODIFIERS */
-        ["'", "'"], // modifier-bold.cssc
-        ["/cd", "/cd"], // modifier-code.cssc
+        [":", ":"], // modifier-bold.cssc
+        ["/_", "/_"], // modifier-code.cssc
         ["·", "·"], // modifier-italic.cssc
-        ["/_", "/_"], // modifier-math.cssc
+        ["/=", "/="], // modifier-math.cssc
         ["/-", "/-"], // modifier-strikethrough.cssc
         ["/s", "/s"], // modifier-subscript.cssc
         ["/S", "/S"], // modifier-superscript.cssc
@@ -64,11 +62,9 @@
         ["<", ">"], // tag-html.cssc
 
         /* BRACKETS */
-        ["\"", "\""],
         ["{", "}"],
         ["[", "]"],
         ["(", ")"],
-        ["«", "»"]
     ],
     "colorizedBracketPairs": [
         [
@@ -82,14 +78,6 @@
         [
             "{",
             "}"
-        ],
-        [
-            "«",
-            "»"
-        ],
-        [
-            "\"",
-            "\""
         ]
     ],
     "autoCloseBefore": ""

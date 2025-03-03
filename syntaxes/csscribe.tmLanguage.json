@@ -11,7 +11,7 @@
         },
         {
             "name": "class-comment.cssc",
-            "begin": "/>",
+            "begin": "/\\& ",
             "patterns": [
                 { "include": "#editor-newline" },
                 { "include": "#modifier-subscript" },
@@ -40,8 +40,8 @@
         },
         {
             "name": "editor-comment.cssc",
-            "begin": "#>",
-            "end": "<#"
+            "begin": "# ",
+            "end": " -#"
         },
         {
             "name": "editor-newline.cssc",
@@ -53,13 +53,13 @@
         },
         {
             "name": "modifier-bold.cssc",
-            "begin": "'",
+            "begin": ":",
             "patterns": [
                 { "include": "#modifier-italic" },
                 { "include": "#modifier-strikethrough" },
                 { "include": "#editor-scape"}
             ],
-            "end": "'"
+            "end": ":"
         },
         {
             "name": "modifier-checkbox.cssc",
@@ -67,15 +67,15 @@
         },
         {
             "name": "modifier-code.cssc",
-            "begin": "/cd",
+            "begin": "/_",
             "patterns": [
                 { "include": "#editor-scape"}
             ],
-            "end": "/cd"
+            "end": "/_"
         },
         {
             "name": "modifier-h1.cssc",
-            "begin": "/h1",
+            "begin": "/h1 ",
             "patterns": [
                 { "include": "#editor-newline" },
                 { "include": "#editor-scape"},
@@ -86,7 +86,7 @@
         },
         {
             "name": "modifier-h2.cssc",
-            "begin": "/h2",
+            "begin": "/h2 ",
             "patterns": [
                 { "include": "#editor-newline" },
                 { "include": "#editor-scape"},
@@ -97,7 +97,7 @@
         },
         {
             "name": "modifier-h3.cssc",
-            "begin": "/h3",
+            "begin": "/h3 ",
             "patterns": [
                 { "include": "#editor-newline" },
                 { "include": "#editor-scape"},
@@ -117,11 +117,11 @@
         },
         {
             "name": "modifier-math.cssc",
-            "begin": "/_",
+            "begin": "/=",
             "patterns": [
                 { "include": "#editor-scape"}
             ],
-            "end": "/_"
+            "end": "/="
         },
         {
             "name": "modifier-ordered.cssc",
@@ -158,7 +158,10 @@
         {
             "name": "tag-html.cssc",
             "begin": "<",
-            "end": ">"
+            "end": ">",
+            "patterns": [
+                { "include": "#editor-scape"}
+            ]
         },
         {
             "name": "tag-index.cssc",
@@ -177,13 +180,13 @@
         },
         "modifier-bold": {
             "name": "modifier-bold.cssc",
-            "begin": "'",
-            "end": "'"
+            "begin": ":",
+            "end": ":"
         },
         "modifier-code": {
             "name": "modifier-code.cssc",
-            "begin": "/cd",
-            "end": "/cd"
+            "begin": "/_",
+            "end": "/_"
         },
         "modifier-italic": {
             "name": "modifier-italic.cssc",
@@ -192,8 +195,8 @@
         },
         "modifier-math": {
             "name": "modifier-math.cssc",
-            "begin": "/_",
-            "end": "/_"
+            "begin": "/=",
+            "end": "/="
         },
         "modifier-strikethrough": {
             "name": "modifier-strikethrough.cssc",

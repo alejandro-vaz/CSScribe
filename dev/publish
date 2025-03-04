@@ -4,6 +4,7 @@ vsce package
 
 2. VSCode Marketplace to publish extension
 3. GitHub to publish extension
-4. to compile python files
+4. to compile python files via CMD (TURN OFF ANTIVIRUS)
+100. Replace cheatsheet on website
 
-pyinstaller --onefile --icon=public/logo.png --distpath ./ source/compiler.py; pyinstaller --onefile --icon=public/logo.png --distpath ./ source/builder.py
+pyinstaller --onefile --icon=public/logo.png --distpath ./ source/compiler.py & pyinstaller --onefile --icon=public/logo.png --distpath ./ source/builder.py & pyinstaller --onefile --icon=public/logo.png --distpath ./ source/jpg2png.py & rmdir "build/" /s /q & del builder.spec & del compiler.spec & del jpg2png.spec

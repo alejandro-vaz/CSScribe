@@ -448,8 +448,12 @@ def cssctomd(filename):
 
 # ENTRY POINT
 if __name__ == "__main__":
+    print("Welcome to the CSScribe compiler.")
+    print("Type a file name or write \"/\" to exit")
     while True:
-        filename = input("Name of file without extension: ")
+        filename = input(">>> ")
+        if filename.strip() == "/":
+            break
         cssc_file = f"{filename}.cssc"
         md_file = f"{filename}.md"
         if not os.path.isfile(cssc_file):
@@ -460,4 +464,4 @@ if __name__ == "__main__":
                 converted = cssctomd(cssc_file)
                 file.write(converted)
             end_time = time.time()
-            print(f"Conversion done in {si_format(end_time - start_time, precision=2)}s")
+            print(f"    Conversion done in {si_format(end_time - start_time, precision=2)}s")

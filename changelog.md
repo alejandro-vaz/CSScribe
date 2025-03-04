@@ -71,3 +71,8 @@
 - [X] (Patch) Added first command to *VSCode* command palette.
 - [X] (Patch) Created `source/` folder for raw files.
 - [X] (Patch) Changed the version control system to a random, slow, one located in `source/version.py`.
+
+### *CSScribe* 4.2.6
+
+- [X] (Major) Added *VSCode* commands for file execution.
+- [X] (Minor) Added `jpg2png.exe` for automatic file conversion.

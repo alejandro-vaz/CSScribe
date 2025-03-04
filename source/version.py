@@ -1,4 +1,5 @@
 # LITERAL SOURCE = CHATGPT
+# NOT TRANSCRIBED YET
 
 import math
 import random
@@ -11,7 +12,7 @@ def non_linear_increment(changes):
     result in a moderated increment.
     """
     if changes <= 0:
-        return 0
+        return 1
     return int(math.ceil(math.sqrt(changes)))
 
 def ascend_probability(changes, k=0.2):
@@ -29,7 +30,7 @@ def ascend_probability(changes, k=0.2):
     # The probability is 1 - exp(-k * changes)
     return 1 - math.exp(-k * changes)
 
-def next_version(current_version, minor_changes, major_changes, big_changes, k_major=0.2, k_minor=0.2):
+def next_version(current_version, minor_changes, major_changes, big_changes, k_major=0.2, k_minor=0.20):
     """
     Compute the next version based on the current version and the counts of changes.
     

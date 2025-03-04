@@ -54,3 +54,6 @@
 /X (Patch) Added first command to ·VSCode· command palette.
 /X (Patch) Created /_source//_ folder for raw files.
 /X (Patch) Changed the version control system to a random, slow, one located in /_source/version.py/_./n
+/h3 ·CSScribe· 4.2.6/n
+/X (Major) Added ·VSCode· commands for file execution.
+/X (Minor) Added /_jpg2png.exe/_ for automatic file conversion./n

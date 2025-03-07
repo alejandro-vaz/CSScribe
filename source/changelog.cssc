@@ -57,3 +57,5 @@
 /h3 ·CSScribe· 4.2.6/n
 /X (Major) Added ·VSCode· commands for file execution.
 /X (Minor) Added /_jpg2png.exe/_ for automatic file conversion./n
+/h3 ·CSScribe· 4.2.8/n
+/X (Minor) Remade and added versioning system as command./n

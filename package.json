@@ -9,7 +9,7 @@
     ],
     "displayName": "CSScribe",
     "description": "CSScribe is a markup language designed to enhance your writing experience, enabling faster and more efficient writing with syntax highlighting and standardized formatting.",
-    "version": "4.2.6",
+    "version": "4.2.8",
     "publisher": "alejandro-vaz",
     "categories": [
         "Programming Languages",
@@ -48,6 +48,10 @@
             {
                 "title": "CSScribe: Run JPG to PNG",
                 "command": "csscribe.runJPG2PNG"
+            },
+            {
+                "title": "CSScribe: Run Versioning System",
+                "command": "csscribe.runVersioningSystem"
             }
         ],
         "languages": [

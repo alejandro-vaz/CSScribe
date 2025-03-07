@@ -7,7 +7,7 @@ import time
 
 dir_path = os.getcwd()
 
-structure_content = """CSScribe 4.2.6
+structure_content = """CSScribe 4.2.8
 
 
 # Factual completion dates

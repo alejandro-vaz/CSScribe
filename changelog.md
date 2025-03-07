@@ -76,3 +76,7 @@
 
 - [X] (Major) Added *VSCode* commands for file execution.
 - [X] (Minor) Added `jpg2png.exe` for automatic file conversion.
+
+### *CSScribe* 4.2.8
+
+- [X] (Minor) Remade and added versioning system as command.

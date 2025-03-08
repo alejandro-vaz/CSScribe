@@ -87,3 +87,10 @@
 - [X] (Minor) Added `/h4` modifier.
 - [X] (Minor) Added `/ad` class.
 - [X] (Patch) Added comments to `versioning.py`.
+
+#### *CSScribe* 4.4.4
+
+- [X] (Patch) Added commands to `cheatsheet.pdf`.
+- [X] (Patch) Added comments to `source/builder.py`.
+- [X] (Patch) Changed `modifier-checkbox.cssc` and `modifier-voidbox.cssc` coloring.
+- [X] (Patch) Added builder multi-language support.

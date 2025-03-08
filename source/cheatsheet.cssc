@@ -1,4 +1,4 @@
-/h2 ·CSScribe· 4.4.0 cheatsheet
+/h2 ·CSScribe· 4.4.4 cheatsheet
 ---/n
 /h3 Classes/n
 | Class name | ID | Begin | End |
@@ -53,4 +53,11 @@
 |::----------|::--|::-----|
 | Break | /=300/= | /_"/¬br"/_ |/n
 | Tag name | ID | Between |
-|::----------|::--|::-------|
+|::----------|::--|::-------|/n
+/h3 Commands/n
+| Name | ID |
+|::---|::--|
+| Run Compiler | /_"csscribe.runCompiler"/_ |
+| Run Builder | /_"csscribe.runBuilder"/_ |
+| Run JPG2PNG | /_"csscribe.runJPG2PNG"/_ |
+| Run Versioning System | /_"csscribe.runVersioningSystem"/_ |/n

@@ -1,16 +1,83 @@
-# NEEDS TO BE RETRANSCRIBED
-
+# IMPORT MODULES
 import os 
 import sys
-import shutil
 import time
 
+# DEFINE PATH
 dir_path = os.getcwd()
 
-structure_content = """CSScribe 4.4.0
+# DEFINE VERSION
+version = "4.4.4"
+
+# DEFINE CONTENT
+match sys.argv[1]:
+    case "es":
+        structure_tree = """CSScribe {version}
 
 
-# Factual completion dates
+# Fechas de finalización
+{project}
+├── step-0 = --/--/----
+├── step-1 = --/--/----
+├── step-2 = --/--/----
+├── step-3 = --/--/----
+└── step-4 = --/--/----
+
+
+# Jerarquía de compilación
+{project:raw}.pdf
+└── main.pdf
+    └── main.md
+        └── main.cssc
+
+
+# Jerarquía de encabezados
+
+
+# Diagrama de árbol
+https://{platform}/{username}/{project:raw}/tree/main/{images}
+├── step-0/
+├── step-1/
+├── step-2/
+├── step-3/
+├── step-4/
+└── structure.tree
+"""
+        step_0_todo = """Primero debes escribir todas las partes de tu documento final. Céntrate solo en escribir, más tarde tendrás tiempo para arreglar errores, o mejorar el estilo de tu proyecto. Al final de este paso deberás tener un boceto bastante avanzado de tu trabajo final, por lo que no harás grandes cambios en el futuro (como cambiar capítulos enteros).
+
+1. Escribir todas las partes.
+2. Actualizar constantemente structure.tree.
+"""
+        step_1_todo = """Ahora que has escrito todos los capítulos, tienes que unir cada documento individual en uno que los incluya todos. Cuando lo hayas hecho, introduce el archivo en el entorno, compílalo, conviértelo a PDF e imprímelo para corregir errores y parafrasear expresiones. Deberás también construir la bibliografía ahora. 
+
+1. Unir todos los documentos en un archivo.
+2. Compilar e imprimir el archivo en el entorno.
+3. Arreglar errores.
+4. Repetir desde 2 cuantas veces sea necesario.
+5. Construir bibliografía.
+"""
+        step_2_todo = """Ahora arreglarás el estilo del proyecto. Añade los modificadores que quieras, como negrita, cursiva u otros. Puede que necesites volver a imprimir el archivo, aunque no es estrictamente necesario.
+
+1. Añadir las referencias en el texto.
+2. Añadir cursiva.
+3. Añadir negrita.
+4. Arregla todo lo demás.
+"""
+        step_3_todo = """Compilarás ahora la versión definitiva del proyecto. Consigue el archivo PDF. Añade también otros documentos PDF como portadas que luego unirás al tuyo.
+
+1. Compila.
+2. Añade archivos extra.
+"""
+        step_4_todo = """Junta ahora todos los documentos PDF con ILovePDF. A día de lanzamiento de esta versión, esta es la única aplicación que sirve para unir PDFs ya que es la única que mantiene el funcionamiento de los enlaces.
+    
+1. Visita https://www.ilovepdf.com/es/unir_pdf y une todo.
+2. Añade otros recursos al proyecto que pueden ser de ayuda, como presentaciones.
+"""
+    case _:
+        structure_tree = """CSScribe {version}
+
+
+# Completion dates
 {project}
 ├── step-0 = --/--/----
 ├── step-1 = --/--/----
@@ -30,74 +97,69 @@ structure_content = """CSScribe 4.4.0
 
 
 # Tree diagram
-https://{platform}/{username}/{project:raw}/tree/main/
+https://{platform}/{username}/{project:raw}/tree/main/{images}
 ├── step-0/
 ├── step-1/
 ├── step-2/
 ├── step-3/
 ├── step-4/
-└── .structure
-
+└── structure.tree
 """
-
-step_0_todo = """First you must write all document parts. Focus only on writing, you'll have time to focus on error correcting, cleaning or making your project better by styling. At the end of this step you must have a fairly accurate sketch of the project you're working on, meaning major changes (like changing chapters) won't be done further.
+        step_0_todo = """First you must write all document parts. Focus only on writing, you'll have time to focus on error correcting, cleaning or making your project better by styling. At the end of this step you must have a fairly accurate sketch of the project you're working on, meaning major changes (like changing chapters) won't be done further.
 
 1. Write all parts.
-2. Constantly update the .structure file."""
-
-step_1_todo = """Now that you have written all the parts, you must join them in a single file. Once you have done that, it's time to take the file into the environment, convert it to a .pdf file and print it for error correcting and paraphrasing. You should also build the sources now. Print and correct as many times as needed. 
+2. Constantly update the structure.tree file.
+"""
+        step_1_todo = """Now that you have written all the parts, you must join them in a single file. Once you have done that, it's time to take the file into the environment, convert it to a .pdf file and print it for error correcting and paraphrasing although that will not be the definitive version. You should also build the references now. Print and correct as many times as needed. 
 
 1. Join all documents in a single file.
 2. Add it to environment and print.
 3. Fix mistakes.
 4. Repeat from 2 as many times as necessary.
-5. Build sources."""
+5. Build sources.
+"""
+        step_2_todo = """Now it's time to fix the style of the project. Add italic, bold, custom tags if needed, or any of the modifiers you haven't used. You might want to print the corrected version to do it again, but it's not strictly required.
 
-step_2_todo = """Now it's time to fix the style of the project. Add italic, bold, custom tags if needed, or any of the modifiers you haven't used. You might want to print the corrected version to do it again, but it's not strictly required.
-
-1. Add citations.
+1. Add citations in text.
 2. Add italic.
 3. Add bold.
-4. Fix everything else you don't like."""
-
-step_3_todo = """Let's compile the file now for real. Run the compiler and the extension to get the PDF desired file. You might want to add extra files which will be inside the project like cover pages.
+4. Fix everything else you don't like.
+"""
+        step_3_todo = """Let's compile the file now for real. Run the compiler and the extension to get the PDF desired file. You might want to add extra files which will be inside the project like cover pages.
 
 1. Compile.
-2. Add extra files."""
-
-step_4_todo = """Now join all files via ILovePDF PDF joiner. As of the release date of this update, this the only valid joiner I know because it is the one which does maintain link functionality.
+2. Add extra files.
+"""
+        step_4_todo = """Now join all files via ILovePDF PDF joiner. As of the release date of this update, this the only valid joiner I know because it is the one which does maintain link functionality.
 
 1. Go to https://www.ilovepdf.com/es/unir_pdf and join everything.
-2. Add extra resources to the project that might be useful, like presentations or related projects."""
+2. Add extra resources to the project that might be useful, like presentations.
+"""
 
-def init():
-    print("CSScribe environment builder tool. Confirm the following data:")
-    time.sleep(0.75)
-    print(f"This directory path is {dir_path}")
-    if input("Is this correct? (y/n): ").lower() != "y":
-        exit()
-
-def restructure(i_environment, i_images):
-    if i_environment:
-        os.makedirs(os.path.join(dir_path, 'env'), exist_ok=True)
-        if i_images:
-            os.makedirs(os.path.join(dir_path, 'env/images'), exist_ok=True)
-    os.makedirs(os.path.join(dir_path, 'step-2'), exist_ok=True)
+# FUNCTIONS
+def tree(images):
+    os.makedirs(os.path.join(dir_path, 'env'), exist_ok=True)
     os.makedirs(os.path.join(dir_path, 'step-0'), exist_ok=True)
     os.makedirs(os.path.join(dir_path, 'step-1'), exist_ok=True)
-    if i_images:
-        os.makedirs(os.path.join(dir_path, 'step-3/images'), exist_ok=True)
+    os.makedirs(os.path.join(dir_path, 'step-2'), exist_ok=True)
     os.makedirs(os.path.join(dir_path, 'step-3'), exist_ok=True)
     os.makedirs(os.path.join(dir_path, 'step-4'), exist_ok=True)
+    if images:
+        os.makedirs(os.path.join(dir_path, 'images'), exist_ok=True)
 
-def structure(i_estpname, i_estplatform, i_estusername):
-    content = structure_content
-    i_estpnameraw = (i_estpname.lower()).replace(" ", "-")
-    content  = content.replace("{project}", i_estpname)
-    content = content.replace("{project:raw}", i_estpnameraw)
-    content = content.replace("{platform}", i_estplatform)
-    content = content.replace("{username}", i_estusername)
-    with open(f"{dir_path}/.structure", "w", encoding="utf-8") as file: file.write(content)
+def structure(project_name, platform, username, images):
+    content = structure_tree
+    project_raw = (project_name.lower()).replace(" ", "-")
+    content  = content.replace("{project}", project_name)
+    content = content.replace("{project:raw}", project_raw)
+    content = content.replace("{platform}",  platform)
+    content = content.replace("{username}", username)
+    content = content.replace("{version}", version)
+    if images:
+        content = content.replace("{images}", "\n├── images/")
+    else:
+        content = content.replace("{images}", "")
+    with open(f"{dir_path}/structure.tree", "w", encoding="utf-8") as file: file.write(content)
 
 def todos(i_todos):
     if i_todos:
@@ -108,13 +170,16 @@ def todos(i_todos):
         with open(os.path.join(dir_path, 'step-4/.todo'), 'w', encoding='utf-8') as step: step.write(step_4_todo)
 
 if __name__ == "__main__":
-    init()
-    f_environment = input("Do you want to include a testing environment? (y/n): ").lower() == "y"
-    f_images = input("Do you want image support? (y/n): ").lower() == "y"
-    f_todos = input("Do you want to add .todo guide files? (y/n): ").lower() == "y"
-    f_estpname = input("Enter the project name: ")
-    f_estplatform = input("Enter the file-sharing platform link: ")
-    f_estusername = input("Enter the creator's file-sharing username: ")
-    restructure(f_environment, f_images)
-    structure(f_estpname, f_estplatform, f_estusername)
-    todos(f_todos)
+    print("CSScribe environment builder tool. Confirm the following data:")
+    time.sleep(0.75)
+    print(f"This directory path is {dir_path}")
+    if input("Is the path correct? (y/n): ").lower() != "y":
+        exit()
+    image_support = input("Do you want image support? (y/n): ").lower() == "y"
+    add_todos = input("Do you want to add .todo guide files? (y/n): ").lower() == "y"
+    project_name = input("Enter the project name: ")
+    file_platform = input("Enter the file-sharing platform link: ")
+    username = input("Enter the creator file-sharing username: ")
+    tree(image_support)
+    structure(project_name, file_platform, username, image_support)
+    todos(add_todos)

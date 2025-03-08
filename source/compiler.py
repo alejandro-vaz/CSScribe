@@ -488,7 +488,7 @@ def cssctomd(filename, language):
     if class_ad_count[0] >= 1:
         messages.append("    > Thanks for including the CSScribe advertisement!")
     if modifier_h1_count[0] == 1:
-        messages.append("    > Making an h1 header is not recommended for large documents. It'd better if you added a front page.")
+        messages.append("    > Making an h1 header is not recommended for large documents. It'd better if you added a cover page.")
     
     # FINISH
     return content, messages

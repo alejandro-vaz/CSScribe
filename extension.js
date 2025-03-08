@@ -1,21 +1,13 @@
-/* COMMANDS 
-vscode.window.showInformationMessage('Hello from CSScribe! This is currently under development!'); // Lower right information message.
-const terminal = vscode.window.createTerminal('Compiler Terminal'); // Creates a terminal with a name
-terminal.sendText(`${compilerPath}`); // Sends a command to terminal
-terminal.show(); // Shows the terminal to the user
-const compilerPath = context.asAbsolutePath('compiler.exe'); // Especify an absolute path
-*/ 
-
 // IMPORT VSCODE
 const vscode = require('vscode')
 
 // MAIN FUNCTION
 function activate(context) {
     // LOG ACTIVATION
-    console.log('Extension activated.');
+    language = "en";
+    console.log(`Extension activated with language "${language}."`);
     // RUN COMPILER COMMAND
     let runCompiler = vscode.commands.registerCommand('csscribe.runCompiler', () => {
-        language = "es";
         console.log("Executed: csscribe.runCompiler");
         const compilerPath = context.asAbsolutePath("compiler.exe");
         const terminal = vscode.window.createTerminal('Compiler Terminal');
@@ -28,7 +20,7 @@ function activate(context) {
         console.log("Executed: csscribe.runBuilder");
         const builderPath = context.asAbsolutePath('builder.exe');
         const terminal = vscode.window.createTerminal('Builder Terminal');
-        terminal.sendText(`${builderPath}`);
+        terminal.sendText(`${builderPath} ${language}`);
         terminal.show();
     });
     context.subscriptions.push(runBuilder);
@@ -58,7 +50,7 @@ function deactivate() {
     console.log("Extension deactivated.")
 }
 
-// EXPORTS FUNCTIONS
+// EXPORT FUNCTIONS
 module.exports = {
     activate,
     deactivate

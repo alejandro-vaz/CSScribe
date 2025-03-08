@@ -9,7 +9,7 @@
     ],
     "displayName": "CSScribe",
     "description": "CSScribe is a markup language designed to enhance your writing experience, enabling faster and more efficient writing with syntax highlighting and standardized formatting.",
-    "version": "4.4.4",
+    "version": "4.4.13",
     "publisher": "alejandro-vaz",
     "categories": [
         "Programming Languages",
@@ -24,6 +24,9 @@
     "bugs": {
         "url": "https://github.com/alejandro-vaz/CSScribe/issues"
     },
+    "extensionDependencies": [
+        "shd101wyy.markdown-preview-enhanced"
+    ],
     "keywords": [
         "CSScribe",
         "markup",
@@ -52,6 +55,10 @@
             {
                 "title": "CSScribe: Run Versioning System",
                 "command": "csscribe.runVersioningSystem"
+            },
+            {
+                "title": "CSScribe: Parse Style",
+                "command": "csscribe.parseStyle"
             }
         ],
         "languages": [
@@ -245,6 +252,23 @@
                         }
                     }
                 ]
+            }
+        },
+        "configuration": {
+            "properties": {
+                "csscribe.language": {
+                    "type": "string",
+                    "default": "English",
+                    "description": "Sets the language for the CSScribe extension.",
+                    "enum": ["English", "Español"]
+                },
+                "csscribe.style": {
+                    "type": "string",
+                    "default": "style-1",
+                    "description": "Choose the styling file for PDF transformations.",
+                    "enum": ["style-1"],
+                    "enumDescriptions": ["For research papers."]
+                }
             }
         }
     },

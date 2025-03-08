@@ -6,28 +6,27 @@ import sys
 
 # DEFINE EXCEPTIONS
 class CompilerError(Exception):
-    """Error compiling the file."""
     pass
 
 # DEFINE AUTOMATIONS
 def csimmetry(data, begin_end, source):
     amount = data.count(begin_end)
     if not (amount / 2).is_integer():
-        raise CompilerError(f"{source} raised the exception in csimmetry().")
+        raise CompilerError(f"{source} -> csimmetry().")
     else:
         return int(amount / 2)
 def at_start(data, scope, source):
     position = data.find(scope)
     while position != -1:
         if position != 0 and data[position - 1] != "\n":
-            raise CompilerError(f"{source} raised the exception in at_start().")
+            raise CompilerError(f"{source} -> at_start().")
         position = data.find(scope, position + 1)
 def correspondence(data, scope_begin, scope_end, source):
     if data.count(scope_begin) != data.count(scope_end):
-        raise CompilerError(f"{source} raised the exception in correspondence().")
+        raise CompilerError(f"{source} -> correspondence().")
 def acorrespondence(data, general, restrictive, source):
     if data.count(restrictive) * 2 != data.count(general):
-        raise CompilerError(f"{source} raised the exception in acorrespondence().")
+        raise CompilerError(f"{source} -> acorrespondence().")
 def skip(counter):
     for i in counter:
         if i != 0:
@@ -43,10 +42,11 @@ def cssctomd(filename, language):
         # DEFINE
         source = "class_ad()"
         match = "/ad"
-        if lang == "es":
-            begin_replacement = "/& Este proyecto de investigación ha sido redactado con ·CSScribe·[(1)](#bibliografía), el lenguaje de marcado perfecto para hacer trabajos escritos. Para estandarizar la ·simbología LaTeX· del trabajo, se han utilizado los estándares matemáticos anglosajones, intercambiando las comas por los puntos."
-        else:
-            begin_replacement = "/& This project has been written with ·CSScribe·[(1)](#references), the perfect markup language for writing papers."
+        match lang:
+            case "Español":
+                begin_replacement = "/& Este proyecto de investigación ha sido redactado con ·CSScribe·[(1)](#bibliografía), el lenguaje de marcado perfecto para hacer trabajos escritos. Para estandarizar la ·simbología LaTeX· del trabajo, se han utilizado los estándares matemáticos anglosajones, intercambiando las comas por los puntos."
+            case "English":
+                begin_replacement = "/& This project has been written with ·CSScribe·[(1)](#references), the perfect markup language for writing papers."
         # COUNT
         counter = [data.count(match)]
         # AT START
@@ -486,17 +486,39 @@ def cssctomd(filename, language):
     # MESSAGES
     messages = []
     if class_ad_count[0] >= 1:
-        messages.append("    > Thanks for including the CSScribe advertisement!")
+        match language:
+            case "Español":
+                messages.append("    > ¡Gracias por incluir el anuncio de CSScribe!")
+            case "English":
+                messages.append("    > Thanks for including the CSScribe advertisement!")
     if modifier_h1_count[0] == 1:
-        messages.append("    > Making an h1 header is not recommended for large documents. It'd better if you added a cover page.")
-    
+        match language:
+            case "Español":
+                messages.append("    > Hacer un encabezado h1 no está recomendado para documentos grandes. Sería mejor que añadieses una portada.")
+            case "English":
+                messages.append("    > Making an h1 header is not recommended for large documents. It'd better if you added a cover page.")
+
     # FINISH
     return content, messages
 
 # ENTRY POINT
 if __name__ == "__main__":
-    print("Welcome to the CSScribe compiler.")
-    print("Type a file name without .cssc extension included or enter \"/\" to exit the compiler.")
+    # DEFINE LANGUAGE
+    match sys.argv[1]:
+        case "Español":
+            line_greeting = "Bienvenido al compilador de CSScribe."
+            line_instructions = "Introduce el nombre de un fichero sin su extensión .cssc o introduce \"/\" para salir."
+            line_notexists = " no existe."
+            line_compiled = "Compilado en "
+        case "English":
+            line_greeting = "Welcome to the CSScribe compiler."
+            line_instructions = "Type a file name without .cssc extension included or enter \"/\" to exit the compiler."
+            line_notexists = " does not exist."
+            line_compiled = "Compiled in "
+    
+    # MAIN PROCESS
+    print(line_greeting)
+    print(line_instructions)
     while True:
         filename = input(">>> ")
         if filename.strip() == "/":
@@ -504,7 +526,7 @@ if __name__ == "__main__":
         cssc_file = f"{filename}.cssc"
         md_file = f"{filename}.md"
         if not os.path.isfile(cssc_file):
-            print(f"\"{cssc_file}\" does not exist.")
+            print(f"\"{cssc_file}\"{line_notexists}")
         else:
             start_time = time.time()
             with open(md_file, 'w', encoding="utf-8") as file:
@@ -513,4 +535,4 @@ if __name__ == "__main__":
             end_time = time.time()
             for message in printable:
                 print(message)
-            print(f"    Compiled in {si_format(end_time - start_time, precision=2)}s.")
+            print(f"    {line_compiled}{si_format(end_time - start_time, precision=2)}s.")

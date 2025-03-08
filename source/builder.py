@@ -7,11 +7,11 @@ import time
 dir_path = os.getcwd()
 
 # DEFINE VERSION
-version = "4.4.4"
+version = "4.4.13"
 
 # DEFINE CONTENT
 match sys.argv[1]:
-    case "es":
+    case "Español":
         structure_tree = """CSScribe {version}
 
 
@@ -73,7 +73,7 @@ https://{platform}/{username}/{project:raw}/tree/main/{images}
 1. Visita https://www.ilovepdf.com/es/unir_pdf y une todo.
 2. Añade otros recursos al proyecto que pueden ser de ayuda, como presentaciones.
 """
-    case _:
+    case "English":
         structure_tree = """CSScribe {version}
 
 
@@ -170,16 +170,39 @@ def todos(i_todos):
         with open(os.path.join(dir_path, 'step-4/.todo'), 'w', encoding='utf-8') as step: step.write(step_4_todo)
 
 if __name__ == "__main__":
-    print("CSScribe environment builder tool. Confirm the following data:")
+    # DEFINE LINES
+    match sys.argv[1]:
+        case "Español":
+            answer_correct = "s"
+            line_greeting = "Herramienta de construcción de entornos de CSScribe. Confirma los siguientes datos."
+            line_path = f"Este directorio es {dir_path}\n"
+            question_path = "¿Es la ruta del directorio correcta? (s/n)                                 "
+            question_image = "¿Quieres añadir soporte para imágenes? (s/n)                               "
+            question_todo = "¿Quieres incluir archivos .todo de guía? (s/n):                            "
+            question_project = "Introduce el nombre del proyecto:                                          "
+            question_platform = "Introduce el enlace de la plataforma de almacenamiento de archivos:        "
+            question_username = "Introduce tu nombre de usuario en la plataforma:                           "
+        case "English":
+            answer_correct = "y"
+            line_greeting = "CSScribe environment builder tool. Confirm the following data."
+            line_path = f"This directory is {dir_path}\n"
+            question_path = "Is the path correct? (y/n):                                         "
+            question_image = "Do you want image support? (y/n):                                          "
+            question_todo = "Do you want to add .todo files? (y/n):                                     "
+            question_project = "Enter the project name:                                                    "
+            question_platform = "Enter the file-sharing platform link:                                      "
+            question_username = "Enter the creator file-sharing username:                                   "
+    # MAIN CODE
+    print(line_greeting)
     time.sleep(0.75)
-    print(f"This directory path is {dir_path}")
-    if input("Is the path correct? (y/n): ").lower() != "y":
+    print(line_path)
+    if input(question_path).lower() != answer_correct:
         exit()
-    image_support = input("Do you want image support? (y/n): ").lower() == "y"
-    add_todos = input("Do you want to add .todo guide files? (y/n): ").lower() == "y"
-    project_name = input("Enter the project name: ")
-    file_platform = input("Enter the file-sharing platform link: ")
-    username = input("Enter the creator file-sharing username: ")
+    image_support = input(question_image).lower() == answer_correct
+    add_todos = input(question_todo).lower() == answer_correct
+    project_name = input(question_project)
+    file_platform = input(question_platform)
+    username = input(question_username)
     tree(image_support)
     structure(project_name, file_platform, username, image_support)
     todos(add_todos)

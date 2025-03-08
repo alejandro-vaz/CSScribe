@@ -1,7 +1,26 @@
-# NOT TRANSCRIBED YET
 # IMPORT MODULES
 import os
 from PIL import Image
+import sys
+
+# DEFINE LANGUAGES
+match sys.argv[1]:
+    case "Español":
+        line_converted = "Convertido y eliminado:                                                    "
+        line_failed = "No se pudo convertir:                                                      "
+        line_none = "Ningún archivo .jpg o .jpeg encontrado."
+        line_found = "Se han encontrado los siguientes archivos:                                 "
+        question_proceed = "¿Quieres continuar con la conversión? (y/n):                               "
+        line_complete = "Proceso completado."
+        line_cancelled = "Conversión cancelada."
+    case "English":
+        line_converted = "Converted and deleted:                                                     "
+        line_failed = "Failed to convert:                                                         "
+        line_none = "No .jpg or .jpeg files found."
+        line_found = "Found the following .jpg/.jpeg files:                                      "
+        question_proceed = "Do you want to proceed with conversion? (y/n):                             "
+        line_complete = "Process complete."
+        line_cancelled = "Conversion cancelled."
 
 # FIND FUNCTION
 def find_jpg_files(start_dir):
@@ -21,26 +40,24 @@ def convert_file(file_path):
         img.save(new_file, 'PNG')
         img.close()
         os.remove(file_path)
-        print(f"Converted and deleted: {file_path}")
+        print(f"{line_converted}{file_path}")
     except Exception as e:
-        print(f"Failed to convert {file_path}: {e}")
+        print(f"{line_failed}{file_path}: {e}")
 
 # ENTRY POINT
 if __name__ == "__main__":
     start_directory = os.getcwd()
     jpg_files = find_jpg_files(start_directory)
-    
     if not jpg_files:
-        print("No .jpg or .jpeg files found.")
+        print(line_none)
     else:
-        print("Found the following .jpg/.jpeg files:")
+        print(line_found)
         for file in jpg_files:
             print(file)
-        
-        confirmation = input("Do you want to proceed with conversion? (y/n): ")
+        confirmation = input(question_proceed)
         if confirmation.lower() == 'y':
             for file in jpg_files:
                 convert_file(file)
-            print("Process complete.")
+            print(line_complete)
         else:
-            print("Conversion cancelled.")
+            print(line_cancelled)

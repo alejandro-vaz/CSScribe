@@ -94,3 +94,14 @@
 - [X] (Patch) Added comments to `source/builder.py`.
 - [X] (Patch) Changed `modifier-checkbox.cssc` and `modifier-voidbox.cssc` coloring.
 - [X] (Patch) Added builder multi-language support.
+
+#### *CSScribe* 4.4.13
+
+- [X] (Patch) Added `documents` folder.
+- [X] (Minor) Added style autoparsing via function.
+- [X] (Patch) Added `shd101wyy.markdown-preview-enhanced` dependency.
+- [X] (Patch) Readjusted versioning chances.
+- [X] (Minor) Added language and style configurations.
+- [X] (Minor) Changed language codes.
+- [X] (Patch) Remade console interface for all files.
+- [X] (Patch) Remade language handling in files.

@@ -7,7 +7,7 @@ import time
 
 dir_path = os.getcwd()
 
-structure_content = """CSScribe 4.2.8
+structure_content = """CSScribe 4.4.0
 
 
 # Factual completion dates
@@ -107,9 +107,6 @@ def todos(i_todos):
         with open(os.path.join(dir_path, 'step-3/.todo'), 'w', encoding='utf-8') as step: step.write(step_3_todo)
         with open(os.path.join(dir_path, 'step-4/.todo'), 'w', encoding='utf-8') as step: step.write(step_4_todo)
 
-def end():
-    os.system(f'code "{dir_path}"')
-
 if __name__ == "__main__":
     init()
     f_environment = input("Do you want to include a testing environment? (y/n): ").lower() == "y"
@@ -121,4 +118,3 @@ if __name__ == "__main__":
     restructure(f_environment, f_images)
     structure(f_estpname, f_estplatform, f_estusername)
     todos(f_todos)
-    end()

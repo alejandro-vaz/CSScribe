@@ -3,7 +3,7 @@
 // Hover to view descriptions of existing attributes.
 // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
 {
-	"version": "4.2.8",
+	"version": "4.4.0",
 	"configurations": [
 		{
 			"name": "Extension",

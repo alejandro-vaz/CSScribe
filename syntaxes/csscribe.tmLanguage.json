@@ -2,6 +2,10 @@
     "scopeName": "source.cssc",
     "patterns": [
         {
+            "name": "class-ad.cssc",
+            "match": "/ad"
+        },
+        {
             "name": "class-code.cssc",
             "begin": "/code-",
             "patterns": [
@@ -98,6 +102,17 @@
         {
             "name": "modifier-h3.cssc",
             "begin": "/h3 ",
+            "patterns": [
+                { "include": "#editor-newline" },
+                { "include": "#editor-scape"},
+                { "include": "#modifier-italic"},
+                { "include": "#modifier-strikethrough"}
+            ],
+            "end": "$"
+        },
+        {
+            "name": "modifier-h4.cssc",
+            "begin": "/h4 ",
             "patterns": [
                 { "include": "#editor-newline" },
                 { "include": "#editor-scape"},

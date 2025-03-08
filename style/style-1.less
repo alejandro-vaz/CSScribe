@@ -81,7 +81,7 @@ The design of this style file is oriented towards research projects which requir
   }
   
   /* Headers */
-  h1, h2, h3 {
+  h1, h2, h3, h4 {
     color: @header-color;
     font-weight: bold;
     margin-bottom: 0;
@@ -93,7 +93,7 @@ The design of this style file is oriented towards research projects which requir
   }
   
   h2 {
-    font-size: calc(@font-size * 7 / 3);
+    font-size: calc(@font-size * 2);
     padding: 0;
     margin-top: 0;
     @media print {
@@ -102,15 +102,19 @@ The design of this style file is oriented towards research projects which requir
   }
   
   h3 {
-    font-size: calc(@font-size * 3 / 2);
+    font-size: calc(@font-size * 1.5);
     margin-top: calc(2*@size-unit);
+  }
+
+  h4 {
+    font-size: calc(@font-size * 1.25);
+    margin-top: calc(1.5*@size-unit);
   }
 
   h2 + h3 {
     margin-top: calc(4*@size-unit);
   }
   
-  /* Don't break page between consecutive h1 and h2 */
   h1 + h2 {
     @media print {
       page-break-before: avoid;

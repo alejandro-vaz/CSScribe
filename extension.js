@@ -15,10 +15,11 @@ function activate(context) {
     console.log('Extension activated.');
     // RUN COMPILER COMMAND
     let runCompiler = vscode.commands.registerCommand('csscribe.runCompiler', () => {
+        language = "es";
         console.log("Executed: csscribe.runCompiler");
-        const compilerPath = context.asAbsolutePath('compiler.exe');
+        const compilerPath = context.asAbsolutePath("compiler.exe");
         const terminal = vscode.window.createTerminal('Compiler Terminal');
-        terminal.sendText(`${compilerPath}`);
+        terminal.sendText(`${compilerPath} ${language}`);
         terminal.show();
     });
     context.subscriptions.push(runCompiler);

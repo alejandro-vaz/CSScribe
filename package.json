@@ -9,7 +9,7 @@
     ],
     "displayName": "CSScribe",
     "description": "CSScribe is a markup language designed to enhance your writing experience, enabling faster and more efficient writing with syntax highlighting and standardized formatting.",
-    "version": "4.2.8",
+    "version": "4.4.0",
     "publisher": "alejandro-vaz",
     "categories": [
         "Programming Languages",
@@ -74,8 +74,18 @@
             }
         ],
         "configurationDefaults": {
+            "[cssc]": {
+                "editor.fontSize": 24
+            },
             "editor.tokenColorCustomizations": {
                 "textMateRules": [
+                    {
+                        "scope": "class-ad.cssc",
+                        "settings": {
+                            "fontStyle": "underline",
+                            "foreground": "#E2F89C"
+                        }
+                    },
                     {
                         "scope": "class-code.cssc",
                         "settings": {
@@ -141,21 +151,28 @@
                     {
                         "scope": "modifier-h1.cssc",
                         "settings": {
-                            "foreground": "#00ff00",
+                            "foreground": "#DE541E",
                             "fontStyle": "bold"
                         }
                     },
                     {
                         "scope": "modifier-h2.cssc",
                         "settings": {
-                            "foreground": "#00ffff",
+                            "foreground": "#F5AE2D",
                             "fontStyle": "bold"
                         }
                     },
-                                {
+                    {
                         "scope": "modifier-h3.cssc",
                         "settings": {
-                            "foreground": "#ffff00",
+                            "foreground": "#55DDE0",
+                            "fontStyle": "bold"
+                        }
+                    },
+                    {
+                        "scope":  "modifier-h4.cssc",
+                        "settings": {
+                            "foreground": "#CB9CF2",
                             "fontStyle": "bold"
                         }
                     },

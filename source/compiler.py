@@ -2,6 +2,7 @@
 import time
 import os
 from si_prefix import si_format
+import sys
 
 # DEFINE EXCEPTIONS
 class CompilerError(Exception):
@@ -34,11 +35,30 @@ def skip(counter):
     return True
 
 # MAIN TRANSFORMER
-def cssctomd(filename):
+def cssctomd(filename, language):
     # TRANSFORMATIONS
     # NON-STANDARD-X
     # DEFINE-D -> COUNT-T / CSIMMETRY-Y -> (AT START-S) -> (CORRESPONDENCE-C / ACORRESPONDENCE-A) -> SKIP-K -> REPLACE-R -> (SCAPE-N) -> RETURN-F
-    def class_code(data):
+    def class_ad(data, lang):
+        # DEFINE
+        source = "class_ad()"
+        match = "/ad"
+        if lang == "es":
+            begin_replacement = "/& Este proyecto de investigación ha sido redactado con ·CSScribe·[(1)](#bibliografía), el lenguaje de marcado perfecto para hacer trabajos escritos. Para estandarizar la ·simbología LaTeX· del trabajo, se han utilizado los estándares matemáticos anglosajones, intercambiando las comas por los puntos."
+        else:
+            begin_replacement = "/& This project has been written with ·CSScribe·[(1)](#references), the perfect markup language for writing papers."
+        # COUNT
+        counter = [data.count(match)]
+        # AT START
+        at_start(data, match, source)
+        # SKIP
+        if skip(counter):
+            return data, counter
+        # REPLACE
+        data = data.replace(match, begin_replacement)
+        # RETURN
+        return data, counter
+    def class_code(data, lang):
         # DEFINE
         source = "class_code()"
         begin = "/code-"
@@ -57,7 +77,7 @@ def cssctomd(filename):
         data = data.replace(end, end_replacement)
         # RETURN
         return data, counter
-    def class_comment(data):
+    def class_comment(data, lang):
         # DEFINE
         source = "class_comment()"
         begin = "/& "
@@ -71,7 +91,7 @@ def cssctomd(filename):
         data = data.replace(begin, begin_replacement)
         # RETURN
         return data, counter
-    def class_image(data):
+    def class_image(data, lang):
         # NON-STANDARD
         # DEFINE
         source = "class_image()"
@@ -85,7 +105,7 @@ def cssctomd(filename):
             counter[0] += 1
         # RETURN
         return data, counter
-    def class_math(data):
+    def class_math(data, lang):
         # DEFINE
         source = "class_math()"
         between = "/math"
@@ -99,7 +119,7 @@ def cssctomd(filename):
         data = data.replace(between, replacement)
         # RETURN
         return data, counter
-    def editor_comment(data):
+    def editor_comment(data, lang):
         # DEFINE
         source = "editor_comment()"
         begin = "# "
@@ -118,7 +138,7 @@ def cssctomd(filename):
         data = data.replace(end, end_replacement)
         # RETURN
         return data, counter
-    def editor_newline(data):
+    def editor_newline(data, lang):
         # DEFINE
         source = "editor_newline()"
         match = "/n"
@@ -132,7 +152,7 @@ def cssctomd(filename):
         data = data.replace(match, replacement)
         # RETURN
         return data, counter
-    def editor_scape(data):
+    def editor_scape(data, lang):
         # DEFINE
         source = "editor_scape(data)"
         match = "¬"
@@ -149,7 +169,7 @@ def cssctomd(filename):
         data = data.replace(scape, match)
         # RETURN
         return data, counter
-    def modifier_bold(data):
+    def modifier_bold(data, lang):
         # DEFINE
         source = "modifier_bold()"
         between = ":"
@@ -165,7 +185,7 @@ def cssctomd(filename):
         data = data.replace(replacement * 2, between)
         # RETURN
         return data, counter
-    def modifier_checkbox(data):
+    def modifier_checkbox(data, lang):
         # DEFINE
         source = "modifier_checkbox()"
         match = "/X "
@@ -181,7 +201,7 @@ def cssctomd(filename):
         data = data.replace(match, replacement)
         # RETURN
         return data, counter
-    def modifier_code(data):
+    def modifier_code(data, lang):
         # DEFINE
         source = "modifier_code()"
         between = "/_"
@@ -195,7 +215,7 @@ def cssctomd(filename):
         data = data.replace(between, replacement)
         # RETURN
         return data, counter
-    def modifier_h1(data):
+    def modifier_h1(data, lang):
         # DEFINE
         source = "modifier_h1()"
         begin = "/h1 "
@@ -211,7 +231,7 @@ def cssctomd(filename):
         data = data.replace(begin, begin_replacement)
         # RETURN
         return data, counter
-    def modifier_h2(data):
+    def modifier_h2(data, lang):
         # DEFINE
         source = "modifier_h2()"
         begin = "/h2 "
@@ -227,7 +247,7 @@ def cssctomd(filename):
         data = data.replace(begin, begin_replacement)
         # RETURN
         return data, counter
-    def modifier_h3(data):
+    def modifier_h3(data, lang):
         # DEFINE
         source = "modifier_h3()"
         begin = "/h3 "
@@ -243,7 +263,23 @@ def cssctomd(filename):
         data = data.replace(begin, begin_replacement)
         # RETURN
         return data, counter
-    def modifier_italic(data):
+    def modifier_h4(data, lang):
+        # DEFINE
+        source = "modifier_h4()"
+        begin = "/h4 "
+        begin_replacement = "#### "
+        # COUNT
+        counter = [data.count(begin)]
+        # AT START
+        at_start(data, begin, source)
+        # SKIP
+        if skip(counter):
+            return data, counter
+        # REPLACE
+        data = data.replace(begin, begin_replacement)
+        # RETURN
+        return data, counter
+    def modifier_italic(data, lang):
         # DEFINE
         source = "modifier_italic()"
         between = "·"
@@ -259,7 +295,7 @@ def cssctomd(filename):
         data = data.replace(replacement + "¬" + replacement, between)
         # RETURN
         return data, counter
-    def modifier_math(data):
+    def modifier_math(data, lang):
         # DEFINE
         source = "modifier_math()"
         between = "/="
@@ -273,7 +309,7 @@ def cssctomd(filename):
         data = data.replace(between, replacement)
         # RETURN
         return data, counter
-    def modifier_ordered(data):
+    def modifier_ordered(data, lang):
         # DEFINE
         source = "modifier_ordered()"
         match = "    o "
@@ -287,7 +323,7 @@ def cssctomd(filename):
         data = data.replace(match, replacement)
         # RETURN
         return data, counter
-    def modifier_strikethrough(data):
+    def modifier_strikethrough(data, lang):
         # DEFINE
         source = "modifier_strikethrough()"
         between = "/-"
@@ -301,7 +337,7 @@ def cssctomd(filename):
         data = data.replace(between, replacement)
         # RETURN
         return data, counter
-    def modifier_subscript(data):
+    def modifier_subscript(data, lang):
         # DEFINE
         source = "modifier_subscript()"
         between = "/s"
@@ -315,7 +351,7 @@ def cssctomd(filename):
         data = data.replace(between, replacement)
         # RETURN
         return data, counter
-    def modifier_superscript(data):
+    def modifier_superscript(data, lang):
         # DEFINE
         source = "modifier_superscript()"
         between = "/S"
@@ -329,7 +365,7 @@ def cssctomd(filename):
         data = data.replace(between, replacement)
         # RETURN
         return data, counter
-    def modifier_unordered(data):
+    def modifier_unordered(data, lang):
         # DEFINE
         source = "modifier_unordered()"
         match = "    u "
@@ -343,7 +379,7 @@ def cssctomd(filename):
         data = data.replace(match, replacement)
         # RETURN
         return data, counter
-    def modifier_voidbox(data):
+    def modifier_voidbox(data, lang):
         # DEFINE
         source = "modifier_voidbox()"
         match = "/O "
@@ -359,7 +395,7 @@ def cssctomd(filename):
         data = data.replace(match, replacement)
         # RETURN
         return data, counter
-    def tag_break(data):
+    def tag_break(data, lang):
         # DEFINE
         source = "tag_break()"
         match = "/br"
@@ -373,7 +409,7 @@ def cssctomd(filename):
         data = data.replace(match, replacement)
         # RETURN
         return data, counter
-    def tag_html(data):
+    def tag_html(data, lang):
         # DEFINE
         source = "tag_html()"
         begin = "<"
@@ -397,7 +433,7 @@ def cssctomd(filename):
         data = data.replace(end_scape, end)
         # RETURN
         return data, counter
-    def tag_index(data):
+    def tag_index(data, lang):
         # DEFINE
         source = "tag_index()"
         begin = "/In"
@@ -420,36 +456,47 @@ def cssctomd(filename):
     # CONVERSION
     with open(filename, 'r', encoding="utf-8") as file:
         content = file.read()
-    content, tag_html_count = tag_html(content) # BEFORE CLASS_COMMENT, EDITOR_COMMENT, MODIFIER_MATH (1)
-    content, class_code_count = class_code(content)
-    content, class_comment_count = class_comment(content)
-    content, class_image_count = class_image(content)
-    content, class_math_count = class_math(content)
-    content, editor_comment_count = editor_comment(content)
-    content, editor_newline_count = editor_newline(content)
-    content, modifier_bold_count = modifier_bold(content)
-    content, modifier_checkbox_count = modifier_checkbox(content)
-    content, modifier_code_count = modifier_code(content)
-    content, modifier_h1_count = modifier_h1(content)
-    content, modifier_h2_count = modifier_h2(content)
-    content, modifier_h3_count = modifier_h3(content)
-    content, modifier_italic_count = modifier_italic(content)
-    content, modifier_math_count =  modifier_math(content)
-    content, modifier_ordered_count = modifier_ordered(content)
-    content, modifier_strikethrough_count = modifier_strikethrough(content)
-    content, modifier_subscript_count = modifier_subscript(content)
-    content, modifier_superscript_count = modifier_superscript(content)
-    content, modifier_unordered_count = modifier_unordered(content)
-    content, modifier_voidbox_count = modifier_voidbox(content)
-    content, tag_break_count = tag_break(content)
-    content, tag_index_count = tag_index(content)
-    content, editor_scape_count = editor_scape(content) # AFTER MODIFIER_MATH (24)
-    return content
+    content, tag_html_count = tag_html(content, language) # BEFORE CLASS_COMMENT, EDITOR_COMMENT, MODIFIER_MATH (1)
+    content, class_ad_count = class_ad(content, language)
+    content, class_code_count = class_code(content, language)
+    content, class_comment_count = class_comment(content, language)
+    content, class_image_count = class_image(content, language)
+    content, class_math_count = class_math(content, language)
+    content, editor_comment_count = editor_comment(content, language)
+    content, editor_newline_count = editor_newline(content, language)
+    content, modifier_bold_count = modifier_bold(content, language)
+    content, modifier_checkbox_count = modifier_checkbox(content, language)
+    content, modifier_code_count = modifier_code(content, language)
+    content, modifier_h1_count = modifier_h1(content, language)
+    content, modifier_h2_count = modifier_h2(content, language)
+    content, modifier_h3_count = modifier_h3(content, language)
+    content, modifier_h4_count = modifier_h4(content, language)
+    content, modifier_italic_count = modifier_italic(content, language)
+    content, modifier_math_count =  modifier_math(content, language)
+    content, modifier_ordered_count = modifier_ordered(content, language)
+    content, modifier_strikethrough_count = modifier_strikethrough(content, language)
+    content, modifier_subscript_count = modifier_subscript(content, language)
+    content, modifier_superscript_count = modifier_superscript(content, language)
+    content, modifier_unordered_count = modifier_unordered(content, language)
+    content, modifier_voidbox_count = modifier_voidbox(content, language)
+    content, tag_break_count = tag_break(content, language)
+    content, tag_index_count = tag_index(content, language)
+    content, editor_scape_count = editor_scape(content, language) # AFTER MODIFIER_MATH (24)
+    
+    # MESSAGES
+    messages = []
+    if class_ad_count[0] >= 1:
+        messages.append("    > Thanks for including the CSScribe advertisement!")
+    if modifier_h1_count[0] == 1:
+        messages.append("    > Making an h1 header is not recommended for large documents. It'd better if you added a front page.")
+    
+    # FINISH
+    return content, messages
 
 # ENTRY POINT
 if __name__ == "__main__":
     print("Welcome to the CSScribe compiler.")
-    print("Type a file name or write \"/\" to exit")
+    print("Type a file name without .cssc extension included or enter \"/\" to exit the compiler.")
     while True:
         filename = input(">>> ")
         if filename.strip() == "/":
@@ -461,7 +508,9 @@ if __name__ == "__main__":
         else:
             start_time = time.time()
             with open(md_file, 'w', encoding="utf-8") as file:
-                converted = cssctomd(cssc_file)
+                converted, printable = cssctomd(cssc_file, sys.argv[1].strip())
                 file.write(converted)
             end_time = time.time()
-            print(f"    Conversion done in {si_format(end_time - start_time, precision=2)}s")
+            for message in printable:
+                print(message)
+            print(f"    Compiled in {si_format(end_time - start_time, precision=2)}s.")

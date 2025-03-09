@@ -13,7 +13,7 @@ match sys.argv[1]:
         question_proceed = "¿Quieres continuar con la conversión? (y/n):                               "
         line_complete = "Proceso completado."
         line_cancelled = "Conversión cancelada."
-    case "English":
+    case "English" | _:
         line_converted = "Converted and deleted:                                                     "
         line_failed = "Failed to convert:                                                         "
         line_none = "No .jpg or .jpeg files found."

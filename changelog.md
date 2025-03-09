@@ -105,3 +105,14 @@
 - [X] (Minor) Changed language codes.
 - [X] (Patch) Remade console interface for all files.
 - [X] (Patch) Remade language handling in files.
+### *CSScribe* 4.5.9
+
+- [X] (Patch) Added `"onStartupFinished"` activation.
+- [X] (Patch) Added `"onLanguage:cssc"` activation.
+- [X] (Patch) Added `env/` autogeneration in `structure.tree`.
+- [X] (Patch) Updated compiler language logic.
+- [X] (Patch) Remade processes in compiler and added `exclusivity()`.
+- [X] (Patch) Added processes to `dev/scope.txt`.
+- [X] (Patch) Added compiler warnings.
+- [X] (Patch) Added $419$ *Spanish* words to vocabulary.
+- [X] (Minor) Added automatic language completion (only *Spanish* for now).

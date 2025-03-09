@@ -5,6 +5,7 @@ const path = require("path")
 
 // MAIN FUNCTION
 function activate(context) {
+    // CONFIGURATION
     const config = vscode.workspace.getConfiguration('csscribe');
     const language = config.get('language');
     const style = config.get("style");
@@ -76,6 +77,96 @@ function activate(context) {
         });
     });
     context.subscriptions.push(parseStyle)
+
+// COMPLETION ITEM PROVIDER
+const completionProvider = vscode.languages.registerCompletionItemProvider('cssc', {
+    provideCompletionItems(document, position, token, completionContext) {
+        try {
+            // DEFINE PATHS AND REQUIREMENTS
+            const completionWordsPath = path.join(context.extensionPath, `language/${language}.json`);
+            const completionWords = require(completionWordsPath);
+            
+            // INITIALIZE VARIABLES
+            const linePrefix = document.lineAt(position).text.substr(0, position.character);
+            const text = document.getText();
+            
+            // BUILD WORD FREQUENCY MAP
+            const wordFrequency = {};
+            const words = text.match(/\b\w+\b/g);
+            if (words) {
+                words.forEach(word => {
+                    const lowerWord = word.toLowerCase();
+                    wordFrequency[lowerWord] = (wordFrequency[lowerWord] || 0) + 1;
+                });
+            }
+            
+            // FUNCTION TO SET sortText BASED ON FREQUENCY
+            const setSortText = (item, frequency) => {
+                // Invert frequency for correct sorting (higher frequency = should appear first)
+                // Pad with zeros to ensure proper lexicographical sorting
+                const invertedFrequency = String(99999 - frequency).padStart(5, '0');
+                item.sortText = invertedFrequency + item.label;
+            };
+            
+            // FUNCTION TO CAPITALIZE FIRST LETTER
+            const capitalizeFirstLetter = (word) => {
+                return word.charAt(0).toUpperCase() + word.slice(1);
+            };
+            
+            // DETERMINE IF CURRENT WORD STARTS WITH UPPERCASE
+            const currentWordRange = document.getWordRangeAtPosition(position);
+            const currentWord = currentWordRange ? document.getText(currentWordRange) : '';
+            const isCurrentWordCapitalized = currentWord.charAt(0) === currentWord.charAt(0).toUpperCase();
+            
+            // CREATE COMPLETION ITEMS FROM completionWords
+            let completionItems = completionWords.map(word => {
+                // Skip single-letter words
+                if (word.length === 1) {
+                    return null;
+                }
+                const item = new vscode.CompletionItem(word, vscode.CompletionItemKind.Text);
+                setSortText(item, wordFrequency[word.toLowerCase()] || 0);
+                // Capitalize if current word starts with uppercase
+                if (isCurrentWordCapitalized) {
+                    item.label = capitalizeFirstLetter(item.label);
+                }
+                return item;
+            }).filter(item => item !== null);
+            
+            // ADD WORDS ALREADY IN THE FILE
+            const wordsInFile = new Set(words);
+            wordsInFile.forEach(word => {
+                // Skip single-letter words
+                if (word.length === 1) {
+                    return;
+                }
+                const item = new vscode.CompletionItem(word, vscode.CompletionItemKind.Text);
+                setSortText(item, wordFrequency[word.toLowerCase()]);
+                // Capitalize if current word starts with uppercase
+                if (isCurrentWordCapitalized) {
+                    item.label = capitalizeFirstLetter(item.label);
+                }
+                completionItems.push(item);
+            });
+            
+            // REMOVE DUPLICATE ITEMS
+            const uniqueItems = new Map();
+            completionItems.forEach(item => {
+                uniqueItems.set(item.label, item);
+            });
+            
+            // RETURN SORTED ITEMS
+            return Array.from(uniqueItems.values());
+        } catch (error) {
+            console.error(`Error loading completion words or commands: ${error}`);
+            return [];
+        }
+    }
+});
+
+
+
+    context.subscriptions.push(completionProvider);
 }
 
 // DEACTIVATION FUNCTION

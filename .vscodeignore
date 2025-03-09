@@ -3,3 +3,6 @@ dev/
 website/
 source/
 documents/
+language/handler.py
+build/
+.crossnote/

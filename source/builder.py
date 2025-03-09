@@ -7,7 +7,7 @@ import time
 dir_path = os.getcwd()
 
 # DEFINE VERSION
-version = "4.4.13"
+version = "4.5.9"
 
 # DEFINE CONTENT
 match sys.argv[1]:
@@ -73,7 +73,7 @@ https://{platform}/{username}/{project:raw}/tree/main/{images}
 1. Visita https://www.ilovepdf.com/es/unir_pdf y une todo.
 2. Añade otros recursos al proyecto que pueden ser de ayuda, como presentaciones.
 """
-    case "English":
+    case "English" | _:
         structure_tree = """CSScribe {version}
 
 
@@ -135,6 +135,7 @@ https://{platform}/{username}/{project:raw}/tree/main/{images}
 1. Go to https://www.ilovepdf.com/es/unir_pdf and join everything.
 2. Add extra resources to the project that might be useful, like presentations.
 """
+gitignore = ".crossnote/"
 
 # FUNCTIONS
 def tree(images):
@@ -160,6 +161,7 @@ def structure(project_name, platform, username, images):
     else:
         content = content.replace("{images}", "")
     with open(f"{dir_path}/structure.tree", "w", encoding="utf-8") as file: file.write(content)
+    with open(f"{dir_path}/.gitignore", "w", encoding="utf-8") as file: file.write(gitignore)
 
 def todos(i_todos):
     if i_todos:
@@ -182,7 +184,7 @@ if __name__ == "__main__":
             question_project = "Introduce el nombre del proyecto:                                          "
             question_platform = "Introduce el enlace de la plataforma de almacenamiento de archivos:        "
             question_username = "Introduce tu nombre de usuario en la plataforma:                           "
-        case "English":
+        case "English" | _:
             answer_correct = "y"
             line_greeting = "CSScribe environment builder tool. Confirm the following data."
             line_path = f"This directory is {dir_path}\n"

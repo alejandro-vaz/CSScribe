@@ -15,11 +15,14 @@ def csimmetry(data, begin_end, source):
         raise CompilerError(f"{source} -> csimmetry().")
     else:
         return int(amount / 2)
-def at_start(data, scope, source):
+def exclusivity(data, match_begin, source):
+    if data.count(match_begin) > 1:
+        raise CompilerError(f"{source} -> exclusivity()")
+def start(data, scope, source):
     position = data.find(scope)
     while position != -1:
         if position != 0 and data[position - 1] != "\n":
-            raise CompilerError(f"{source} -> at_start().")
+            raise CompilerError(f"{source} -> start().")
         position = data.find(scope, position + 1)
 def correspondence(data, scope_begin, scope_end, source):
     if data.count(scope_begin) != data.count(scope_end):
@@ -36,8 +39,8 @@ def skip(counter):
 # MAIN TRANSFORMER
 def cssctomd(filename, language):
     # TRANSFORMATIONS
-    # NON-STANDARD-X
-    # DEFINE-D -> COUNT-T / CSIMMETRY-Y -> (AT START-S) -> (CORRESPONDENCE-C / ACORRESPONDENCE-A) -> SKIP-K -> REPLACE-R -> (SCAPE-N) -> RETURN-F
+    # NON-STANDARD-Z
+    # DEFINE-D -> COUNT-T / CSIMMETRY-Y -> (EXCLUSIVITY-X) -> (START-S) -> (CORRESPONDENCE-C / ACORRESPONDENCE-A) -> SKIP-K -> REPLACE-R -> (SCAPE-N) -> RETURN-F
     def class_ad(data, lang):
         # DEFINE
         source = "class_ad()"
@@ -49,8 +52,10 @@ def cssctomd(filename, language):
                 begin_replacement = "/& This project has been written with ·CSScribe·[(1)](#references), the perfect markup language for writing papers."
         # COUNT
         counter = [data.count(match)]
-        # AT START
-        at_start(data, match, source)
+        # EXCLUSIVITY
+        exclusivity(data, match, source)
+        # START
+        start(data, match, source)
         # SKIP
         if skip(counter):
             return data, counter
@@ -96,8 +101,8 @@ def cssctomd(filename, language):
         # DEFINE
         source = "class_image()"
         match = "/img"
-        # AT START
-        at_start(data, match, source)
+        # START
+        start(data, match, source)
         # COUNT AND REPLACE
         counter = [0]
         while match in data:
@@ -192,8 +197,8 @@ def cssctomd(filename, language):
         replacement = "- [X] "
         # COUNT
         counter = [data.count(match)]
-        # AT START
-        at_start(data, match, source)
+        # START
+        start(data, match, source)
         # SKIP
         if skip(counter):
             return data, counter
@@ -222,8 +227,10 @@ def cssctomd(filename, language):
         begin_replacement = "# "
         # COUNT
         counter = [data.count(begin)]
-        # AT START
-        at_start(data, begin, source)
+        # EXCLUSIVITY
+        exclusivity(data, begin, source)
+        # START
+        start(data, begin, source)
         # SKIP
         if skip(counter):
             return data, counter
@@ -238,8 +245,8 @@ def cssctomd(filename, language):
         begin_replacement = "## "
         # COUNT
         counter = [data.count(begin)]
-        # AT START
-        at_start(data, begin, source)
+        # START
+        start(data, begin, source)
         # SKIP
         if skip(counter):
             return data, counter
@@ -254,8 +261,8 @@ def cssctomd(filename, language):
         begin_replacement = "### "
         # COUNT
         counter = [data.count(begin)]
-        # AT START
-        at_start(data, begin, source)
+        # START
+        start(data, begin, source)
         # SKIP
         if skip(counter):
             return data, counter
@@ -270,8 +277,8 @@ def cssctomd(filename, language):
         begin_replacement = "#### "
         # COUNT
         counter = [data.count(begin)]
-        # AT START
-        at_start(data, begin, source)
+        # START
+        start(data, begin, source)
         # SKIP
         if skip(counter):
             return data, counter
@@ -330,7 +337,7 @@ def cssctomd(filename, language):
         replacement = "~~"
         # CSIMMETRY
         counter = [csimmetry(data, between, source)]
-        # REPLACE OR SKIP
+        # SKIP
         if skip(counter):
             return data, counter
         # REPLACE
@@ -386,8 +393,8 @@ def cssctomd(filename, language):
         replacement = "- [ ] "
         # COUNT
         counter = [data.count(match)]
-        # AT START
-        at_start(data, match, source)
+        # START
+        start(data, match, source)
         # SKIP
         if skip(counter):
             return data, counter
@@ -453,11 +460,17 @@ def cssctomd(filename, language):
         # RETURN
         return data, counter
     
-    # CONVERSION
+    # OPEN
     with open(filename, 'r', encoding="utf-8") as file:
         content = file.read()
+        
+    # GENERAL COUNTING
+    words = len((content.replace("\n", " ")).split(" "))
+    lines = len(content.split("\n")) + 1
+    
+    # CONVERSION
     content, tag_html_count = tag_html(content, language) # BEFORE CLASS_COMMENT, EDITOR_COMMENT, MODIFIER_MATH (1)
-    content, class_ad_count = class_ad(content, language)
+    content, class_ad_count = class_ad(content, language) # BEFORE CLASS_COMMENT (2)
     content, class_code_count = class_code(content, language)
     content, class_comment_count = class_comment(content, language)
     content, class_image_count = class_image(content, language)
@@ -483,21 +496,85 @@ def cssctomd(filename, language):
     content, tag_index_count = tag_index(content, language)
     content, editor_scape_count = editor_scape(content, language) # AFTER MODIFIER_MATH (24)
     
-    # MESSAGES
+    # DEFINE MESSAGE LANGUAGE
     messages = []
+    indent = "    > "
+    match language:
+        case "Español":
+            line0 = "¡Gracias por incluir el anuncio de CSScribe!"
+            line1 = "Hacer un encabezado h1 no está recomendado para documentos grandes. Sería mejor que añadieses una portada."
+            line2 = "La etiqueta HTML ha sido inyectada en el documento y los estilos personalizables de CSS están disponibles."
+            line3 = f"{tag_html_count[0]} etiquetas de HTML han sido inyectadas en el documento y están listas para los estilos de CSS personalizables."
+            line4 = "No se ha detectado ningún encabezado. Utiliza al menos un encabezado h2 para el título del documento."
+            line5 = "Tipos de encabezados detectados: h4. Utiliza encabezados h2 en su lugar."
+            line6 = "Tipos de encabezados detectados: h3. Utiliza encabezados h2 en su lugar."
+            line7 = "Tipos de encabezados detectados: h3, h4. Utiliza encabezados h2, h3 en su lugar."
+            line8 = "Tipos de encabezados detectados: h2, h4. Utiliza encabezados h2, h3 en su lugar."
+            line9 = "Tipos de encabezados detectados: h1. Utiliza encabezados h2 en su lugar."
+            line10 = "Tipos de encabezados detectados: h1, h4. Utiliza encabezados h2, h3 en su lugar."
+            line11 = "Tipos de encabezados detectados: h1, h3. Utiliza encabezados h2, h3 en su lugar."
+            line12 = "Tipos de encabezados detectados: h1, h3, h4. Utiliza encabezados h2, h3, h4 en su lugar."
+            line13 = "Tipos de encabezados detectados: h1, h2. Utiliza encabezados h2, h3 en su lugar."
+            line14 = "Tipos de encabezados detectados: h1, h2, h4. Utiliza encabezados h2, h3, h4 en su lugar."
+            line15 = "Tipos de encabezados detectados: h1, h2, h3. Utiliza encabezados h2, h3, h4 en su lugar."
+            line16 = "No todas las imágenes tienen descripción. Considera añadirlas con una etiqueta break después de la imagen."
+        case "English" | _:
+            line0 = "Thanks for including the CSScribe advertisement!"
+            line1 = "Making an h1 header is not recommended for large documents. It'd better if you added a cover page."
+            line2 = "The HTML tag has been passed to the document and custom CSS styling is available."
+            line3 = f"{tag_html_count[0]} HTML tags have been passed to the document and are ready for custom CSS styling."
+            line4 = "No headers detected. Use at least an h2 header for the document title."
+            line5 = "Types of header detected: h4. Use h2 headers instead."
+            line6 = "Types of header detected: h3. Use h2 headers instead."
+            line7 = "Types of header detected: h3, h4. Use h2, h3 headers instead."
+            line8 = "Types of header detected: h2, h4. Use h2, h3 headers instead."
+            line9 = "Types of header detected: h1. Use h2 headers instead."
+            line10 = "Types of header detected: h1, h4. Use h2, h3 headers instead."
+            line11 = "Types of header detected: h1, h3. Use h2, h3 headers instead."
+            line12 = "Types of header detected: h1, h3, h4. Use h2, h3, h4 headers instead."
+            line13 = "Types of header detected: h1, h2. Use h2, h3 headers instead."
+            line14 = "Types of header detected: h1, h2, h4. Use h2, h3, h4 headers instead."
+            line15 = "Types of header detected: h1, h2, h3. Use h2, h3, h4 headers instead."
+            line16 = "Not all images have captions. Consider adding them with a break tag after the image."
+    
+    # MESSAGE LOGIC
     if class_ad_count[0] >= 1:
-        match language:
-            case "Español":
-                messages.append("    > ¡Gracias por incluir el anuncio de CSScribe!")
-            case "English":
-                messages.append("    > Thanks for including the CSScribe advertisement!")
-    if modifier_h1_count[0] == 1:
-        match language:
-            case "Español":
-                messages.append("    > Hacer un encabezado h1 no está recomendado para documentos grandes. Sería mejor que añadieses una portada.")
-            case "English":
-                messages.append("    > Making an h1 header is not recommended for large documents. It'd better if you added a cover page.")
-
+        messages.append(indent + line0)
+    if words >= 1500 or lines >= 200:
+        messages.append(indent + line1)
+    if tag_html_count[0] == 1:
+        messages.append(indent + line2)
+    if tag_html_count[0] > 1:
+        messages.append(indent + line3)
+    match (modifier_h1_count[0], modifier_h2_count[0], modifier_h3_count[0], modifier_h4_count[0]):
+        case (a, b, c, d) if a == 0 and b == 0 and c == 0 and d == 0:
+            messages.append(indent + line4)
+        case (a, b, c, d) if a == 0 and b == 0 and c == 0 and d >= 1:
+            messages.append(indent + line5)
+        case (a, b, c, d) if a == 0 and b == 0 and c >= 1 and d == 0:
+            messages.append(indent + line6)
+        case (a, b, c, d) if a == 0 and b == 0 and c >= 1 and d >= 1:
+            messages.append(indent + line7)
+        case (a, b, c, d) if a == 0 and b >= 1 and c == 0 and d >= 1:
+            messages.append(indent + line8)
+        case (a, b, c, d) if a == 1 and b == 0 and c == 0 and d == 0:
+            messages.append(indent + line9)
+        case (a, b, c, d) if a == 1 and b == 0 and c == 0 and d >= 1:
+            messages.append(indent + line10)
+        case (a, b, c, d) if a == 1 and b == 0 and c >= 1 and d == 0:
+            messages.append(indent + line11)
+        case (a, b, c, d) if a == 1 and b == 0 and c >= 1 and d >= 1:
+            messages.append(indent + line12)
+        case (a, b, c, d) if a == 1 and b >= 1 and c == 0 and d == 0:
+            messages.append(indent + line13)
+        case (a, b, c, d) if a == 1 and b >= 1 and c == 0 and d >= 1:
+            messages.append(indent + line14)
+        case (a, b, c, d) if a == 1 and b >= 1 and c >= 1 and d == 0:
+            messages.append(indent + line15)
+        case(a, b, c, d) if a == 1 and b >= 1 and c >= 1 and d >= 1:
+            messages.append(indent + line1)
+    if tag_break_count[0] < class_image_count[0]:
+        messages.append(indent + line16)
     # FINISH
     return content, messages
 
@@ -507,12 +584,12 @@ if __name__ == "__main__":
     match sys.argv[1]:
         case "Español":
             line_greeting = "Bienvenido al compilador de CSScribe."
-            line_instructions = "Introduce el nombre de un fichero sin su extensión .cssc o introduce \"/\" para salir."
+            line_instructions = "Introduce el nombre de un fichero sin su extensión .cssc o \"/\" para salir."
             line_notexists = " no existe."
             line_compiled = "Compilado en "
-        case "English":
+        case "English" | _:
             line_greeting = "Welcome to the CSScribe compiler."
-            line_instructions = "Type a file name without .cssc extension included or enter \"/\" to exit the compiler."
+            line_instructions = "Type a file name without .cssc extension included or \"/\" to exit the compiler."
             line_notexists = " does not exist."
             line_compiled = "Compiled in "
     

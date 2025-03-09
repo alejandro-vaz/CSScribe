@@ -12,7 +12,7 @@ match sys.argv[1]:
         question_patch = "Cambios patch:                                    "
         line_new = "Nueva versión:                                    "
         line_format = "Usa el formato A.B.C o A.B.C.D"
-    case "English":
+    case "English" | _:
         question_version = "Enter current version:                            "
         question_major = "Major changes:                                    "
         question_minor = "Minor changes:                                    "

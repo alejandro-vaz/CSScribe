@@ -7,7 +7,7 @@ import time
 dir_path = os.getcwd()
 
 # DEFINE VERSION
-version = "4.5.9"
+version = "4.5.10"
 
 # DEFINE CONTENT
 match sys.argv[1]:

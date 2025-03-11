@@ -1,17 +1,15 @@
 {
     "engines": {
-        "vscode": "^1.94.0"
+        "vscode": "^1.98.0"
     },
     "name": "csscribe",
     "activationEvents": [
-        "*",
-        "onLanguage:cssc",
         "onStartupFinished"
     ],
     "main": "./extension.js",
     "displayName": "CSScribe",
     "description": "CSScribe is a markup language designed to enhance your writing experience, enabling faster and more efficient writing with syntax highlighting and standardized formatting.",
-    "version": "4.5.9",
+    "version": "4.5.10",
     "publisher": "alejandro-vaz",
     "categories": [
         "Programming Languages",

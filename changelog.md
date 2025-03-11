@@ -116,3 +116,7 @@
 - [X] (Patch) Added compiler warnings.
 - [X] (Patch) Added $419$ *Spanish* words to vocabulary.
 - [X] (Minor) Added automatic language completion (only *Spanish* for now).
+
+#### *CSScribe* 4.5.10
+
+- [X] (Patch) Removed `onLanguage:cssc` and `*` from extension activation events.

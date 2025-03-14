@@ -1,7 +1,9 @@
-# IMPORT MODULES
+# IMPORT COMMON MODULES
 import os
-from PIL import Image
 import sys
+
+# IMPORT THIRD-PARTY MODULES
+from PIL import Image
 
 # DEFINE LANGUAGES
 match sys.argv[1]:

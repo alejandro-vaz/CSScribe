@@ -1,64 +1,59 @@
-/h2 ·CSScribe· 4.5.10 cheatsheet
----/n
-/h3 Classes/n
-| Class name | ID | Begin | End |
-|::----------|::--|::-----|::---|
-| Code | /=001/= | /_"/¬code-"/_ | /_"/¬code"/_ |
-| Comment | /=002/= | /_"/¬& "/_ | |/n
-| Class name | ID | Match |
-|::----------|::--|::-----|
-| Ad | /=000/= | /_"/¬ad"/_ |
-| Image | /=003/= | /_"/¬img"/_ |/n
-| Class name | ID | Between |
+/h2 ·CSScribe· 4.6.7 cheatsheet
+---
+/h3 Classes
+| Class name | ID | Begin | End |¬
+|::----------|::--|::-----|::---|¬
+| Code | /=001/= | /_"/¬code-"/_ | /_"/¬code"/_ |¬
+| Comment | /=002/= | /_"/¬& "/_ | |¬
+| h1 | /=003/= | /_"/¬h1 "/_ | |¬
+| h2 | /=004/= | /_"/¬h2 "/_ | |¬
+| h3 | /=005/= | /_"/¬h3 "/_ | |¬
+| h4 | /=006/= | /_"/¬h4 "/_ | |
+| Class name | ID | Match |¬
+|::----------|::--|::-----|¬
+| Ad | /=000/= | /_"/¬ad"/_ |¬
+| Image | /=007/= | /_"/¬img"/_ |
+| Class name | ID | Between |¬
+|::----------|::--|::-------|¬
+| Math | /=008/= | /_"/¬math"/_ |
+/h3 Editors
+| Editor name | ID | Begin | End |¬
+|::----------|::--|::-----|::---|¬
+| Comment | /=100/= | /_"#¬ "/_ | /_" -¬#"/_ |
+| Editor name | ID | Match |¬
+|::----------|::--|::-----|¬
+| Scape | /=101/= | /_"/=\neg/="/_ |
+| Editor name | ID | Between |¬
 |::----------|::--|::-------|
-| Math | /=004/= | /_"/¬math"/_ |/n
-/h3 Editors/n
-| Editor name | ID | Begin | End |
-|::----------|::--|::-----|::---|
-| Comment | /=100/= | /_"#¬ "/_ | /_" -¬#"/_ |/n
-| Editor name | ID | Match |
-|::----------|::--|::-----|
-| Newline | /=101/= | /_"/¬n"/_ |
-| Scape | /=102/= | /_"/=\neg/="/_ |/n
-| Editor name | ID | Between |
-|::----------|::--|::-------|/n
-/h3 Modifiers/n
-| Modifier name | ID | Begin | End |
-|::----------|::--|::-----|::---|
-| h1 | /=203/= | /_"/¬h1 "/_ | |
-| h2 | /=204/= | /_"/¬h2 "/_ | |
-| h3 | /=205/= | /_"/¬h3 "/_ | |
-| h4 | /=206/= | /_"/¬h4 "/_ | |/n
-| Modifier name | ID | Match |
-|::----------|::--|::-----|
-| Checkbox | /=201/= | /_"/¬X "/_ |
-| Ordered | /=209/= | /_"    o¬ "/_ |
-| Unordered | /=213/= | /_"    u¬ "/_ |
-| Voidbox | /=214/= | /_"/¬O "/_ |/n
-| Modifier name | ID | Between |
-|::----------|::--|::-------|
-| Bold | /=200/= | /_"::"/_ |
-| Code | /=202/= | /_"/¬_"/_ |
-| Italic | /=207/= | /_"·¬·"/_ |
-| Math | /=208/= | /_"/¬="/_ |
-| Strikethrough | /=210/= | /_"/¬-"/_ |
-| Subscript | /=211/= | /_"/¬s"/_ |
-| Superscript | /=212/= | /_"/¬S"/_ |/n
-/h3 Tags/n
-| Tag name | ID | Begin | End |
-|::----------|::--|::-----|::---|
-| HTML | /=301/= | /_"/=\lt/="/_ | /_"/=\gt/="/_ |
-| Index | /=302/= | /_"/¬In"/_ | /_"/¬in"/_ |/n
-| Tag name | ID | Match |
-|::----------|::--|::-----|
-| Break | /=300/= | /_"/¬br"/_ |/n
-| Tag name | ID | Between |
-|::----------|::--|::-------|/n
-/h3 Commands/n
-| Name | ID |
-|::---|::--|
-| Run Compiler | /_"csscribe.runCompiler"/_ |
-| Run Builder | /_"csscribe.runBuilder"/_ |
-| Run JPG2PNG | /_"csscribe.runJPG2PNG"/_ |
-| Run Versioning System | /_"csscribe.runVersioningSystem"/_ |
+/h3 Modifiers
+| Modifier name | ID | Begin | End |¬
+|::----------|::--|::-----|::---|¬
+| HTML | /=205/= | /_"/=\lt/="/_ | /_"/=\gt/="/_ |¬
+| Index | /=206/= | /_"/¬In"/_ | /_"/¬in"/_|
+| Modifier name | ID | Match |¬
+|::----------|::--|::-----|¬
+| Break | /=201/= | /_"/¬br"/_ |¬
+| Checkbox | /=202/= | /_"/¬X "/_ |¬
+| Ordered | /=209/= | /_"    o¬ "/_ |¬
+| Reference | /=210/= | /_"/¬ft"/_ |¬
+| Unordered | /=215/= | /_"    u¬ "/_ |¬
+| Voidbox | /=216/= | /_"/¬O "/_ |
+| Modifier name | ID | Between |¬
+|::----------|::--|::-------|¬
+| Bold | /=200/= | /_"::"/_ |¬
+| Code | /=203/= | /_"/¬_"/_ |¬
+| Highlight | /=204/= | /_";;"/_ |¬
+| Italic | /=207/= | /_"·¬·"/_ |¬
+| Math | /=208/= | /_"/¬="/_ |¬
+| Strikethrough | /=211/= | /_"/¬-"/_ |¬
+| Subscript | /=212/= | /_"/¬s"/_ |¬
+| Superscript | /=213/= | /_"/¬S"/_ |¬
+| Underline | /=214/= | /_"_¬_"/_ |
+/h3 Commands
+| Name | ID |¬
+|::---|::--|¬
+| Run Compiler | /_"csscribe.runCompiler"/_ |¬
+| Run Builder | /_"csscribe.runBuilder"/_ |¬
+| Run JPG2PNG | /_"csscribe.runJPG2PNG"/_ |¬
+| Run Versioning System | /_"csscribe.runVersioningSystem"/_ |¬
 | Parse Style | /_"csscribe.parseStyle"/_ |

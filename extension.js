@@ -10,6 +10,7 @@ function activate(context) {
     const language = config.get('language');
     const style = config.get("style");
     console.log(`Extension activated with language ${language} and style ${style}.`);
+    
     // RUN COMPILER COMMAND
     let runCompiler = vscode.commands.registerCommand('csscribe.runCompiler', () => {
         console.log("Executed: csscribe.runCompiler");

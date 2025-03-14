@@ -9,7 +9,7 @@
     "main": "./extension.js",
     "displayName": "CSScribe",
     "description": "CSScribe is a markup language designed to enhance your writing experience, enabling faster and more efficient writing with syntax highlighting and standardized formatting.",
-    "version": "4.5.10",
+    "version": "4.6.7",
     "publisher": "alejandro-vaz",
     "categories": [
         "Programming Languages",
@@ -34,7 +34,8 @@
         "markdown",
         "CSS",
         "HTML",
-        "language"
+        "language",
+        "cssc"
     ],
     "homepage": "https://csscribe.ct.ws",
     "icon": "public/logo.png",
@@ -82,7 +83,9 @@
         ],
         "configurationDefaults": {
             "[cssc]": {
-                "editor.fontSize": 24
+                "editor.fontSize": 24,
+                "editor.wordWrap": "on",
+                "files.autoSave": "afterDelay"
             },
             "editor.tokenColorCustomizations": {
                 "textMateRules": [
@@ -106,6 +109,34 @@
                         }
                     },
                     {
+                        "scope": "class-h1.cssc",
+                        "settings": {
+                            "foreground": "#DE541E",
+                            "fontStyle": "bold"
+                        }
+                    },
+                    {
+                        "scope": "class-h2.cssc",
+                        "settings": {
+                            "foreground": "#F5AE2D",
+                            "fontStyle": "bold"
+                        }
+                    },
+                    {
+                        "scope": "class-h3.cssc",
+                        "settings": {
+                            "foreground": "#55DDE0",
+                            "fontStyle": "bold"
+                        }
+                    },
+                    {
+                        "scope":  "class-h4.cssc",
+                        "settings": {
+                            "foreground": "#CB9CF2",
+                            "fontStyle": "bold"
+                        }
+                    },
+                    {
                         "scope": "class-image.cssc",
                         "settings": {
                             "foreground": "#ff00ff",
@@ -125,15 +156,9 @@
                         }
                     },
                     {
-                        "scope": "editor-newline.cssc",
-                        "settings": {
-                            "foreground": "#6b6b6b"
-                        }
-                    },
-                    {
                         "scope": "editor-scape.cssc",
                         "settings": {
-                            "foreground": "#111111"
+                            "foreground": "#222"
                         }
                     },
                     {
@@ -141,6 +166,12 @@
                         "settings": {
                             "foreground": "#94eb52",
                             "fontStyle": "bold"
+                        }
+                    },
+                    {
+                        "scope": "modifier-break.cssc",
+                        "settings": {
+                            "foreground": "#999999"
                         }
                     },
                     {
@@ -156,31 +187,22 @@
                         }
                     },
                     {
-                        "scope": "modifier-h1.cssc",
+                        "scope": "modifier-highlight.cssc",
                         "settings": {
-                            "foreground": "#DE541E",
+                            "foreground": "#a2ad00",
                             "fontStyle": "bold"
                         }
                     },
                     {
-                        "scope": "modifier-h2.cssc",
+                        "scope": "modifier-html.cssc",
                         "settings": {
-                            "foreground": "#F5AE2D",
-                            "fontStyle": "bold"
+                            "foreground": "#FFA500"
                         }
                     },
                     {
-                        "scope": "modifier-h3.cssc",
+                        "scope": "modifier-index.cssc",
                         "settings": {
-                            "foreground": "#55DDE0",
-                            "fontStyle": "bold"
-                        }
-                    },
-                    {
-                        "scope":  "modifier-h4.cssc",
-                        "settings": {
-                            "foreground": "#CB9CF2",
-                            "fontStyle": "bold"
+                            "foreground": "#ff0000"
                         }
                     },
                     {
@@ -203,6 +225,13 @@
                         }
                     },
                     {
+                        "scope": "modifier-reference.cssc",
+                        "settings": {
+                            "foreground": "#8b3800",
+                            "fontStyle": "underline"
+                        }
+                    },
+                    {
                         "scope": "modifier-strikethrough.cssc",
                         "settings": {
                             "foreground": "#ff3c00",
@@ -222,6 +251,13 @@
                         }
                     },
                     {
+                        "scope": "modifier-underline.cssc",
+                        "settings": {
+                            "foreground": "#002fff",
+                            "fontStyle": "underline"
+                        }
+                    },
+                    {
                         "scope": "modifier-unordered.cssc",
                         "settings": {
                             "foreground": "#ffff00"
@@ -231,24 +267,6 @@
                         "scope": "modifier-voidbox.cssc",
                         "settings": {
                             "foreground": "#7d000a"
-                        }
-                    },
-                    {
-                        "scope": "tag-break.cssc",
-                        "settings": {
-                            "foreground": "#999999"
-                        }
-                    },
-                    {
-                        "scope": "tag-html.cssc",
-                        "settings": {
-                            "foreground": "#FFA500"
-                        }
-                    },
-                    {
-                        "scope": "tag-index.cssc",
-                        "settings": {
-                            "foreground": "#ff0000"
                         }
                     }
                 ]

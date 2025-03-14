@@ -9,8 +9,8 @@
     ],
     "autoClosingPairs": [
         /* CLASSES */
-        ["/code", "-\n\n/code"], // class-code.cssc
-        ["/math", "\n\n/math"], // class-math.cssc
+        ["/code", "-¬\n\n/code"], // class-code.cssc
+        ["/math¬", "\n\n/math"], // class-math.cssc
 
         /* EDITORS */
         ["# ", " -#"], // editor-comment.cssc
@@ -18,15 +18,15 @@
         /* MODIFIERS */
         [":", ":"], // modifier-bold.cssc
         ["/_", "/_"], // modifier-code.cssc
+        [";", ";"], // modifier-highlight.cssc
+        ["<", ">"], // modifier-html.cssc
+        ["/In", "/in"], // modifier-index.cssc
         ["·", "·"], // modifier-italic.cssc
         ["/=", "/="], // modifier-math.cssc
         ["/-", "/-"], // modifier-strikethrough.cssc
         ["/s", "/s"], // modifier-subscript.cssc
         ["/S", "/S"], // modifier-superscript.cssc
-
-        /* TAGS */
-        ["/In", "/in"], // tag-index.cssc
-        ["<", ">"], // tag-html.cssc
+        ["__", "__"], // modifier-underline.cssc
 
         /* BRACKETS */
         ["{", "}"],
@@ -34,7 +34,6 @@
         ["(", ")"],
         
         /* EXTRA */
-        ["«", "»"],
         ["\"", "\""],
         ["¿", "?"],
         ["¡", "!"],
@@ -51,20 +50,15 @@
         /* MODIFIERS */
         [":", ":"], // modifier-bold.cssc
         ["/_", "/_"], // modifier-code.cssc
+        [";", ";"], // modifier-highlight.cssc
+        ["<", ">"], // modifier-html.cssc
+        ["/In", "/in"], // modifier-index.cssc
         ["·", "·"], // modifier-italic.cssc
         ["/=", "/="], // modifier-math.cssc
         ["/-", "/-"], // modifier-strikethrough.cssc
         ["/s", "/s"], // modifier-subscript.cssc
         ["/S", "/S"], // modifier-superscript.cssc
-
-        /* TAGS */
-        ["/In", "/in"], // tag-index.cssc
-        ["<", ">"], // tag-html.cssc
-
-        /* BRACKETS */
-        ["{", "}"],
-        ["[", "]"],
-        ["(", ")"],
+        ["__", "__"], // modifier-underline.cssc
     ],
     "colorizedBracketPairs": [
         [

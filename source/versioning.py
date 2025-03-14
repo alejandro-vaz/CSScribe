@@ -1,4 +1,4 @@
-# IMPORT MODULES
+# IMPORT COMMON MODULES
 import random
 import math
 import sys

@@ -1,2 +1,3 @@
 build/
 .crossnote/
+source/__pycache__/

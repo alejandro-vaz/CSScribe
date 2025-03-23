@@ -95,3 +95,8 @@
 /X (Minor) Added auto line break and removed /_/n/_.
 /X (Patch) Changed word counting formula to word expression.
 /X (Patch) Added /=1111/= words to /_language/Español.json/_.
+/h4 ·CSScribe· 4.6.11
+/X (Patch) Added ·Times New Roman· font as /_TimesNR/_.
+/X (Patch) Added comments to /_language/handler.py/_.
+/X (Patch) Ensured /_textMateRules/_ are active in documents and startup via /_extension.js/_.
+/X (Patch) Changed to /_--noupx/_ compiling so that antivirus aren't triggered.

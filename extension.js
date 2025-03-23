@@ -10,7 +10,24 @@ function activate(context) {
     const language = config.get('language');
     const style = config.get("style");
     console.log(`Extension activated with language ${language} and style ${style}.`);
-    
+    // ENSURE TMRULES ARE APPLIED ON STARTUP
+    vscode.workspace.onDidOpenTextDocument((document) => {
+        if (document.languageId === 'cssc') {
+            console.log("Applying textMateRules for CSScribe.");
+            vscode.workspace.getConfiguration('editor').update('tokenColorCustomizations', {
+                textMateRules: vscode.workspace.getConfiguration('csscribe').get('editor.tokenColorCustomizations.textMateRules')
+            }, vscode.ConfigurationTarget.Global);
+        }
+    });
+    // APPLY TMRULES ON ALL CSSC DOCUMENTS
+    vscode.workspace.textDocuments.forEach((document) => {
+        if (document.languageId === 'cssc') {
+            console.log("Applying textMateRules for already open CSScribe documents.");
+            vscode.workspace.getConfiguration('editor').update('tokenColorCustomizations', {
+                textMateRules: vscode.workspace.getConfiguration('csscribe').get('editor.tokenColorCustomizations.textMateRules')
+            }, vscode.ConfigurationTarget.Global);
+        }
+    });
     // RUN COMPILER COMMAND
     let runCompiler = vscode.commands.registerCommand('csscribe.runCompiler', () => {
         console.log("Executed: csscribe.runCompiler");
@@ -77,7 +94,7 @@ function activate(context) {
             }
         });
     });
-    context.subscriptions.push(parseStyle)
+    context.subscriptions.push(parseStyle);
 
 // COMPLETION ITEM PROVIDER
 const completionProvider = vscode.languages.registerCompletionItemProvider('cssc', {
@@ -86,11 +103,9 @@ const completionProvider = vscode.languages.registerCompletionItemProvider('cssc
             // DEFINE PATHS AND REQUIREMENTS
             const completionWordsPath = path.join(context.extensionPath, `language/${language}.json`);
             const completionWords = require(completionWordsPath);
-            
             // INITIALIZE VARIABLES
             const linePrefix = document.lineAt(position).text.substr(0, position.character);
             const text = document.getText();
-            
             // BUILD WORD FREQUENCY MAP
             const wordFrequency = {};
             const words = text.match(/\b\w+\b/g);
@@ -100,7 +115,6 @@ const completionProvider = vscode.languages.registerCompletionItemProvider('cssc
                     wordFrequency[lowerWord] = (wordFrequency[lowerWord] || 0) + 1;
                 });
             }
-            
             // FUNCTION TO SET sortText BASED ON FREQUENCY
             const setSortText = (item, frequency) => {
                 // Invert frequency for correct sorting (higher frequency = should appear first)
@@ -108,17 +122,14 @@ const completionProvider = vscode.languages.registerCompletionItemProvider('cssc
                 const invertedFrequency = String(99999 - frequency).padStart(5, '0');
                 item.sortText = invertedFrequency + item.label;
             };
-            
             // FUNCTION TO CAPITALIZE FIRST LETTER
             const capitalizeFirstLetter = (word) => {
                 return word.charAt(0).toUpperCase() + word.slice(1);
             };
-            
             // DETERMINE IF CURRENT WORD STARTS WITH UPPERCASE
             const currentWordRange = document.getWordRangeAtPosition(position);
             const currentWord = currentWordRange ? document.getText(currentWordRange) : '';
             const isCurrentWordCapitalized = currentWord.charAt(0) === currentWord.charAt(0).toUpperCase();
-            
             // CREATE COMPLETION ITEMS FROM completionWords
             let completionItems = completionWords.map(word => {
                 // Skip single-letter words
@@ -133,7 +144,6 @@ const completionProvider = vscode.languages.registerCompletionItemProvider('cssc
                 }
                 return item;
             }).filter(item => item !== null);
-            
             // ADD WORDS ALREADY IN THE FILE
             const wordsInFile = new Set(words);
             wordsInFile.forEach(word => {
@@ -149,13 +159,11 @@ const completionProvider = vscode.languages.registerCompletionItemProvider('cssc
                 }
                 completionItems.push(item);
             });
-            
             // REMOVE DUPLICATE ITEMS
             const uniqueItems = new Map();
             completionItems.forEach(item => {
                 uniqueItems.set(item.label, item);
             });
-            
             // RETURN SORTED ITEMS
             return Array.from(uniqueItems.values());
         } catch (error) {
@@ -164,9 +172,6 @@ const completionProvider = vscode.languages.registerCompletionItemProvider('cssc
         }
     }
 });
-
-
-
     context.subscriptions.push(completionProvider);
 }
 

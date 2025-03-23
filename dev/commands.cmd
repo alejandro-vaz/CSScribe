@@ -1,4 +1,4 @@
-pyinstaller --onefile --icon=public/logo.png --distpath ./ source/compiler.py & pyinstaller --onefile --icon=public/logo.png --distpath ./ source/builder.py & pyinstaller --onefile --icon=public/logo.png --distpath ./ source/jpg2png.py & pyinstaller --onefile --icon=public/logo.png --distpath ./ source/versioning.py & rmdir "build/" /s /q & del builder.spec & del compiler.spec & del jpg2png.spec & del versioning.spec
+pyinstaller --onefile --noupx --icon=public/logo.png --distpath ./ source/compiler.py & pyinstaller --onefile --noupx --icon=public/logo.png --distpath ./ source/builder.py & pyinstaller --onefile --noupx --icon=public/logo.png --distpath ./ source/jpg2png.py & pyinstaller --onefile --noupx --icon=public/logo.png --distpath ./ source/versioning.py & rmdir "build/" /s /q & del builder.spec & del compiler.spec & del jpg2png.spec & del versioning.spec
 
 vsce package
 

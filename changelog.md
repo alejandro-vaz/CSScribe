@@ -191,3 +191,13 @@
 - [X] (Patch) Changed word counting formula to word expression.
 
 - [X] (Patch) Added $1111$ words to `language/Español.json`.
+
+#### *CSScribe* 4.6.11
+
+- [X] (Patch) Added *Times New Roman* font as `TimesNR`.
+
+- [X] (Patch) Added comments to `language/handler.py`.
+
+- [X] (Patch) Ensured `textMateRules` are active in documents and startup via `extension.js`.
+
+- [X] (Patch) Changed to `--noupx` compiling so that antivirus aren't triggered.
